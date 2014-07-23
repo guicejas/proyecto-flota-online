@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SistFlota_ModeloDatos.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="SistFlota_ModeloDatosStoreContainer">
+    <EntitySet Name="TiposdeGasto" EntityType="SistFlota_ModeloDatos.Store.TiposdeGasto" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Gastos" EntityType="SistFlota_ModeloDatos.Store.Gastos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Vehiculos" EntityType="SistFlota_ModeloDatos.Store.Vehiculos" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="TipodeGastoGasto" Association="SistFlota_ModeloDatos.Store.TipodeGastoGasto">
+      <End Role="TipodeGasto" EntitySet="TiposdeGasto" />
+      <End Role="Gasto" EntitySet="Gastos" />
+    </AssociationSet>
+    <AssociationSet Name="VehiculoGasto" Association="SistFlota_ModeloDatos.Store.VehiculoGasto">
+      <End Role="Vehiculo" EntitySet="Vehiculos" />
+      <End Role="Gasto" EntitySet="Gastos" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="TiposdeGasto">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Gastos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Monto" Type="decimal" Nullable="false" />
+    <Property Name="Estado" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FechaVencimiento" Type="datetime" Nullable="false" />
+    <Property Name="HoraEmision" Type="datetime" Nullable="true" />
+    <Property Name="FechaEmision" Type="datetime" Nullable="true" />
+    <Property Name="Usuario" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="FechayHora" Type="datetime" Nullable="true" />
+    <Property Name="Operacion" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="TipodeGasto_Id" Type="int" Nullable="false" />
+    <Property Name="Vehiculo_Patente" Type="nvarchar" MaxLength="7" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Vehiculos">
+    <Key>
+      <PropertyRef Name="Patente" />
+    </Key>
+    <Property Name="Patente" Type="nvarchar" Nullable="false" MaxLength="7" />
+    <Property Name="PatenteTaxi" Type="int" Nullable="true" />
+    <Property Name="Marca" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Modelo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Año" Type="int" Nullable="false" />
+    <Property Name="Color" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Kilometraje" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="TipodeGastoGasto">
+    <End Role="TipodeGasto" Type="SistFlota_ModeloDatos.Store.TiposdeGasto" Multiplicity="1" />
+    <End Role="Gasto" Type="SistFlota_ModeloDatos.Store.Gastos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipodeGasto">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Gasto">
+        <PropertyRef Name="TipodeGasto_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VehiculoGasto">
+    <End Role="Vehiculo" Type="SistFlota_ModeloDatos.Store.Vehiculos" Multiplicity="1" />
+    <End Role="Gasto" Type="SistFlota_ModeloDatos.Store.Gastos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehiculo">
+        <PropertyRef Name="Patente" />
+      </Principal>
+      <Dependent Role="Gasto">
+        <PropertyRef Name="Vehiculo_Patente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="SistFlota_ModeloDatos" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="SistFlota_ModeloDatosContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TiposdeGasto" EntityType="SistFlota_ModeloDatos.TipodeGasto" />
+          <EntitySet Name="Gastos" EntityType="SistFlota_ModeloDatos.Gasto" />
+          <EntitySet Name="Vehiculos" EntityType="SistFlota_ModeloDatos.Vehiculo" />
+          <AssociationSet Name="TipodeGastoGasto" Association="SistFlota_ModeloDatos.TipodeGastoGasto">
+            <End Role="TipodeGasto" EntitySet="TiposdeGasto" />
+            <End Role="Gasto" EntitySet="Gastos" />
+          </AssociationSet>
+          <AssociationSet Name="VehiculoGasto" Association="SistFlota_ModeloDatos.VehiculoGasto">
+            <End Role="Vehiculo" EntitySet="Vehiculos" />
+            <End Role="Gasto" EntitySet="Gastos" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="TipodeGasto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" />
+          <NavigationProperty Name="Gasto" Relationship="SistFlota_ModeloDatos.TipodeGastoGasto" FromRole="TipodeGasto" ToRole="Gasto" />
+        </EntityType>
+        <EntityType Name="Gasto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" />
+          <Property Name="Monto" Type="Decimal" Nullable="false" />
+          <Property Name="Estado" Type="String" Nullable="false" />
+          <Property Name="FechaVencimiento" Type="DateTime" Nullable="false" />
+          <Property Name="HoraEmision" Type="DateTime" Nullable="true" />
+          <Property Name="FechaEmision" Type="DateTime" Nullable="true" />
+          <Property Name="Usuario" Type="String" Nullable="true" />
+          <Property Name="FechayHora" Type="DateTime" Nullable="true" />
+          <Property Name="Operacion" Type="String" Nullable="true" />
+          <NavigationProperty Name="TipodeGasto" Relationship="SistFlota_ModeloDatos.TipodeGastoGasto" FromRole="Gasto" ToRole="TipodeGasto" />
+          <NavigationProperty Name="Vehiculo" Relationship="SistFlota_ModeloDatos.VehiculoGasto" FromRole="Gasto" ToRole="Vehiculo" />
+        </EntityType>
+        <EntityType Name="Vehiculo">
+          <Key>
+            <PropertyRef Name="Patente" />
+          </Key>
+          <Property Name="Patente" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="7" />
+          <Property Name="PatenteTaxi" Type="Int32" Nullable="true" />
+          <Property Name="Marca" Type="String" Nullable="false" />
+          <Property Name="Modelo" Type="String" Nullable="false" />
+          <Property Name="Año" Type="Int32" Nullable="false" />
+          <Property Name="Color" Type="String" Nullable="false" />
+          <Property Name="Kilometraje" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Gasto" Relationship="SistFlota_ModeloDatos.VehiculoGasto" FromRole="Vehiculo" ToRole="Gasto" />
+        </EntityType>
+        <Association Name="TipodeGastoGasto">
+          <End Type="SistFlota_ModeloDatos.TipodeGasto" Role="TipodeGasto" Multiplicity="1" />
+          <End Type="SistFlota_ModeloDatos.Gasto" Role="Gasto" Multiplicity="*" />
+        </Association>
+        <Association Name="VehiculoGasto">
+          <End Type="SistFlota_ModeloDatos.Vehiculo" Role="Vehiculo" Multiplicity="1" />
+          <End Type="SistFlota_ModeloDatos.Gasto" Role="Gasto" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SistFlota_ModeloDatosStoreContainer" CdmEntityContainer="SistFlota_ModeloDatosContainer">
+    <EntitySetMapping Name="TiposdeGasto">
+      <EntityTypeMapping TypeName="IsTypeOf(SistFlota_ModeloDatos.TipodeGasto)">
+        <MappingFragment StoreEntitySet="TiposdeGasto">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Gastos">
+      <EntityTypeMapping TypeName="IsTypeOf(SistFlota_ModeloDatos.Gasto)">
+        <MappingFragment StoreEntitySet="Gastos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+          <ScalarProperty Name="HoraEmision" ColumnName="HoraEmision" />
+          <ScalarProperty Name="FechaEmision" ColumnName="FechaEmision" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="FechayHora" ColumnName="FechayHora" />
+          <ScalarProperty Name="Operacion" ColumnName="Operacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vehiculos">
+      <EntityTypeMapping TypeName="IsTypeOf(SistFlota_ModeloDatos.Vehiculo)">
+        <MappingFragment StoreEntitySet="Vehiculos">
+          <ScalarProperty Name="Patente" ColumnName="Patente" />
+          <ScalarProperty Name="PatenteTaxi" ColumnName="PatenteTaxi" />
+          <ScalarProperty Name="Marca" ColumnName="Marca" />
+          <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+          <ScalarProperty Name="Año" ColumnName="Año" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Kilometraje" ColumnName="Kilometraje" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="TipodeGastoGasto" TypeName="SistFlota_ModeloDatos.TipodeGastoGasto" StoreEntitySet="Gastos">
+      <EndProperty Name="TipodeGasto">
+        <ScalarProperty Name="Id" ColumnName="TipodeGasto_Id" />
+      </EndProperty>
+      <EndProperty Name="Gasto">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="VehiculoGasto" TypeName="SistFlota_ModeloDatos.VehiculoGasto" StoreEntitySet="Gastos">
+      <EndProperty Name="Vehiculo">
+        <ScalarProperty Name="Patente" ColumnName="Vehiculo_Patente" />
+      </EndProperty>
+      <EndProperty Name="Gasto">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

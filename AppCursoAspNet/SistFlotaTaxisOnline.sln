@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vista", "AppCursoAspNet\Vista.csproj", "{E599168A-D4B6-4522-8EE3-D8E5A574DECA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modelo", "Model\Modelo.csproj", "{B04B7276-ADB8-4F48-8F1C-101CD04EF19F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controladora", "Controller\Controladora.csproj", "{CEBC63E7-5532-446A-9FD5-EFAD6BE01F62}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E599168A-D4B6-4522-8EE3-D8E5A574DECA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E599168A-D4B6-4522-8EE3-D8E5A574DECA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E599168A-D4B6-4522-8EE3-D8E5A574DECA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E599168A-D4B6-4522-8EE3-D8E5A574DECA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B04B7276-ADB8-4F48-8F1C-101CD04EF19F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B04B7276-ADB8-4F48-8F1C-101CD04EF19F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B04B7276-ADB8-4F48-8F1C-101CD04EF19F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B04B7276-ADB8-4F48-8F1C-101CD04EF19F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEBC63E7-5532-446A-9FD5-EFAD6BE01F62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEBC63E7-5532-446A-9FD5-EFAD6BE01F62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEBC63E7-5532-446A-9FD5-EFAD6BE01F62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEBC63E7-5532-446A-9FD5-EFAD6BE01F62}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
