@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Auditoria.aspx.cs" Inherits="Vista.View.Auditoria" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <form runat="server">
     <div>
         <ol class="breadcrumb">
             <li><a href="Index.aspx">Inicio</a></li>
@@ -59,6 +60,7 @@
             </asp:GridView>
         </ContentTemplate>
     </asp:UpdatePanel>
+        </form>
 </asp:Content>
 
 

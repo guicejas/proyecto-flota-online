@@ -88,6 +88,7 @@
     <Content Include="View\About.aspx" />
     <Content Include="View\Auditoria.aspx" />
     <Content Include="View\Ayuda.aspx" />
+    <Content Include="View\Login.aspx" />
     <Content Include="View\ReporteGastos.aspx" />
     <Content Include="View\PagarGasto.aspx" />
     <Content Include="Content\bootstrap.css" />
@@ -106,6 +107,7 @@
     <Content Include="fonts\glyphicons-regular.ttf" />
     <Content Include="fonts\glyphicons-regular.woff" />
     <Content Include="Docs\ManualUsuario.pdf" />
+    <Content Include="NoLogin.Master" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.0.js" />
     <Content Include="Scripts\jquery-2.1.0.min.js" />
@@ -117,6 +119,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logic\ShoppingCartActions.cs" />
+    <Compile Include="NoLogin.Master.cs">
+      <DependentUpon>NoLogin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NoLogin.Master.designer.cs">
+      <DependentUpon>NoLogin.Master</DependentUpon>
+    </Compile>
     <Compile Include="View\About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -138,6 +147,13 @@
     </Compile>
     <Compile Include="View\Ayuda.aspx.designer.cs">
       <DependentUpon>Ayuda.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\ReporteGastos.aspx.cs">
       <DependentUpon>ReporteGastos.aspx</DependentUpon>

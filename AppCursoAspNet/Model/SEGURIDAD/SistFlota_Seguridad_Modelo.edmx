@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SistFlota_Seguridad_Modelo.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="SistFlota_Seguridad_ModeloStoreContainer">
+    <EntitySet Name="Permisos" EntityType="SistFlota_Seguridad_Modelo.Store.Permisos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Perfiles" EntityType="SistFlota_Seguridad_Modelo.Store.Perfiles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Formularios" EntityType="SistFlota_Seguridad_Modelo.Store.Formularios" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Grupos" EntityType="SistFlota_Seguridad_Modelo.Store.Grupos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Usuarios" EntityType="SistFlota_Seguridad_Modelo.Store.Usuarios" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UsuarioGrupo" EntityType="SistFlota_Seguridad_Modelo.Store.UsuarioGrupo" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_UsuarioGrupo_Usuario" Association="SistFlota_Seguridad_Modelo.Store.FK_UsuarioGrupo_Usuario">
+      <End Role="Usuario" EntitySet="Usuarios" />
+      <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioGrupo_Grupo" Association="SistFlota_Seguridad_Modelo.Store.FK_UsuarioGrupo_Grupo">
+      <End Role="Grupo" EntitySet="Grupos" />
+      <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
+    </AssociationSet>
+    <AssociationSet Name="GrupoPerfil" Association="SistFlota_Seguridad_Modelo.Store.GrupoPerfil">
+      <End Role="Grupo" EntitySet="Grupos" />
+      <End Role="Perfil" EntitySet="Perfiles" />
+    </AssociationSet>
+    <AssociationSet Name="PerfilPermiso" Association="SistFlota_Seguridad_Modelo.Store.PerfilPermiso">
+      <End Role="Perfil" EntitySet="Perfiles" />
+      <End Role="Permiso" EntitySet="Permisos" />
+    </AssociationSet>
+    <AssociationSet Name="FormularioPerfil" Association="SistFlota_Seguridad_Modelo.Store.FormularioPerfil">
+      <End Role="Formulario" EntitySet="Formularios" />
+      <End Role="Perfil" EntitySet="Perfiles" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Permisos">
+    <Key>
+      <PropertyRef Name="IDPermiso" />
+    </Key>
+    <Property Name="IDPermiso" Type="nvarchar" StoreGeneratedPattern="Identity" Nullable="false" MaxLength="50" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Perfiles">
+    <Key>
+      <PropertyRef Name="IDPerfil" />
+    </Key>
+    <Property Name="IDPerfil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Grupo_IDGrupo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Permiso_IDPermiso" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Formulario_IDFormulario" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Formularios">
+    <Key>
+      <PropertyRef Name="IDFormulario" />
+    </Key>
+    <Property Name="IDFormulario" Type="nvarchar" StoreGeneratedPattern="Identity" Nullable="false" MaxLength="50" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Grupos">
+    <Key>
+      <PropertyRef Name="IDGrupo" />
+    </Key>
+    <Property Name="IDGrupo" Type="nvarchar" StoreGeneratedPattern="Identity" Nullable="false" MaxLength="50" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="IDUsuario" />
+    </Key>
+    <Property Name="IDUsuario" Type="nvarchar" StoreGeneratedPattern="Identity" Nullable="false" MaxLength="50" />
+    <Property Name="NombreApellido" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Contraseña" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" DefaultValue="true" />
+    <Property Name="Activo" Type="bit" Nullable="false" DefaultValue="false" />
+    <Property Name="PrimeraVez" Type="bit" Nullable="false" DefaultValue="true" />
+  </EntityType>
+  <EntityType Name="UsuarioGrupo">
+    <Key>
+      <PropertyRef Name="Usuario_IDUsuario" />
+      <PropertyRef Name="Grupo_IDGrupo" />
+    </Key>
+    <Property Name="Usuario_IDUsuario" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Grupo_IDGrupo" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <Association Name="GrupoPerfil">
+    <End Role="Grupo" Type="SistFlota_Seguridad_Modelo.Store.Grupos" Multiplicity="1" />
+    <End Role="Perfil" Type="SistFlota_Seguridad_Modelo.Store.Perfiles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grupo">
+        <PropertyRef Name="IDGrupo" />
+      </Principal>
+      <Dependent Role="Perfil">
+        <PropertyRef Name="Grupo_IDGrupo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PerfilPermiso">
+    <End Role="Perfil" Type="SistFlota_Seguridad_Modelo.Store.Perfiles" Multiplicity="*" />
+    <End Role="Permiso" Type="SistFlota_Seguridad_Modelo.Store.Permisos" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Permiso">
+        <PropertyRef Name="IDPermiso" />
+      </Principal>
+      <Dependent Role="Perfil">
+        <PropertyRef Name="Permiso_IDPermiso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FormularioPerfil">
+    <End Role="Formulario" Type="SistFlota_Seguridad_Modelo.Store.Formularios" Multiplicity="1" />
+    <End Role="Perfil" Type="SistFlota_Seguridad_Modelo.Store.Perfiles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Formulario">
+        <PropertyRef Name="IDFormulario" />
+      </Principal>
+      <Dependent Role="Perfil">
+        <PropertyRef Name="Formulario_IDFormulario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuarioGrupo_Usuario">
+    <End Role="Usuario" Type="SistFlota_Seguridad_Modelo.Store.Usuarios" Multiplicity="1" />
+    <End Role="UsuarioGrupo" Type="SistFlota_Seguridad_Modelo.Store.UsuarioGrupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="IDUsuario" />
+      </Principal>
+      <Dependent Role="UsuarioGrupo">
+        <PropertyRef Name="Usuario_IDUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuarioGrupo_Grupo">
+    <End Role="UsuarioGrupo" Type="SistFlota_Seguridad_Modelo.Store.UsuarioGrupo" Multiplicity="*" />
+    <End Role="Grupo" Type="SistFlota_Seguridad_Modelo.Store.Grupos" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Grupo">
+        <PropertyRef Name="IDGrupo" />
+      </Principal>
+      <Dependent Role="UsuarioGrupo">
+        <PropertyRef Name="Grupo_IDGrupo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="SistFlota_Seguridad_Modelo" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="SistFlota_Seguridad_ModeloContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Permisos" EntityType="SistFlota_Seguridad_Modelo.Permiso" />
+          <EntitySet Name="Perfiles" EntityType="SistFlota_Seguridad_Modelo.Perfil" />
+          <EntitySet Name="Formularios" EntityType="SistFlota_Seguridad_Modelo.Formulario" />
+          <EntitySet Name="Grupos" EntityType="SistFlota_Seguridad_Modelo.Grupo" />
+          <EntitySet Name="Usuarios" EntityType="SistFlota_Seguridad_Modelo.Usuario" />
+          <AssociationSet Name="UsuarioGrupo" Association="SistFlota_Seguridad_Modelo.UsuarioGrupo">
+            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="Grupo" EntitySet="Grupos" />
+          </AssociationSet>
+          <AssociationSet Name="GrupoPerfil" Association="SistFlota_Seguridad_Modelo.GrupoPerfil">
+            <End Role="Grupo" EntitySet="Grupos" />
+            <End Role="Perfil" EntitySet="Perfiles" />
+          </AssociationSet>
+          <AssociationSet Name="PerfilPermiso" Association="SistFlota_Seguridad_Modelo.PerfilPermiso">
+            <End Role="Perfil" EntitySet="Perfiles" />
+            <End Role="Permiso" EntitySet="Permisos" />
+          </AssociationSet>
+          <AssociationSet Name="FormularioPerfil" Association="SistFlota_Seguridad_Modelo.FormularioPerfil">
+            <End Role="Formulario" EntitySet="Formularios" />
+            <End Role="Perfil" EntitySet="Perfiles" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Permiso">
+          <Key>
+            <PropertyRef Name="IDPermiso" />
+          </Key>
+          <Property Name="IDPermiso" Type="String" annotation:StoreGeneratedPattern="Identity" Nullable="false" MaxLength="50" />
+          <Property Name="Descripcion" Type="String" Nullable="false" />
+          <NavigationProperty Name="Perfil" Relationship="SistFlota_Seguridad_Modelo.PerfilPermiso" FromRole="Permiso" ToRole="Perfil" />
+        </EntityType>
+        <EntityType Name="Perfil">
+          <Key>
+            <PropertyRef Name="IDPerfil" />
+          </Key>
+          <Property Name="IDPerfil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Grupo" Relationship="SistFlota_Seguridad_Modelo.GrupoPerfil" FromRole="Perfil" ToRole="Grupo" />
+          <NavigationProperty Name="Permiso" Relationship="SistFlota_Seguridad_Modelo.PerfilPermiso" FromRole="Perfil" ToRole="Permiso" />
+          <NavigationProperty Name="Formulario" Relationship="SistFlota_Seguridad_Modelo.FormularioPerfil" FromRole="Perfil" ToRole="Formulario" />
+        </EntityType>
+        <EntityType Name="Formulario">
+          <Key>
+            <PropertyRef Name="IDFormulario" />
+          </Key>
+          <Property Name="IDFormulario" Type="String" Nullable="false" annotation:StoreGeneratedPattern="Identity" MaxLength="50" />
+          <Property Name="Descripcion" Type="String" Nullable="false" />
+          <NavigationProperty Name="Perfil" Relationship="SistFlota_Seguridad_Modelo.FormularioPerfil" FromRole="Formulario" ToRole="Perfil" />
+        </EntityType>
+        <EntityType Name="Grupo">
+          <Key>
+            <PropertyRef Name="IDGrupo" />
+          </Key>
+          <Property Name="IDGrupo" Type="String" Nullable="false" annotation:StoreGeneratedPattern="Identity" MaxLength="50" />
+          <Property Name="Descripcion" Type="String" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="SistFlota_Seguridad_Modelo.UsuarioGrupo" FromRole="Grupo" ToRole="Usuario" />
+          <NavigationProperty Name="Perfil" Relationship="SistFlota_Seguridad_Modelo.GrupoPerfil" FromRole="Grupo" ToRole="Perfil" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IDUsuario" />
+          </Key>
+          <Property Name="IDUsuario" Type="String" Nullable="false" annotation:StoreGeneratedPattern="Identity" MaxLength="50" />
+          <Property Name="NombreApellido" Type="String" Nullable="false" />
+          <Property Name="Contraseña" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="Habilitado" Type="Boolean" Nullable="false" DefaultValue="True" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" DefaultValue="False" />
+          <Property Name="PrimeraVez" Type="Boolean" Nullable="false" DefaultValue="True" />
+          <NavigationProperty Name="Grupo" Relationship="SistFlota_Seguridad_Modelo.UsuarioGrupo" FromRole="Usuario" ToRole="Grupo" />
+        </EntityType>
+        <Association Name="UsuarioGrupo">
+          <End Type="SistFlota_Seguridad_Modelo.Usuario" Role="Usuario" Multiplicity="*" />
+          <End Type="SistFlota_Seguridad_Modelo.Grupo" Role="Grupo" Multiplicity="*" />
+        </Association>
+        <Association Name="GrupoPerfil">
+          <End Type="SistFlota_Seguridad_Modelo.Grupo" Role="Grupo" Multiplicity="1" />
+          <End Type="SistFlota_Seguridad_Modelo.Perfil" Role="Perfil" Multiplicity="*" />
+        </Association>
+        <Association Name="PerfilPermiso">
+          <End Type="SistFlota_Seguridad_Modelo.Perfil" Role="Perfil" Multiplicity="*" />
+          <End Type="SistFlota_Seguridad_Modelo.Permiso" Role="Permiso" Multiplicity="1" />
+        </Association>
+        <Association Name="FormularioPerfil">
+          <End Type="SistFlota_Seguridad_Modelo.Formulario" Role="Formulario" Multiplicity="1" />
+          <End Type="SistFlota_Seguridad_Modelo.Perfil" Role="Perfil" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SistFlota_Seguridad_ModeloStoreContainer" CdmEntityContainer="SistFlota_Seguridad_ModeloContainer">
+    <EntitySetMapping Name="Permisos">
+      <EntityTypeMapping TypeName="IsTypeOf(SistFlota_Seguridad_Modelo.Permiso)">
+        <MappingFragment StoreEntitySet="Permisos">
+          <ScalarProperty Name="IDPermiso" ColumnName="IDPermiso" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Perfiles">
+      <EntityTypeMapping TypeName="IsTypeOf(SistFlota_Seguridad_Modelo.Perfil)">
+        <MappingFragment StoreEntitySet="Perfiles">
+          <ScalarProperty Name="IDPerfil" ColumnName="IDPerfil" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Formularios">
+      <EntityTypeMapping TypeName="IsTypeOf(SistFlota_Seguridad_Modelo.Formulario)">
+        <MappingFragment StoreEntitySet="Formularios">
+          <ScalarProperty Name="IDFormulario" ColumnName="IDFormulario" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Grupos">
+      <EntityTypeMapping TypeName="IsTypeOf(SistFlota_Seguridad_Modelo.Grupo)">
+        <MappingFragment StoreEntitySet="Grupos">
+          <ScalarProperty Name="IDGrupo" ColumnName="IDGrupo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="IsTypeOf(SistFlota_Seguridad_Modelo.Usuario)">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="IDUsuario" ColumnName="IDUsuario" />
+          <ScalarProperty Name="NombreApellido" ColumnName="NombreApellido" />
+          <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="PrimeraVez" ColumnName="PrimeraVez" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UsuarioGrupo" TypeName="SistFlota_Seguridad_Modelo.UsuarioGrupo" StoreEntitySet="UsuarioGrupo">
+      <EndProperty Name="Usuario">
+        <ScalarProperty Name="IDUsuario" ColumnName="Usuario_IDUsuario" />
+      </EndProperty>
+      <EndProperty Name="Grupo">
+        <ScalarProperty Name="IDGrupo" ColumnName="Grupo_IDGrupo" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="GrupoPerfil" TypeName="SistFlota_Seguridad_Modelo.GrupoPerfil" StoreEntitySet="Perfiles">
+      <EndProperty Name="Grupo">
+        <ScalarProperty Name="IDGrupo" ColumnName="Grupo_IDGrupo" />
+      </EndProperty>
+      <EndProperty Name="Perfil">
+        <ScalarProperty Name="IDPerfil" ColumnName="IDPerfil" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PerfilPermiso" TypeName="SistFlota_Seguridad_Modelo.PerfilPermiso" StoreEntitySet="Perfiles">
+      <EndProperty Name="Permiso">
+        <ScalarProperty Name="IDPermiso" ColumnName="Permiso_IDPermiso" />
+      </EndProperty>
+      <EndProperty Name="Perfil">
+        <ScalarProperty Name="IDPerfil" ColumnName="IDPerfil" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FormularioPerfil" TypeName="SistFlota_Seguridad_Modelo.FormularioPerfil" StoreEntitySet="Perfiles">
+      <EndProperty Name="Formulario">
+        <ScalarProperty Name="IDFormulario" ColumnName="Formulario_IDFormulario" />
+      </EndProperty>
+      <EndProperty Name="Perfil">
+        <ScalarProperty Name="IDPerfil" ColumnName="IDPerfil" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
