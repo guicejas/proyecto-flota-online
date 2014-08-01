@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Controladora.SEGURIDAD
 {
-    class ControladoraGrupos
+    public class ControladoraGrupos
     {
     }
 }

@@ -7,7 +7,7 @@ using Modelo.AUDITORIA;
 
 namespace Modelo
 {
-    public class SingletonAuditoria
+    public partial class SingletonAuditoria
     {
 
         private static SistFlota_ModeloAuditoriaContainer Instancia = null;

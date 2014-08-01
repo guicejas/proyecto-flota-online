@@ -100,6 +100,7 @@
     </Compile>
     <Compile Include="SEGURIDAD\UsuarioPartial.cs" />
     <Compile Include="SingletonAuditoria.cs" />
+    <Compile Include="SingletonSeguridad.cs" />
     <Compile Include="SingletonSistFlota.cs" />
     <Compile Include="Gasto.cs">
       <DependentUpon>SistFlota_ModeloDatos.tt</DependentUpon>

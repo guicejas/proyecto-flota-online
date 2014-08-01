@@ -58,6 +58,7 @@
     <Compile Include="SEGURIDAD\ControladoraPerfiles.cs" />
     <Compile Include="SEGURIDAD\ControladoraPermisos.cs" />
     <Compile Include="SEGURIDAD\ControladoraUsuarios.cs" />
+    <Compile Include="SEGURIDAD\Encriptacion.cs" />
     <Compile Include="SISTFLOTA\ControladoraGastos.cs" />
     <Compile Include="SISTFLOTA\ControladoraTiposdeGasto.cs" />
     <Compile Include="SISTFLOTA\ControladoraVehiculos.cs" />

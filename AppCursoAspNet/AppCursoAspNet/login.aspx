@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="Vista.Login" %>
+﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Vista.Login" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -15,7 +15,7 @@
                 <div class="form-group">
                     <label for="inputUsuario" class="col-lg-2 control-label">Usuario</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" id="inputUsuario" placeholder="Email" required="required" runat="server"/>
+                        <input type="text" class="form-control" id="inputUsuario" placeholder="Usuario" required="required" runat="server"/>
                     </div>
                 </div>
 
@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="form-group">
-                    <a href="#" style="float: right; margin-right: 30px;">Resetear Contraseña</a>
+                    <a href="ResetPassword" style="float: right; margin-right: 30px;">Resetear Password</a>
                 </div>
 
                 <div class="form-group">

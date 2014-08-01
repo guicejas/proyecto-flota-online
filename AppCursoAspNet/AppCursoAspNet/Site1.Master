@@ -63,7 +63,7 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="#"><span class="glyphicon glyphicon-cogwheelsv"></span>Configurar</a></li>
                                 <li class="divider"></li>
-                                <li><a href="../logout.aspx"><span class="glyphicon glyphicon-exit yellow-icon"></span>Salir del sistema</a></li>
+                                <li><a href="../Logout.aspx"><span class="glyphicon glyphicon-exit yellow-icon"></span>Salir del sistema</a></li>
                             </ul>
                         </li>
                     </ul>

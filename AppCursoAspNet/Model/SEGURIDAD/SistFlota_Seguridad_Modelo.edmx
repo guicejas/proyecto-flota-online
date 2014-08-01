@@ -37,7 +37,7 @@
     <Key>
       <PropertyRef Name="IDPermiso" />
     </Key>
-    <Property Name="IDPermiso" Type="nvarchar" StoreGeneratedPattern="Identity" Nullable="false" MaxLength="50" />
+    <Property Name="IDPermiso" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Perfiles">
@@ -53,21 +53,21 @@
     <Key>
       <PropertyRef Name="IDFormulario" />
     </Key>
-    <Property Name="IDFormulario" Type="nvarchar" StoreGeneratedPattern="Identity" Nullable="false" MaxLength="50" />
+    <Property Name="IDFormulario" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Grupos">
     <Key>
       <PropertyRef Name="IDGrupo" />
     </Key>
-    <Property Name="IDGrupo" Type="nvarchar" StoreGeneratedPattern="Identity" Nullable="false" MaxLength="50" />
+    <Property Name="IDGrupo" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Usuarios">
     <Key>
       <PropertyRef Name="IDUsuario" />
     </Key>
-    <Property Name="IDUsuario" Type="nvarchar" StoreGeneratedPattern="Identity" Nullable="false" MaxLength="50" />
+    <Property Name="IDUsuario" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="NombreApellido" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Contraseña" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
@@ -174,7 +174,7 @@
           <Key>
             <PropertyRef Name="IDPermiso" />
           </Key>
-          <Property Name="IDPermiso" Type="String" annotation:StoreGeneratedPattern="Identity" Nullable="false" MaxLength="50" />
+          <Property Name="IDPermiso" Type="String" annotation:StoreGeneratedPattern="None" Nullable="false" MaxLength="50" />
           <Property Name="Descripcion" Type="String" Nullable="false" />
           <NavigationProperty Name="Perfil" Relationship="SistFlota_Seguridad_Modelo.PerfilPermiso" FromRole="Permiso" ToRole="Perfil" />
         </EntityType>
@@ -191,7 +191,7 @@
           <Key>
             <PropertyRef Name="IDFormulario" />
           </Key>
-          <Property Name="IDFormulario" Type="String" Nullable="false" annotation:StoreGeneratedPattern="Identity" MaxLength="50" />
+          <Property Name="IDFormulario" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="50" />
           <Property Name="Descripcion" Type="String" Nullable="false" />
           <NavigationProperty Name="Perfil" Relationship="SistFlota_Seguridad_Modelo.FormularioPerfil" FromRole="Formulario" ToRole="Perfil" />
         </EntityType>
@@ -199,7 +199,7 @@
           <Key>
             <PropertyRef Name="IDGrupo" />
           </Key>
-          <Property Name="IDGrupo" Type="String" Nullable="false" annotation:StoreGeneratedPattern="Identity" MaxLength="50" />
+          <Property Name="IDGrupo" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="50" />
           <Property Name="Descripcion" Type="String" Nullable="false" />
           <NavigationProperty Name="Usuario" Relationship="SistFlota_Seguridad_Modelo.UsuarioGrupo" FromRole="Grupo" ToRole="Usuario" />
           <NavigationProperty Name="Perfil" Relationship="SistFlota_Seguridad_Modelo.GrupoPerfil" FromRole="Grupo" ToRole="Perfil" />
@@ -208,7 +208,7 @@
           <Key>
             <PropertyRef Name="IDUsuario" />
           </Key>
-          <Property Name="IDUsuario" Type="String" Nullable="false" annotation:StoreGeneratedPattern="Identity" MaxLength="50" />
+          <Property Name="IDUsuario" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="50" />
           <Property Name="NombreApellido" Type="String" Nullable="false" />
           <Property Name="Contraseña" Type="String" Nullable="false" />
           <Property Name="Email" Type="String" Nullable="false" />

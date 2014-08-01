@@ -10,17 +10,23 @@ namespace Vista
 {
     public partial class Login : System.Web.UI.Page
     {
+
+        Controladora.SEGURIDAD.ControladoraLogin ctrlLogin = new Controladora.SEGURIDAD.ControladoraLogin();
+        Controladora.SEGURIDAD.ControladoraUsuarios ctrlUsuarios = new Controladora.SEGURIDAD.ControladoraUsuarios();
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
             mensaje.Visible = false;
+            ctrlUsuarios.CargaInicialBD();
         }
 
         protected void LoginSistema_Authenticate(object sender, EventArgs e)
         {
             
+            
             bool Autenticado = false;
-            Autenticado = LoginCorrecto(inputUsuario.Value, inputPassword.Value);
+            Autenticado = ctrlLogin.IniciarSesion(inputUsuario.Value, inputPassword.Value);
             if (Autenticado)
             {
                 FormsAuthentication.RedirectFromLoginPage(inputUsuario.Value, recordarme.Checked);
@@ -29,7 +35,7 @@ namespace Vista
             else
             {
                 mensaje.Visible = true;
-                mensajeTexto.InnerHtml = "Usuario o password incorrectos.";
+                mensajeTexto.InnerHtml = "El usuario o password son incorrectos. O el usuario no esta activo.";
 
             }
         }

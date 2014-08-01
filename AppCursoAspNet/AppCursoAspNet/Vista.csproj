@@ -66,12 +66,12 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ResetPassword.aspx" />
     <Content Include="Content\bootstrap - Original.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\glyphicons.css" />
-    <Content Include="default.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Images\delete-item.png" />
     <Content Include="Images\edit-item.png" />
@@ -84,13 +84,22 @@
     <Content Include="Images\taxi.ico" />
     <Content Include="Images\Trypep.png" />
     <Content Include="Images\TxtPortada.png" />
-    <Content Include="logout.aspx" />
+    <Content Include="Logout.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Seguridad\EditarGrupo.aspx" />
+    <Content Include="Seguridad\EditarPerfil.aspx" />
+    <Content Include="Seguridad\EditarUsuario.aspx" />
+    <Content Include="Seguridad\Grupos.aspx" />
+    <Content Include="Seguridad\NuevoGrupo.aspx" />
+    <Content Include="Seguridad\NuevoPerfil.aspx" />
+    <Content Include="Seguridad\NuevoUsuario.aspx" />
+    <Content Include="Seguridad\Perfiles.aspx" />
+    <Content Include="Seguridad\Usuarios.aspx" />
     <Content Include="View\About.aspx" />
     <Content Include="View\Auditoria.aspx" />
     <Content Include="View\Ayuda.aspx" />
-    <Content Include="login.aspx" />
+    <Content Include="Login.aspx" />
     <Content Include="View\ReporteGastos.aspx" />
     <Content Include="View\PagarGasto.aspx" />
     <Content Include="Content\bootstrap.css" />
@@ -119,20 +128,83 @@
     <Content Include="Scripts\jquery-2.1.0.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="default.aspx.cs">
-      <DependentUpon>default.aspx</DependentUpon>
+    <Compile Include="ResetPassword.aspx.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="default.aspx.designer.cs">
-      <DependentUpon>default.aspx</DependentUpon>
+    <Compile Include="ResetPassword.aspx.designer.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Logic\ShoppingCartActions.cs" />
-    <Compile Include="logout.aspx.cs">
-      <DependentUpon>logout.aspx</DependentUpon>
+    <Compile Include="Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="logout.aspx.designer.cs">
-      <DependentUpon>logout.aspx</DependentUpon>
+    <Compile Include="Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\EditarGrupo.aspx.cs">
+      <DependentUpon>EditarGrupo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seguridad\EditarGrupo.aspx.designer.cs">
+      <DependentUpon>EditarGrupo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\EditarPerfil.aspx.cs">
+      <DependentUpon>EditarPerfil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seguridad\EditarPerfil.aspx.designer.cs">
+      <DependentUpon>EditarPerfil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\EditarUsuario.aspx.cs">
+      <DependentUpon>EditarUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seguridad\EditarUsuario.aspx.designer.cs">
+      <DependentUpon>EditarUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\Grupos.aspx.cs">
+      <DependentUpon>Grupos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seguridad\Grupos.aspx.designer.cs">
+      <DependentUpon>Grupos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\NuevoGrupo.aspx.cs">
+      <DependentUpon>NuevoGrupo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seguridad\NuevoGrupo.aspx.designer.cs">
+      <DependentUpon>NuevoGrupo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\NuevoPerfil.aspx.cs">
+      <DependentUpon>NuevoPerfil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seguridad\NuevoPerfil.aspx.designer.cs">
+      <DependentUpon>NuevoPerfil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\NuevoUsuario.aspx.cs">
+      <DependentUpon>NuevoUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seguridad\NuevoUsuario.aspx.designer.cs">
+      <DependentUpon>NuevoUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\Perfiles.aspx.cs">
+      <DependentUpon>Perfiles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seguridad\Perfiles.aspx.designer.cs">
+      <DependentUpon>Perfiles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\Usuarios.aspx.cs">
+      <DependentUpon>Usuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seguridad\Usuarios.aspx.designer.cs">
+      <DependentUpon>Usuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -156,12 +228,12 @@
     <Compile Include="View\Ayuda.aspx.designer.cs">
       <DependentUpon>Ayuda.aspx</DependentUpon>
     </Compile>
-    <Compile Include="login.aspx.cs">
-      <DependentUpon>login.aspx</DependentUpon>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="login.aspx.designer.cs">
-      <DependentUpon>login.aspx</DependentUpon>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\ReporteGastos.aspx.cs">
       <DependentUpon>ReporteGastos.aspx</DependentUpon>
@@ -235,6 +307,7 @@
     <Content Include="Site1.Master" />
     <Content Include="packages.config" />
     <Content Include="View\Web.config" />
+    <Content Include="Seguridad\Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -12,6 +12,8 @@ namespace Vista
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Controladora.SEGURIDAD.ControladoraLogin ctrlLogin = new Controladora.SEGURIDAD.ControladoraLogin();
+            ctrlLogin.CerrarSesion(this.Context.User.Identity.Name);
             FormsAuthentication.SignOut();
             FormsAuthentication.RedirectToLoginPage();
         }
