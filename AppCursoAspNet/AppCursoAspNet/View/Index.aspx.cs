@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Security;
+
 
 namespace Vista
 {
@@ -11,6 +13,11 @@ namespace Vista
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //if (!this.Page.User.Identity.IsAuthenticated)
+            //{
+            //    FormsAuthentication.RedirectToLoginPage();
+            //}
+
             Controladora.ControladoraTiposdeGasto.getINSTANCIA.CargarTiposdeGasto();
 
             if (Controladora.ControladoraGastos.getINSTANCIA.ListarGastosMonitor().Count() > 0)

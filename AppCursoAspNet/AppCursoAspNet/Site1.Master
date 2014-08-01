@@ -11,77 +11,82 @@
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link href="Content/glyphicons.css" rel="stylesheet" />
     <link href="Content/Site.css" rel="stylesheet" />
-   
+
     <script type="text/javascript" src="../Scripts/jquery-2.1.0.min.js"></script>
-    <script type="text/javascript" src="../Scripts/bootstrap.js" ></script>
+    <script type="text/javascript" src="../Scripts/bootstrap.js"></script>
 </head>
 
 <body>
-   <form>
+    <form>
 
-       <div class="navbar navbar-default navbar-fixed-top">
-           <div class="container">
-               <div class="navbar-header">
-                   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                       <span class="icon-bar"></span>
-                       <span class="icon-bar"></span>
-                       <span class="icon-bar"></span>
-                   </button>
-                   <a class="navbar-brand" runat="server" href="~/View/Index">Flota Taxis Online</a>
-               </div>
-               <div class="navbar-collapse collapse navbar-responsive-collapse">
-                   <ul class="nav navbar-nav">
-                       <li><a runat="server" href="~/View/Index"><span class="glyphicon glyphicon-home yellow-icon"></span>Incio</a></li>
-                       <li><a href="#"><span class="glyphicon glyphicon-car yellow-icon"></span>Vehiculos</a></li>
-                       <li class="dropdown">
-                           <a runat="server" href="~/View/Gastos" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-coins yellow-icon"></span>Gastos<b class="caret"></b></a>
-                           <ul class="dropdown-menu">
-                               <li><a runat="server" href="~/View/Gastos"><span class="glyphicon glyphicon-coins yellow-icon"></span>Gestionar Gastos</a></li>
-                               <li><a runat="server" href="~/View/NuevoGasto"><span class="glyphicon glyphicon-circle_plus yellow-icon"></span>Nuevo Gasto</a></li>
-                               <li class="divider"></li>
-                               <li><a runat="server" href="~/View/MonitorGastos"><span class="glyphicon glyphicon-dashboard yellow-icon"></span>Monitor de Gastos</a></li>
-                           </ul>
-                       </li>
-                       <li class="dropdown">
-                           <a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-adjust_alt yellow-icon"></span>Administración<b class="caret"></b></a>
-                           <ul class="dropdown-menu">
-                               <li><a href="#"><span class="glyphicon glyphicon-group yellow-icon"></span>Gestionar Usuarios</a></li>
-                               <li class="divider"></li>
-                               <li><a runat="server" href="~/View/Auditoria"><span class="glyphicon glyphicon-eye_open yellow-icon"></span>Auditoria</a></li>
-                           </ul>
-                       </li>
-                   </ul>
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" runat="server" href="~/View/Index">Flota Taxis Online</a>
+                </div>
+                <div class="navbar-collapse collapse navbar-responsive-collapse">
+                    <div id="menuPrincipal" runat="server">
+                        <ul class="nav navbar-nav">
+                            <li><a runat="server" href="~/View/Index"><span class="glyphicon glyphicon-home yellow-icon"></span>Incio</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-car yellow-icon"></span>Vehiculos</a></li>
+                            <li class="dropdown">
+                                <a runat="server" href="~/View/Gastos" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-coins yellow-icon"></span>Gastos<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a runat="server" href="~/View/Gastos"><span class="glyphicon glyphicon-coins yellow-icon"></span>Gestionar Gastos</a></li>
+                                    <li><a runat="server" href="~/View/NuevoGasto"><span class="glyphicon glyphicon-circle_plus yellow-icon"></span>Nuevo Gasto</a></li>
+                                    <li class="divider"></li>
+                                    <li><a runat="server" href="~/View/MonitorGastos"><span class="glyphicon glyphicon-dashboard yellow-icon"></span>Monitor de Gastos</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-adjust_alt yellow-icon"></span>Administración<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#"><span class="glyphicon glyphicon-group yellow-icon"></span>Gestionar Usuarios</a></li>
+                                    <li class="divider"></li>
+                                    <li><a runat="server" href="~/View/Auditoria"><span class="glyphicon glyphicon-eye_open yellow-icon"></span>Auditoria</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
 
-                   <ul class="nav navbar-nav navbar-right">
-                       <li><a runat="server" href="~/View/About"><span class="glyphicon glyphicon-circle_info yellow-icon"></span>Acerca</a></li>
-                                              <li><a target="_blank" runat="server" href="~/View/Ayuda" alt="Ayuda" title="Ayuda"><span class="glyphicon glyphicon-circle_question_mark yellow-icon"></span></a></li>
-                       <li class="dropdown">
-                           <a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user yellow-icon"></span>Admin<b class="caret"></b></a>
-                           <ul class="dropdown-menu" role="menu">
-                               <li><a href="#"><span class="glyphicon glyphicon-cogwheelsv"></span>Configurar</a></li>
-                               <li class="divider"></li>
-                               <li><a href="#"><span class="glyphicon glyphicon-exit yellow-icon"></span>Salir del sistema</a></li>
-                           </ul>
-                       </li>
-                   </ul>
-               </div>
-           </div>
-           <div class="gradient"><div class="taxi-pattern greydout"></div></div>
-       </div>
-       <br/>
-       
-       <p />
-       <p />
-           </form>
-              
-        <div class="container body-content">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
-            <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Sistema Flota de Taxis Online</p>
-            </footer>
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li id="menuAcerca" runat="server"><a runat="server" href="~/View/About"><span class="glyphicon glyphicon-circle_info yellow-icon"></span>Acerca</a></li>
+                        <li id="menuAyuda" runat="server"><a target="_blank" runat="server" href="~/View/Ayuda" alt="Ayuda" title="Ayuda"><span class="glyphicon glyphicon-circle_question_mark yellow-icon"></span></a></li>
+                        <li id="menuUsuario" class="dropdown" runat="server">
+                            <a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user yellow-icon"></span><span id="nombreUsuario" runat="server">Admin</span><b class="caret"></b></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#"><span class="glyphicon glyphicon-cogwheelsv"></span>Configurar</a></li>
+                                <li class="divider"></li>
+                                <li><a href="../logout.aspx"><span class="glyphicon glyphicon-exit yellow-icon"></span>Salir del sistema</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="gradient">
+                <div class="taxi-pattern greydout"></div>
+            </div>
         </div>
+        <br />
+
+        <p />
+        <p />
+    </form>
+
+    <div class="container body-content">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+        <hr />
+        <footer>
+            <p>&copy; <%: DateTime.Now.Year %> - Sistema Flota de Taxis Online</p>
+        </footer>
+    </div>
 
 </body>
 </html>

@@ -71,6 +71,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\glyphicons.css" />
+    <Content Include="default.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Images\delete-item.png" />
     <Content Include="Images\edit-item.png" />
@@ -83,12 +84,13 @@
     <Content Include="Images\taxi.ico" />
     <Content Include="Images\Trypep.png" />
     <Content Include="Images\TxtPortada.png" />
+    <Content Include="logout.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="View\About.aspx" />
     <Content Include="View\Auditoria.aspx" />
     <Content Include="View\Ayuda.aspx" />
-    <Content Include="View\Login.aspx" />
+    <Content Include="login.aspx" />
     <Content Include="View\ReporteGastos.aspx" />
     <Content Include="View\PagarGasto.aspx" />
     <Content Include="Content\bootstrap.css" />
@@ -107,7 +109,6 @@
     <Content Include="fonts\glyphicons-regular.ttf" />
     <Content Include="fonts\glyphicons-regular.woff" />
     <Content Include="Docs\ManualUsuario.pdf" />
-    <Content Include="NoLogin.Master" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.0.js" />
     <Content Include="Scripts\jquery-2.1.0.min.js" />
@@ -118,13 +119,20 @@
     <Content Include="Scripts\jquery-2.1.0.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Logic\ShoppingCartActions.cs" />
-    <Compile Include="NoLogin.Master.cs">
-      <DependentUpon>NoLogin.Master</DependentUpon>
+    <Compile Include="default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="NoLogin.Master.designer.cs">
-      <DependentUpon>NoLogin.Master</DependentUpon>
+    <Compile Include="default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\ShoppingCartActions.cs" />
+    <Compile Include="logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -148,12 +156,12 @@
     <Compile Include="View\Ayuda.aspx.designer.cs">
       <DependentUpon>Ayuda.aspx</DependentUpon>
     </Compile>
-    <Compile Include="View\Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="View\Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\ReporteGastos.aspx.cs">
       <DependentUpon>ReporteGastos.aspx</DependentUpon>
@@ -226,6 +234,7 @@
   <ItemGroup>
     <Content Include="Site1.Master" />
     <Content Include="packages.config" />
+    <Content Include="View\Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

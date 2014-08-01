@@ -10,60 +10,69 @@
 namespace Vista {
     
     
-    public partial class Site1 {
+    public partial class Login {
         
         /// <summary>
-        /// menuPrincipal control.
+        /// formLogin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl menuPrincipal;
+        protected global::System.Web.UI.HtmlControls.HtmlForm formLogin;
         
         /// <summary>
-        /// menuAcerca control.
+        /// mensaje control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl menuAcerca;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mensaje;
         
         /// <summary>
-        /// menuAyuda control.
+        /// mensajeTexto control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl menuAyuda;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mensajeTexto;
         
         /// <summary>
-        /// menuUsuario control.
+        /// inputUsuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl menuUsuario;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText inputUsuario;
         
         /// <summary>
-        /// nombreUsuario control.
+        /// inputPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl nombreUsuario;
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword inputPassword;
         
         /// <summary>
-        /// MainContent control.
+        /// recordarme control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox recordarme;
+        
+        /// <summary>
+        /// btnIngresar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnIngresar;
     }
 }
