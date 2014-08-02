@@ -32,25 +32,42 @@
                 <div class="navbar-collapse collapse navbar-responsive-collapse">
                     <div id="menuPrincipal" runat="server">
                         <ul class="nav navbar-nav">
-                            <li><a runat="server" href="~/View/Index"><span class="glyphicon glyphicon-home yellow-icon"></span>Incio</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-car yellow-icon"></span>Vehiculos</a></li>
-                            <li class="dropdown">
-                                <a runat="server" href="~/View/Gastos" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-coins yellow-icon"></span>Gastos<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a runat="server" href="~/View/Gastos"><span class="glyphicon glyphicon-coins yellow-icon"></span>Gestionar Gastos</a></li>
-                                    <li><a runat="server" href="~/View/NuevoGasto"><span class="glyphicon glyphicon-circle_plus yellow-icon"></span>Nuevo Gasto</a></li>
-                                    <li class="divider"></li>
-                                    <li><a runat="server" href="~/View/MonitorGastos"><span class="glyphicon glyphicon-dashboard yellow-icon"></span>Monitor de Gastos</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-adjust_alt yellow-icon"></span>Administración<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#"><span class="glyphicon glyphicon-group yellow-icon"></span>Gestionar Usuarios</a></li>
-                                    <li class="divider"></li>
-                                    <li><a runat="server" href="~/View/Auditoria"><span class="glyphicon glyphicon-eye_open yellow-icon"></span>Auditoria</a></li>
-                                </ul>
-                            </li>
+<li><a runat="server" href="~/View/Index"><span class="glyphicon glyphicon-home yellow-icon"></span>Incio</a></li>                       
+                       <li><a runat="server" href="~/View/Turnos"><span class="glyphicon glyphicon-dashboard yellow-icon"></span>Turnos</a></li>
+
+                       <li class="dropdown">
+                           <a runat="server" href="~/View/Vehiculos" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-car yellow-icon"></span>Vehiculos<b class="caret"></b></a>
+                           <ul class="dropdown-menu">
+                               <li><a runat="server" href="~/View/Vehiculos"><span class="glyphicon glyphicon-cars yellow-icon"></span>Gestionar Vehiculos</a></li>
+                               <li><a runat="server" href="~/View/NuevoVehiculo"><span class="glyphicon glyphicon-car yellow-icon"></span>Nuevo Vehiculo</a></li>
+                               <li class="divider"></li>
+                            </ul>
+                       </li>                       
+                         <li class="dropdown">
+                           <a runat="server" href="~/View/Choferes" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-group yellow-icon"></span>Choferes<b class="caret"></b></a>
+                           <ul class="dropdown-menu">
+                               <li><a runat="server" href="~/View/Choferes"><span class="glyphicon glyphicon-group yellow-icon"></span>Gestionar Choferes</a></li>
+                               <li><a runat="server" href="~/View/NuevoChofer"><span class="glyphicon glyphicon-old_man yellow-icon"></span>Nuevo Chofer</a></li>
+                               <li class="divider"></li>
+                            </ul>
+                       </li>                                                                  
+                       <li class="dropdown">
+                           <a runat="server" href="~/View/Gastos" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-coins yellow-icon"></span>Gastos<b class="caret"></b></a>
+                           <ul class="dropdown-menu">
+                               <li><a runat="server" href="~/View/Gastos"><span class="glyphicon glyphicon-coins yellow-icon"></span>Gestionar Gastos</a></li>
+                               <li><a runat="server" href="~/View/NuevoGasto"><span class="glyphicon glyphicon-circle_plus yellow-icon"></span>Nuevo Gasto</a></li>
+                               <li class="divider"></li>
+                               <li><a runat="server" href="~/View/MonitorGastos"><span class="glyphicon glyphicon-dashboard yellow-icon"></span>Monitor de Gastos</a></li>
+                           </ul>
+                       </li>
+                       <li class="dropdown">
+                           <a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-adjust_alt yellow-icon"></span>Administración<b class="caret"></b></a>
+                           <ul class="dropdown-menu">
+                               <li><a href="#"><span class="glyphicon glyphicon-group yellow-icon"></span>Gestionar Usuarios</a></li>
+                               <li class="divider"></li>
+                               <li><a runat="server" href="~/View/Auditoria"><span class="glyphicon glyphicon-eye_open yellow-icon"></span>Auditoria</a></li>
+                           </ul>
+                       </li>
                         </ul>
                     </div>
 

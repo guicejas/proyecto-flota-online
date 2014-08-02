@@ -27,5 +27,6 @@ namespace Modelo
     
         public virtual TipodeGasto TipodeGasto { get; set; }
         public virtual Vehiculo Vehiculo { get; set; }
+        public virtual Turno Turno { get; set; }
     }
 }

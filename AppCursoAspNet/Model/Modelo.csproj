@@ -67,6 +67,9 @@
     <Compile Include="AUDITORIA\AudGasto.cs">
       <DependentUpon>Sist_Flota_ModeloAuditoria.tt</DependentUpon>
     </Compile>
+    <Compile Include="Chofer.cs">
+      <DependentUpon>SistFlota_ModeloDatos.tt</DependentUpon>
+    </Compile>
     <Compile Include="SEGURIDAD\Formulario.cs">
       <DependentUpon>SistFlota_Seguridad_Modelo.tt</DependentUpon>
     </Compile>
@@ -139,6 +142,9 @@
       <DependentUpon>Sist_Flota_ModeloAuditoria.edmx</DependentUpon>
     </Compile>
     <Compile Include="TipodeGasto.cs">
+      <DependentUpon>SistFlota_ModeloDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Turno.cs">
       <DependentUpon>SistFlota_ModeloDatos.tt</DependentUpon>
     </Compile>
     <Compile Include="Vehiculo.cs">
@@ -237,10 +243,10 @@
     </Content>
     <Content Include="SEGURIDAD\SistFlota_Seguridad_Modelo.edmx.sql" />
     <Content Include="SistFlota_db.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SistFlota_db_log.ldf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>SistFlota_db.mdf</DependentUpon>
     </Content>
     <Content Include="SistFlota_ModeloDatos.edmx.sql" />

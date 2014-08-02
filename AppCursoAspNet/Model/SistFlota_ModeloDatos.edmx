@@ -9,6 +9,8 @@
     <EntitySet Name="TiposdeGasto" EntityType="SistFlota_ModeloDatos.Store.TiposdeGasto" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Gastos" EntityType="SistFlota_ModeloDatos.Store.Gastos" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Vehiculos" EntityType="SistFlota_ModeloDatos.Store.Vehiculos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Turnos" EntityType="SistFlota_ModeloDatos.Store.Turnos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Choferes" EntityType="SistFlota_ModeloDatos.Store.Choferes" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="TipodeGastoGasto" Association="SistFlota_ModeloDatos.Store.TipodeGastoGasto">
       <End Role="TipodeGasto" EntitySet="TiposdeGasto" />
       <End Role="Gasto" EntitySet="Gastos" />
@@ -16,6 +18,18 @@
     <AssociationSet Name="VehiculoGasto" Association="SistFlota_ModeloDatos.Store.VehiculoGasto">
       <End Role="Vehiculo" EntitySet="Vehiculos" />
       <End Role="Gasto" EntitySet="Gastos" />
+    </AssociationSet>
+    <AssociationSet Name="VehiculoTurno" Association="SistFlota_ModeloDatos.Store.VehiculoTurno">
+      <End Role="Vehiculo" EntitySet="Vehiculos" />
+      <End Role="Turno" EntitySet="Turnos" />
+    </AssociationSet>
+    <AssociationSet Name="TurnoChofer" Association="SistFlota_ModeloDatos.Store.TurnoChofer">
+      <End Role="Turno" EntitySet="Turnos" />
+      <End Role="Chofer" EntitySet="Choferes" />
+    </AssociationSet>
+    <AssociationSet Name="GastoTurno" Association="SistFlota_ModeloDatos.Store.GastoTurno">
+      <End Role="Gasto" EntitySet="Gastos" />
+      <End Role="Turno" EntitySet="Turnos" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="TiposdeGasto">
@@ -41,6 +55,7 @@
     <Property Name="Operacion" Type="nvarchar(max)" Nullable="true" />
     <Property Name="TipodeGasto_Id" Type="int" Nullable="false" />
     <Property Name="Vehiculo_Patente" Type="nvarchar" MaxLength="7" Nullable="false" />
+    <Property Name="Turno_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Vehiculos">
     <Key>
@@ -53,6 +68,40 @@
     <Property Name="Año" Type="int" Nullable="false" />
     <Property Name="Color" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Kilometraje" Type="int" Nullable="false" />
+    <Property Name="TurnoId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Turnos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FechaInicio" Type="datetime" Nullable="false" />
+    <Property Name="HoraInicio" Type="datetime" Nullable="false" />
+    <Property Name="FechaFin" Type="datetime" Nullable="false" />
+    <Property Name="HoraFin" Type="datetime" Nullable="false" />
+    <Property Name="KmRecorridos" Type="decimal" Nullable="false" />
+    <Property Name="KmOcupados" Type="decimal" Nullable="false" />
+    <Property Name="CantidadViajes" Type="int" Nullable="false" />
+    <Property Name="RecaudacionEfectivo" Type="decimal" Nullable="false" />
+    <Property Name="Comentarios" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="GastoId" Type="int" Nullable="true" />
+    <Property Name="Vehiculo_Patente" Type="nvarchar" MaxLength="7" Nullable="false" />
+    <Property Name="Chofer_Documento" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Choferes">
+    <Key>
+      <PropertyRef Name="Documento" />
+    </Key>
+    <Property Name="Documento" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Apellido" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Licencia" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Domicilio" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Localidad" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Telefono" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FechaNacimiento" Type="datetime" Nullable="false" />
+    <Property Name="Correo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Foto" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <Association Name="TipodeGastoGasto">
     <End Role="TipodeGasto" Type="SistFlota_ModeloDatos.Store.TiposdeGasto" Multiplicity="1" />
@@ -78,6 +127,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="VehiculoTurno">
+    <End Role="Vehiculo" Type="SistFlota_ModeloDatos.Store.Vehiculos" Multiplicity="1" />
+    <End Role="Turno" Type="SistFlota_ModeloDatos.Store.Turnos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehiculo">
+        <PropertyRef Name="Patente" />
+      </Principal>
+      <Dependent Role="Turno">
+        <PropertyRef Name="Vehiculo_Patente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TurnoChofer">
+    <End Role="Turno" Type="SistFlota_ModeloDatos.Store.Turnos" Multiplicity="*" />
+    <End Role="Chofer" Type="SistFlota_ModeloDatos.Store.Choferes" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Chofer">
+        <PropertyRef Name="Documento" />
+      </Principal>
+      <Dependent Role="Turno">
+        <PropertyRef Name="Chofer_Documento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GastoTurno">
+    <End Role="Gasto" Type="SistFlota_ModeloDatos.Store.Gastos" Multiplicity="*" />
+    <End Role="Turno" Type="SistFlota_ModeloDatos.Store.Turnos" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Turno">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Gasto">
+        <PropertyRef Name="Turno_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -86,6 +171,8 @@
           <EntitySet Name="TiposdeGasto" EntityType="SistFlota_ModeloDatos.TipodeGasto" />
           <EntitySet Name="Gastos" EntityType="SistFlota_ModeloDatos.Gasto" />
           <EntitySet Name="Vehiculos" EntityType="SistFlota_ModeloDatos.Vehiculo" />
+          <EntitySet Name="Turnos" EntityType="SistFlota_ModeloDatos.Turno" />
+          <EntitySet Name="Choferes" EntityType="SistFlota_ModeloDatos.Chofer" />
           <AssociationSet Name="TipodeGastoGasto" Association="SistFlota_ModeloDatos.TipodeGastoGasto">
             <End Role="TipodeGasto" EntitySet="TiposdeGasto" />
             <End Role="Gasto" EntitySet="Gastos" />
@@ -93,6 +180,18 @@
           <AssociationSet Name="VehiculoGasto" Association="SistFlota_ModeloDatos.VehiculoGasto">
             <End Role="Vehiculo" EntitySet="Vehiculos" />
             <End Role="Gasto" EntitySet="Gastos" />
+          </AssociationSet>
+          <AssociationSet Name="VehiculoTurno" Association="SistFlota_ModeloDatos.VehiculoTurno">
+            <End Role="Vehiculo" EntitySet="Vehiculos" />
+            <End Role="Turno" EntitySet="Turnos" />
+          </AssociationSet>
+          <AssociationSet Name="TurnoChofer" Association="SistFlota_ModeloDatos.TurnoChofer">
+            <End Role="Turno" EntitySet="Turnos" />
+            <End Role="Chofer" EntitySet="Choferes" />
+          </AssociationSet>
+          <AssociationSet Name="GastoTurno" Association="SistFlota_ModeloDatos.GastoTurno">
+            <End Role="Gasto" EntitySet="Gastos" />
+            <End Role="Turno" EntitySet="Turnos" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="TipodeGasto">
@@ -119,19 +218,57 @@
           <Property Name="Operacion" Type="String" Nullable="true" />
           <NavigationProperty Name="TipodeGasto" Relationship="SistFlota_ModeloDatos.TipodeGastoGasto" FromRole="Gasto" ToRole="TipodeGasto" />
           <NavigationProperty Name="Vehiculo" Relationship="SistFlota_ModeloDatos.VehiculoGasto" FromRole="Gasto" ToRole="Vehiculo" />
+          <NavigationProperty Name="Turno" Relationship="SistFlota_ModeloDatos.GastoTurno" FromRole="Gasto" ToRole="Turno" />
         </EntityType>
         <EntityType Name="Vehiculo">
           <Key>
             <PropertyRef Name="Patente" />
           </Key>
-          <Property Name="Patente" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="7" />
+          <Property Name="Patente" Type="String" Nullable="false" MaxLength="7" annotation:StoreGeneratedPattern="None" />
           <Property Name="PatenteTaxi" Type="Int32" Nullable="true" />
           <Property Name="Marca" Type="String" Nullable="false" />
           <Property Name="Modelo" Type="String" Nullable="false" />
           <Property Name="Año" Type="Int32" Nullable="false" />
           <Property Name="Color" Type="String" Nullable="false" />
           <Property Name="Kilometraje" Type="Int32" Nullable="false" />
+          <Property Name="TurnoId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Gasto" Relationship="SistFlota_ModeloDatos.VehiculoGasto" FromRole="Vehiculo" ToRole="Gasto" />
+          <NavigationProperty Name="Turno" Relationship="SistFlota_ModeloDatos.VehiculoTurno" FromRole="Vehiculo" ToRole="Turno" />
+        </EntityType>
+        <EntityType Name="Turno">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaInicio" Type="DateTime" Nullable="false" />
+          <Property Name="HoraInicio" Type="DateTime" Nullable="false" />
+          <Property Name="FechaFin" Type="DateTime" Nullable="false" />
+          <Property Name="HoraFin" Type="DateTime" Nullable="false" />
+          <Property Name="KmRecorridos" Type="Decimal" Nullable="false" />
+          <Property Name="KmOcupados" Type="Decimal" Nullable="false" />
+          <Property Name="CantidadViajes" Type="Int32" Nullable="false" />
+          <Property Name="RecaudacionEfectivo" Type="Decimal" Nullable="false" />
+          <Property Name="Comentarios" Type="String" Nullable="false" />
+          <Property Name="GastoId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Vehiculo" Relationship="SistFlota_ModeloDatos.VehiculoTurno" FromRole="Turno" ToRole="Vehiculo" />
+          <NavigationProperty Name="Chofer" Relationship="SistFlota_ModeloDatos.TurnoChofer" FromRole="Turno" ToRole="Chofer" />
+          <NavigationProperty Name="Gasto" Relationship="SistFlota_ModeloDatos.GastoTurno" FromRole="Turno" ToRole="Gasto" />
+        </EntityType>
+        <EntityType Name="Chofer">
+          <Key>
+            <PropertyRef Name="Documento" />
+          </Key>
+          <Property Name="Documento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+          <Property Name="Apellido" Type="String" Nullable="false" />
+          <Property Name="Licencia" Type="String" Nullable="false" />
+          <Property Name="Domicilio" Type="String" Nullable="false" />
+          <Property Name="Localidad" Type="String" Nullable="false" />
+          <Property Name="Telefono" Type="String" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Nullable="false" />
+          <Property Name="Correo" Type="String" Nullable="false" />
+          <Property Name="Foto" Type="String" Nullable="false" />
+          <NavigationProperty Name="Turno" Relationship="SistFlota_ModeloDatos.TurnoChofer" FromRole="Chofer" ToRole="Turno" />
         </EntityType>
         <Association Name="TipodeGastoGasto">
           <End Type="SistFlota_ModeloDatos.TipodeGasto" Role="TipodeGasto" Multiplicity="1" />
@@ -141,7 +278,19 @@
           <End Type="SistFlota_ModeloDatos.Vehiculo" Role="Vehiculo" Multiplicity="1" />
           <End Type="SistFlota_ModeloDatos.Gasto" Role="Gasto" Multiplicity="*" />
         </Association>
-      </Schema>
+        <Association Name="VehiculoTurno">
+          <End Type="SistFlota_ModeloDatos.Vehiculo" Role="Vehiculo" Multiplicity="1" />
+          <End Type="SistFlota_ModeloDatos.Turno" Role="Turno" Multiplicity="*" />
+        </Association>
+        <Association Name="TurnoChofer">
+          <End Type="SistFlota_ModeloDatos.Turno" Role="Turno" Multiplicity="*" />
+          <End Type="SistFlota_ModeloDatos.Chofer" Role="Chofer" Multiplicity="1" />
+        </Association>
+        <Association Name="GastoTurno">
+          <End Type="SistFlota_ModeloDatos.Gasto" Role="Gasto" Multiplicity="*" />
+          <End Type="SistFlota_ModeloDatos.Turno" Role="Turno" Multiplicity="0..1" />
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -181,6 +330,40 @@
           <ScalarProperty Name="Año" ColumnName="Año" />
           <ScalarProperty Name="Color" ColumnName="Color" />
           <ScalarProperty Name="Kilometraje" ColumnName="Kilometraje" />
+          <ScalarProperty Name="TurnoId" ColumnName="TurnoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Turnos">
+      <EntityTypeMapping TypeName="IsTypeOf(SistFlota_ModeloDatos.Turno)">
+        <MappingFragment StoreEntitySet="Turnos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+          <ScalarProperty Name="HoraInicio" ColumnName="HoraInicio" />
+          <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+          <ScalarProperty Name="HoraFin" ColumnName="HoraFin" />
+          <ScalarProperty Name="KmRecorridos" ColumnName="KmRecorridos" />
+          <ScalarProperty Name="KmOcupados" ColumnName="KmOcupados" />
+          <ScalarProperty Name="CantidadViajes" ColumnName="CantidadViajes" />
+          <ScalarProperty Name="RecaudacionEfectivo" ColumnName="RecaudacionEfectivo" />
+          <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+          <ScalarProperty Name="GastoId" ColumnName="GastoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Choferes">
+      <EntityTypeMapping TypeName="IsTypeOf(SistFlota_ModeloDatos.Chofer)">
+        <MappingFragment StoreEntitySet="Choferes">
+          <ScalarProperty Name="Documento" ColumnName="Documento" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="Licencia" ColumnName="Licencia" />
+          <ScalarProperty Name="Domicilio" ColumnName="Domicilio" />
+          <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Foto" ColumnName="Foto" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -199,6 +382,31 @@
       <EndProperty Name="Gasto">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="VehiculoTurno" TypeName="SistFlota_ModeloDatos.VehiculoTurno" StoreEntitySet="Turnos">
+      <EndProperty Name="Vehiculo">
+        <ScalarProperty Name="Patente" ColumnName="Vehiculo_Patente" />
+      </EndProperty>
+      <EndProperty Name="Turno">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="TurnoChofer" TypeName="SistFlota_ModeloDatos.TurnoChofer" StoreEntitySet="Turnos">
+      <EndProperty Name="Chofer">
+        <ScalarProperty Name="Documento" ColumnName="Chofer_Documento" />
+      </EndProperty>
+      <EndProperty Name="Turno">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="GastoTurno" TypeName="SistFlota_ModeloDatos.GastoTurno" StoreEntitySet="Gastos">
+      <EndProperty Name="Turno">
+        <ScalarProperty Name="Id" ColumnName="Turno_Id" />
+      </EndProperty>
+      <EndProperty Name="Gasto">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Turno_Id" IsNull="false" />
     </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>

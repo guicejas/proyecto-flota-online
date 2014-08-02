@@ -12,24 +12,24 @@ namespace Modelo
     using System;
     using System.Collections.Generic;
     
-    public partial class Vehiculo
+    public partial class Chofer
     {
-        public Vehiculo()
+        public Chofer()
         {
-            this.Gasto = new HashSet<Gasto>();
             this.Turno = new HashSet<Turno>();
         }
     
-        public string Patente { get; set; }
-        public Nullable<int> PatenteTaxi { get; set; }
-        public string Marca { get; set; }
-        public string Modelo { get; set; }
-        public int Año { get; set; }
-        public string Color { get; set; }
-        public int Kilometraje { get; set; }
-        public int TurnoId { get; set; }
+        public int Documento { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public string Licencia { get; set; }
+        public string Domicilio { get; set; }
+        public string Localidad { get; set; }
+        public string Telefono { get; set; }
+        public System.DateTime FechaNacimiento { get; set; }
+        public string Correo { get; set; }
+        public string Foto { get; set; }
     
-        public virtual ICollection<Gasto> Gasto { get; set; }
         public virtual ICollection<Turno> Turno { get; set; }
     }
 }

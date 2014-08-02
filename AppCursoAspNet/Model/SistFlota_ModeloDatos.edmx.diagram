@@ -4,12 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8475c8f631aa422d9920b273fb8f484c" Name="Diagram1" >
-        <EntityTypeShape EntityType="SistFlota_ModeloDatos.TipodeGasto" Width="1.5" PointX="2.75" PointY="1" />
-        <EntityTypeShape EntityType="SistFlota_ModeloDatos.Gasto" Width="1.5" PointX="5.375" PointY="1.125" />
-        <EntityTypeShape EntityType="SistFlota_ModeloDatos.Vehiculo" Width="1.5" PointX="8" PointY="1.125" />
+      <Diagram DiagramId="8475c8f631aa422d9920b273fb8f484c" Name="Diagram1" ZoomLevel="65" >
+        <EntityTypeShape EntityType="SistFlota_ModeloDatos.TipodeGasto" Width="1.5" PointX="2.625" PointY="2.875" />
+        <EntityTypeShape EntityType="SistFlota_ModeloDatos.Gasto" Width="1.5" PointX="5.125" PointY="2.25" />
+        <EntityTypeShape EntityType="SistFlota_ModeloDatos.Vehiculo" Width="1.5" PointX="8" PointY="2.875" />
+        <EntityTypeShape EntityType="SistFlota_ModeloDatos.Turno" Width="1.5" PointX="8.25" PointY="7" />
+        <EntityTypeShape EntityType="SistFlota_ModeloDatos.Chofer" Width="1.5" PointX="11.375" PointY="6.625" />
         <AssociationConnector Association="SistFlota_ModeloDatos.TipodeGastoGasto" />
         <AssociationConnector Association="SistFlota_ModeloDatos.VehiculoGasto" />
+        <AssociationConnector Association="SistFlota_ModeloDatos.VehiculoTurno" />
+        <AssociationConnector Association="SistFlota_ModeloDatos.TurnoChofer" />
+        <AssociationConnector Association="SistFlota_ModeloDatos.GastoTurno" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -3,7 +3,7 @@
 <asp:content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
 
-
+    <form runat="server">
 
     <asp:GridView ID="listaGastos" runat="server" AutoGenerateColumns="False" CellPadding="4" SelectMethod="GetGastos" CssClass="table table-striped table-hover" OnRowDeleting="listaGastos_RowDeleting" OnRowEditing="listaGastos_RowEditing" OnSelectedIndexChanged="listaGastos_SelectedIndexChanged">
         <EmptyDataTemplate>
@@ -20,7 +20,7 @@
         </Columns>
     </asp:GridView>
 
-
+    </form>
 
 
 </asp:content>

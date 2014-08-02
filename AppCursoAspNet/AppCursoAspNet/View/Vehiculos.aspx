@@ -12,7 +12,7 @@
         <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/View/NuevoVehiculo.aspx" class="btn"><span class="glyphicon glyphicon-plus"></span>Agregar Vehiculo</asp:HyperLink>
     </p>
 
-
+    <form runat="server">
     <asp:GridView ID="listaVehiculos" runat="server" AutoGenerateColumns="False" CellPadding="4" SelectMethod="GetVehiculos" CssClass="table table-striped table-hover" OnRowDeleting="listaVehiculos_RowDeleting" OnRowEditing="listaVehiculos_RowEditing">
         <EmptyDataTemplate>
                     No hay Vehiculos.
@@ -32,6 +32,7 @@
 
 
     </asp:GridView>
+        </form>
 
 
 <asp:ObjectDataSource ID="ObjectVehiculos" runat="server" SelectMethod="ListarVehiculos" TypeName="Controladora.ControladoraVehiculos" DataObjectTypeName="Modelo.Vehiculo" InsertMethod="AgregarVehiculo"></asp:ObjectDataSource>

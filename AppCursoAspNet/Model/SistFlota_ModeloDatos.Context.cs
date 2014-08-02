@@ -28,5 +28,7 @@ namespace Modelo
         public virtual DbSet<TipodeGasto> TiposdeGasto { get; set; }
         public virtual DbSet<Gasto> Gastos { get; set; }
         public virtual DbSet<Vehiculo> Vehiculos { get; set; }
+        public virtual DbSet<Turno> Turnos { get; set; }
+        public virtual DbSet<Chofer> Choferes { get; set; }
     }
 }
