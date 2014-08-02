@@ -11,7 +11,7 @@
     <p>
         <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/View/NuevoGasto.aspx" class="btn"><span class="glyphicon glyphicon-plus"></span>Agregar Gasto</asp:HyperLink>
     </p>
-
+    <form runat="server">
     <asp:ScriptManager ID="ScriptManager1" AllowCustomErrorsRedirect="false" runat="server"></asp:ScriptManager>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -57,6 +57,7 @@
             </asp:GridView>
         </ContentTemplate>
     </asp:UpdatePanel>
+        </form>
 
 
     <asp:ObjectDataSource ID="ObjectGastos" runat="server" SelectMethod="ListarGastos" TypeName="Controladora.ControladoraGastos" DataObjectTypeName="Modelo.Gasto" DeleteMethod="EliminarGasto" InsertMethod="AgregarGasto"></asp:ObjectDataSource>
