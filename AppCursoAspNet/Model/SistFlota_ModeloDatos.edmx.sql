@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 08/02/2014 21:06:24
--- Generated from EDMX file: C:\Users\Admin\Documents\GitHub\proyecto-flota-online\AppCursoAspNet\Model\SistFlota_ModeloDatos.edmx
+-- Date Created: 08/03/2014 11:53:57
+-- Generated from EDMX file: C:\Users\Adelquis\Documents\GitHub\proyecto-flota-online\AppCursoAspNet\Model\SistFlota_ModeloDatos.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -32,6 +32,12 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_GastoTurno]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Gastos] DROP CONSTRAINT [FK_GastoTurno];
 GO
+IF OBJECT_ID(N'[dbo].[FK_CuentaCorrienteTurno]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Turnos] DROP CONSTRAINT [FK_CuentaCorrienteTurno];
+GO
+IF OBJECT_ID(N'[dbo].[FK_EmpresaCuentaCorriente]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CuentaCorrienteSet] DROP CONSTRAINT [FK_EmpresaCuentaCorriente];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -51,6 +57,12 @@ IF OBJECT_ID(N'[dbo].[Turnos]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Choferes]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Choferes];
+GO
+IF OBJECT_ID(N'[dbo].[CuentaCorrienteSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CuentaCorrienteSet];
+GO
+IF OBJECT_ID(N'[dbo].[EmpresaSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[EmpresaSet];
 GO
 
 -- --------------------------------------------------
@@ -109,7 +121,8 @@ CREATE TABLE [dbo].[Turnos] (
     [Comentarios] nvarchar(max)  NOT NULL,
     [GastoId] int  NULL,
     [Vehiculo_Patente] nvarchar(7)  NOT NULL,
-    [Chofer_Documento] int  NOT NULL
+    [Chofer_Documento] int  NOT NULL,
+    [CuentaCorriente_Id] int  NOT NULL
 );
 GO
 
@@ -125,6 +138,27 @@ CREATE TABLE [dbo].[Choferes] (
     [FechaNacimiento] datetime  NOT NULL,
     [Correo] nvarchar(max)  NOT NULL,
     [Foto] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'CuentaCorrientes'
+CREATE TABLE [dbo].[CuentaCorrientes] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Fecha] datetime  NOT NULL,
+    [Monto] decimal(18,0)  NOT NULL,
+    [Estado] nvarchar(max)  NOT NULL,
+    [Empresa_Cuit] int  NOT NULL
+);
+GO
+
+-- Creating table 'Empresas'
+CREATE TABLE [dbo].[Empresas] (
+    [Cuit] int  NOT NULL,
+    [RazonSocial] nvarchar(max)  NOT NULL,
+    [Domicilio] nvarchar(max)  NOT NULL,
+    [Telefono] nvarchar(max)  NOT NULL,
+    [Localidad] nvarchar(max)  NOT NULL,
+    [Correo] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -160,6 +194,18 @@ GO
 ALTER TABLE [dbo].[Choferes]
 ADD CONSTRAINT [PK_Choferes]
     PRIMARY KEY CLUSTERED ([Documento] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'CuentaCorrientes'
+ALTER TABLE [dbo].[CuentaCorrientes]
+ADD CONSTRAINT [PK_CuentaCorrientes]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Cuit] in table 'Empresas'
+ALTER TABLE [dbo].[Empresas]
+ADD CONSTRAINT [PK_Empresas]
+    PRIMARY KEY CLUSTERED ([Cuit] ASC);
 GO
 
 -- --------------------------------------------------
@@ -239,6 +285,36 @@ GO
 CREATE INDEX [IX_FK_GastoTurno]
 ON [dbo].[Gastos]
     ([Turno_Id]);
+GO
+
+-- Creating foreign key on [CuentaCorriente_Id] in table 'Turnos'
+ALTER TABLE [dbo].[Turnos]
+ADD CONSTRAINT [FK_CuentaCorrienteTurno]
+    FOREIGN KEY ([CuentaCorriente_Id])
+    REFERENCES [dbo].[CuentaCorrientes]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CuentaCorrienteTurno'
+CREATE INDEX [IX_FK_CuentaCorrienteTurno]
+ON [dbo].[Turnos]
+    ([CuentaCorriente_Id]);
+GO
+
+-- Creating foreign key on [Empresa_Cuit] in table 'CuentaCorrientes'
+ALTER TABLE [dbo].[CuentaCorrientes]
+ADD CONSTRAINT [FK_EmpresaCuentaCorriente]
+    FOREIGN KEY ([Empresa_Cuit])
+    REFERENCES [dbo].[Empresas]
+        ([Cuit])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_EmpresaCuentaCorriente'
+CREATE INDEX [IX_FK_EmpresaCuentaCorriente]
+ON [dbo].[CuentaCorrientes]
+    ([Empresa_Cuit]);
 GO
 
 -- --------------------------------------------------

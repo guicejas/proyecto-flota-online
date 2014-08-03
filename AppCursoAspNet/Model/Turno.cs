@@ -34,5 +34,6 @@ namespace Modelo
         public virtual Vehiculo Vehiculo { get; set; }
         public virtual Chofer Chofer { get; set; }
         public virtual ICollection<Gasto> Gasto { get; set; }
+        public virtual CuentaCorriente CuentaCorriente { get; set; }
     }
 }

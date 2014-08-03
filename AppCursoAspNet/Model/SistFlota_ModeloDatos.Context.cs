@@ -30,5 +30,7 @@ namespace Modelo
         public virtual DbSet<Vehiculo> Vehiculos { get; set; }
         public virtual DbSet<Turno> Turnos { get; set; }
         public virtual DbSet<Chofer> Choferes { get; set; }
+        public virtual DbSet<CuentaCorriente> CuentaCorrientes { get; set; }
+        public virtual DbSet<Empresa> Empresas { get; set; }
     }
 }

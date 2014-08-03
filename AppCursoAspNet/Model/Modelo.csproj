@@ -70,6 +70,12 @@
     <Compile Include="Chofer.cs">
       <DependentUpon>SistFlota_ModeloDatos.tt</DependentUpon>
     </Compile>
+    <Compile Include="CuentaCorriente.cs">
+      <DependentUpon>SistFlota_ModeloDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Empresa.cs">
+      <DependentUpon>SistFlota_ModeloDatos.tt</DependentUpon>
+    </Compile>
     <Compile Include="SEGURIDAD\Formulario.cs">
       <DependentUpon>SistFlota_Seguridad_Modelo.tt</DependentUpon>
     </Compile>

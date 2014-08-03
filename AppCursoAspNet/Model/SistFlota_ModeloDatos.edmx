@@ -11,6 +11,8 @@
     <EntitySet Name="Vehiculos" EntityType="SistFlota_ModeloDatos.Store.Vehiculos" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Turnos" EntityType="SistFlota_ModeloDatos.Store.Turnos" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Choferes" EntityType="SistFlota_ModeloDatos.Store.Choferes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CuentaCorrientes" EntityType="SistFlota_ModeloDatos.Store.CuentaCorrientes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Empresas" EntityType="SistFlota_ModeloDatos.Store.Empresas" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="TipodeGastoGasto" Association="SistFlota_ModeloDatos.Store.TipodeGastoGasto">
       <End Role="TipodeGasto" EntitySet="TiposdeGasto" />
       <End Role="Gasto" EntitySet="Gastos" />
@@ -30,6 +32,14 @@
     <AssociationSet Name="GastoTurno" Association="SistFlota_ModeloDatos.Store.GastoTurno">
       <End Role="Gasto" EntitySet="Gastos" />
       <End Role="Turno" EntitySet="Turnos" />
+    </AssociationSet>
+    <AssociationSet Name="CuentaCorrienteTurno" Association="SistFlota_ModeloDatos.Store.CuentaCorrienteTurno">
+      <End Role="CuentaCorriente" EntitySet="CuentaCorrientes" />
+      <End Role="Turno" EntitySet="Turnos" />
+    </AssociationSet>
+    <AssociationSet Name="EmpresaCuentaCorriente" Association="SistFlota_ModeloDatos.Store.EmpresaCuentaCorriente">
+      <End Role="Empresa" EntitySet="Empresas" />
+      <End Role="CuentaCorriente" EntitySet="CuentaCorrientes" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="TiposdeGasto">
@@ -87,6 +97,7 @@
     <Property Name="GastoId" Type="int" Nullable="true" />
     <Property Name="Vehiculo_Patente" Type="nvarchar" MaxLength="7" Nullable="false" />
     <Property Name="Chofer_Documento" Type="int" Nullable="false" />
+    <Property Name="CuentaCorriente_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Choferes">
     <Key>
@@ -102,6 +113,27 @@
     <Property Name="FechaNacimiento" Type="datetime" Nullable="false" />
     <Property Name="Correo" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Foto" Type="nvarchar(max)" Nullable="false" DefaultValue="avatar_anonimo.jpg" />
+  </EntityType>
+  <EntityType Name="CuentaCorrientes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="Monto" Type="decimal" Nullable="false" />
+    <Property Name="Estado" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Empresa_Cuit" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Empresas">
+    <Key>
+      <PropertyRef Name="Cuit" />
+    </Key>
+    <Property Name="Cuit" Type="int" Nullable="false" />
+    <Property Name="RazonSocial" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Domicilio" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Telefono" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Localidad" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Correo" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <Association Name="TipodeGastoGasto">
     <End Role="TipodeGasto" Type="SistFlota_ModeloDatos.Store.TiposdeGasto" Multiplicity="1" />
@@ -163,6 +195,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="CuentaCorrienteTurno">
+    <End Role="CuentaCorriente" Type="SistFlota_ModeloDatos.Store.CuentaCorrientes" Multiplicity="1" />
+    <End Role="Turno" Type="SistFlota_ModeloDatos.Store.Turnos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CuentaCorriente">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Turno">
+        <PropertyRef Name="CuentaCorriente_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmpresaCuentaCorriente">
+    <End Role="Empresa" Type="SistFlota_ModeloDatos.Store.Empresas" Multiplicity="1" />
+    <End Role="CuentaCorriente" Type="SistFlota_ModeloDatos.Store.CuentaCorrientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresa">
+        <PropertyRef Name="Cuit" />
+      </Principal>
+      <Dependent Role="CuentaCorriente">
+        <PropertyRef Name="Empresa_Cuit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -192,6 +248,16 @@
           <AssociationSet Name="GastoTurno" Association="SistFlota_ModeloDatos.GastoTurno">
             <End Role="Gasto" EntitySet="Gastos" />
             <End Role="Turno" EntitySet="Turnos" />
+          </AssociationSet>
+          <EntitySet Name="CuentaCorrientes" EntityType="SistFlota_ModeloDatos.CuentaCorriente" />
+          <AssociationSet Name="CuentaCorrienteTurno" Association="SistFlota_ModeloDatos.CuentaCorrienteTurno">
+            <End Role="CuentaCorriente" EntitySet="CuentaCorrientes" />
+            <End Role="Turno" EntitySet="Turnos" />
+          </AssociationSet>
+          <EntitySet Name="Empresas" EntityType="SistFlota_ModeloDatos.Empresa" />
+          <AssociationSet Name="EmpresaCuentaCorriente" Association="SistFlota_ModeloDatos.EmpresaCuentaCorriente">
+            <End Role="Empresa" EntitySet="Empresas" />
+            <End Role="CuentaCorriente" EntitySet="CuentaCorrientes" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="TipodeGasto">
@@ -253,6 +319,7 @@
           <NavigationProperty Name="Vehiculo" Relationship="SistFlota_ModeloDatos.VehiculoTurno" FromRole="Turno" ToRole="Vehiculo" />
           <NavigationProperty Name="Chofer" Relationship="SistFlota_ModeloDatos.TurnoChofer" FromRole="Turno" ToRole="Chofer" />
           <NavigationProperty Name="Gasto" Relationship="SistFlota_ModeloDatos.GastoTurno" FromRole="Turno" ToRole="Gasto" />
+          <NavigationProperty Name="CuentaCorriente" Relationship="SistFlota_ModeloDatos.CuentaCorrienteTurno" FromRole="Turno" ToRole="CuentaCorriente" />
         </EntityType>
         <EntityType Name="Chofer">
           <Key>
@@ -289,6 +356,37 @@
         <Association Name="GastoTurno">
           <End Type="SistFlota_ModeloDatos.Gasto" Role="Gasto" Multiplicity="*" />
           <End Type="SistFlota_ModeloDatos.Turno" Role="Turno" Multiplicity="0..1" />
+        </Association>
+        <EntityType Name="CuentaCorriente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" />
+          <Property Name="Monto" Type="Decimal" Nullable="false" />
+          <Property Name="Estado" Type="String" Nullable="false" />
+          <NavigationProperty Name="Turno" Relationship="SistFlota_ModeloDatos.CuentaCorrienteTurno" FromRole="CuentaCorriente" ToRole="Turno" />
+          <NavigationProperty Name="Empresa" Relationship="SistFlota_ModeloDatos.EmpresaCuentaCorriente" FromRole="CuentaCorriente" ToRole="Empresa" />
+        </EntityType>
+        <Association Name="CuentaCorrienteTurno">
+          <End Type="SistFlota_ModeloDatos.CuentaCorriente" Role="CuentaCorriente" Multiplicity="1" />
+          <End Type="SistFlota_ModeloDatos.Turno" Role="Turno" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="Cuit" />
+          </Key>
+          <Property Name="Cuit" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="RazonSocial" Type="String" Nullable="false" />
+          <Property Name="Domicilio" Type="String" Nullable="false" />
+          <Property Name="Telefono" Type="String" Nullable="false" />
+          <Property Name="Localidad" Type="String" Nullable="false" />
+          <Property Name="Correo" Type="String" Nullable="false" />
+          <NavigationProperty Name="CuentaCorriente" Relationship="SistFlota_ModeloDatos.EmpresaCuentaCorriente" FromRole="Empresa" ToRole="CuentaCorriente" />
+        </EntityType>
+        <Association Name="EmpresaCuentaCorriente">
+          <End Type="SistFlota_ModeloDatos.Empresa" Role="Empresa" Multiplicity="1" />
+          <End Type="SistFlota_ModeloDatos.CuentaCorriente" Role="CuentaCorriente" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -367,6 +465,28 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CuentaCorrientes">
+      <EntityTypeMapping TypeName="IsTypeOf(SistFlota_ModeloDatos.CuentaCorriente)">
+        <MappingFragment StoreEntitySet="CuentaCorrientes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empresas">
+      <EntityTypeMapping TypeName="IsTypeOf(SistFlota_ModeloDatos.Empresa)">
+        <MappingFragment StoreEntitySet="Empresas">
+          <ScalarProperty Name="Cuit" ColumnName="Cuit" />
+          <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+          <ScalarProperty Name="Domicilio" ColumnName="Domicilio" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="TipodeGastoGasto" TypeName="SistFlota_ModeloDatos.TipodeGastoGasto" StoreEntitySet="Gastos">
       <EndProperty Name="TipodeGasto">
         <ScalarProperty Name="Id" ColumnName="TipodeGasto_Id" />
@@ -407,6 +527,22 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
       <Condition ColumnName="Turno_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CuentaCorrienteTurno" TypeName="SistFlota_ModeloDatos.CuentaCorrienteTurno" StoreEntitySet="Turnos">
+      <EndProperty Name="CuentaCorriente">
+        <ScalarProperty Name="Id" ColumnName="CuentaCorriente_Id" />
+      </EndProperty>
+      <EndProperty Name="Turno">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EmpresaCuentaCorriente" TypeName="SistFlota_ModeloDatos.EmpresaCuentaCorriente" StoreEntitySet="CuentaCorrientes">
+      <EndProperty Name="Empresa">
+        <ScalarProperty Name="Cuit" ColumnName="Empresa_Cuit" />
+      </EndProperty>
+      <EndProperty Name="CuentaCorriente">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
