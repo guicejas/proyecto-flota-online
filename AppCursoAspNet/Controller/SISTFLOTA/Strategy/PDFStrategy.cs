@@ -26,7 +26,7 @@ namespace Controladora.SISTFLOTA.Strategy
                 Document doc = new Document(PageSize.A4, 9, 9, 10, 10);
                 string filename = "ReporteGastos.pdf";
 
-                iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance("C:\\Users\\gcejas\\Documents\\Facu\\2014 SAP + DIPLOMA\\AppCursoAspNet\\AppCursoAspNet\\AppCursoAspNet\\Images\\Trypep.png"); jpg.Alignment = iTextSharp.text.Image.ALIGN_RIGHT;
+                iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance("http://localhost:50196/Images/Trypep.png"); jpg.Alignment = iTextSharp.text.Image.ALIGN_RIGHT;
 
                 Chunk renglonvacio = new Chunk(" ", FontFactory.GetFont("ARIAL", 18));
 

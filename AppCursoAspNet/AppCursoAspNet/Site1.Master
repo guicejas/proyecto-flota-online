@@ -40,7 +40,6 @@
                            <ul class="dropdown-menu">
                                <li><a runat="server" href="~/View/Vehiculos"><span class="glyphicon glyphicon-cars yellow-icon"></span>Gestionar Vehiculos</a></li>
                                <li><a runat="server" href="~/View/NuevoVehiculo"><span class="glyphicon glyphicon-car yellow-icon"></span>Nuevo Vehiculo</a></li>
-                               <li class="divider"></li>
                             </ul>
                        </li>                       
                          <li class="dropdown">
@@ -48,7 +47,6 @@
                            <ul class="dropdown-menu">
                                <li><a runat="server" href="~/View/Choferes"><span class="glyphicon glyphicon-group yellow-icon"></span>Gestionar Choferes</a></li>
                                <li><a runat="server" href="~/View/NuevoChofer"><span class="glyphicon glyphicon-old_man yellow-icon"></span>Nuevo Chofer</a></li>
-                               <li class="divider"></li>
                             </ul>
                        </li>                                                                  
                        <li class="dropdown">
@@ -64,6 +62,8 @@
                            <a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-adjust_alt yellow-icon"></span>Administración<b class="caret"></b></a>
                            <ul class="dropdown-menu">
                                <li><a href="#"><span class="glyphicon glyphicon-group yellow-icon"></span>Gestionar Usuarios</a></li>
+                               <li><a href="../Seguridad/Grupos"><span class="glyphicon glyphicon-group yellow-icon"></span>Gestionar Grupos</a></li>
+                               <li><a href="#"><span class="glyphicon glyphicon-group yellow-icon"></span>Gestionar Perfiles</a></li>
                                <li class="divider"></li>
                                <li><a runat="server" href="~/View/Auditoria"><span class="glyphicon glyphicon-eye_open yellow-icon"></span>Auditoria</a></li>
                            </ul>
@@ -76,7 +76,7 @@
                         <li id="menuAcerca" runat="server"><a runat="server" href="~/View/About"><span class="glyphicon glyphicon-circle_info yellow-icon"></span>Acerca</a></li>
                         <li id="menuAyuda" runat="server"><a target="_blank" runat="server" href="~/View/Ayuda" alt="Ayuda" title="Ayuda"><span class="glyphicon glyphicon-circle_question_mark yellow-icon"></span></a></li>
                         <li id="menuUsuario" class="dropdown" runat="server">
-                            <a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user yellow-icon"></span><span id="nombreUsuario" runat="server">Admin</span><b class="caret"></b></a>
+                            <a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user yellow-icon"></span><span id="nombreUsuario" runat="server"><%: this.Context.User.Identity.Name %></span><b class="caret"></b></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="#"><span class="glyphicon glyphicon-cogwheelsv"></span>Configurar</a></li>
                                 <li class="divider"></li>

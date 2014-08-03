@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 08/02/2014 19:46:01
+-- Date Created: 08/02/2014 21:06:24
 -- Generated from EDMX file: C:\Users\Admin\Documents\GitHub\proyecto-flota-online\AppCursoAspNet\Model\SistFlota_ModeloDatos.edmx
 -- --------------------------------------------------
 
@@ -17,11 +17,41 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_TipodeGastoGasto]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Gastos] DROP CONSTRAINT [FK_TipodeGastoGasto];
+GO
+IF OBJECT_ID(N'[dbo].[FK_VehiculoGasto]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Gastos] DROP CONSTRAINT [FK_VehiculoGasto];
+GO
+IF OBJECT_ID(N'[dbo].[FK_VehiculoTurno]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Turnos] DROP CONSTRAINT [FK_VehiculoTurno];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TurnoChofer]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Turnos] DROP CONSTRAINT [FK_TurnoChofer];
+GO
+IF OBJECT_ID(N'[dbo].[FK_GastoTurno]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Gastos] DROP CONSTRAINT [FK_GastoTurno];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[TiposdeGasto]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TiposdeGasto];
+GO
+IF OBJECT_ID(N'[dbo].[Gastos]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Gastos];
+GO
+IF OBJECT_ID(N'[dbo].[Vehiculos]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Vehiculos];
+GO
+IF OBJECT_ID(N'[dbo].[Turnos]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Turnos];
+GO
+IF OBJECT_ID(N'[dbo].[Choferes]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Choferes];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables

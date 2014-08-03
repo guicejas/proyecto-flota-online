@@ -101,7 +101,7 @@
     <Property Name="Telefono" Type="nvarchar(max)" Nullable="false" />
     <Property Name="FechaNacimiento" Type="datetime" Nullable="false" />
     <Property Name="Correo" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Foto" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Foto" Type="nvarchar(max)" Nullable="false" DefaultValue="avatar_anonimo.jpg" />
   </EntityType>
   <Association Name="TipodeGastoGasto">
     <End Role="TipodeGasto" Type="SistFlota_ModeloDatos.Store.TiposdeGasto" Multiplicity="1" />
@@ -267,7 +267,7 @@
           <Property Name="Telefono" Type="String" Nullable="false" />
           <Property Name="FechaNacimiento" Type="DateTime" Nullable="false" />
           <Property Name="Correo" Type="String" Nullable="false" />
-          <Property Name="Foto" Type="String" Nullable="false" />
+          <Property Name="Foto" Type="String" Nullable="false" DefaultValue="avatar_anonimo.jpg" />
           <NavigationProperty Name="Turno" Relationship="SistFlota_ModeloDatos.TurnoChofer" FromRole="Chofer" ToRole="Turno" />
         </EntityType>
         <Association Name="TipodeGastoGasto">

@@ -21,7 +21,6 @@ namespace Vista
             }
             else
             {
-                nombreUsuario.InnerHtml = this.Context.User.Identity.Name;
             }
             
         }

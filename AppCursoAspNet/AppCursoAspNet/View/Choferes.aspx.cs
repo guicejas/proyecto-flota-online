@@ -15,7 +15,7 @@ namespace Vista.View
         }
         public IList<Modelo.Chofer> ListChoferes_GetData()
         {
-           return Controladora.ControladoraChoferes.getINSTANCIA.ListarChoferes();
+            return Controladora.ControladoraChoferes.getINSTANCIA.ListarChoferes();
         }
     }
 }

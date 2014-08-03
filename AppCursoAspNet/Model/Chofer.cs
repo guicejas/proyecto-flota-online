@@ -16,6 +16,7 @@ namespace Modelo
     {
         public Chofer()
         {
+            this.Foto = "avatar_anonimo.jpg";
             this.Turno = new HashSet<Turno>();
         }
     
