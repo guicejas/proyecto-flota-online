@@ -66,5 +66,10 @@ namespace Controladora
             }
             return true;
         }
+        public Modelo.Chofer ObtenerChofer(int DNI)
+        {
+            Modelo.Chofer oChofer = Modelo.SingletonSistFlota.ObtenerInstancia().Choferes.Find(DNI);
+            return oChofer;
+        }
     }
 }
