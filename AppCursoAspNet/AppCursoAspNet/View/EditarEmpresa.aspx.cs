@@ -12,23 +12,26 @@ namespace Vista.View
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            long cuit = Convert.ToInt64(Request.QueryString["empresaId"]);
-
-            Modelo.Empresa oEmpresa = ControladoraEmpresas.getINSTANCIA.ObtenerEmpresa(cuit);
-            try
+            if (!IsPostBack)
             {
-                this.Cuit.Text = oEmpresa.Cuit.ToString();
-                this.razonSocial.Text = oEmpresa.RazonSocial;
-                this.Domicilio.Text = oEmpresa.Domicilio;
-                this.Localidad.Text = oEmpresa.Localidad;
-                this.email.Value = oEmpresa.Correo.ToString();
-                this.Telefono.Text = oEmpresa.Telefono;
+                long cuit = Convert.ToInt64(Request.QueryString["empresaId"]);
 
-            }
-            catch (NullReferenceException ex)
-            {
-                Response.Redirect("Error.aspx?error=" + ex.Message);
+                Modelo.Empresa oEmpresa = ControladoraEmpresas.getINSTANCIA.ObtenerEmpresa(cuit);
+                try
+                {
+                    this.Cuit.Text = oEmpresa.Cuit.ToString();
+                    this.razonSocial.Text = oEmpresa.RazonSocial;
+                    this.Domicilio.Text = oEmpresa.Domicilio;
+                    this.Localidad.Text = oEmpresa.Localidad;
+                    this.email.Value = oEmpresa.Correo.ToString();
+                    this.Telefono.Text = oEmpresa.Telefono;
 
+                }
+                catch (NullReferenceException ex)
+                {
+                    Response.Redirect("Error.aspx?error=" + ex.Message);
+
+                }
             }
         }
 
