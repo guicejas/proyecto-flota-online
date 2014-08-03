@@ -25,7 +25,11 @@ namespace Vista.View
                     this.Domicilio.Text = oChofer.Domicilio;
                     this.Localidad.Text = oChofer.Localidad;
                     this.Licencia.Text = oChofer.Licencia;
-                    this.FechNac.Value = oChofer.FechaNacimiento.ToShortDateString();
+                    string fech = (oChofer.FechaNacimiento.ToShortDateString());
+                    //hay que pasar la fecha de formato dd/mm/aaa a dd-mm-aaaa para que lo tome el input
+                    
+                    this.FechNac.Value = fech;
+                    
                     this.email.Value = oChofer.Correo.ToString();
                     this.Telefono.Text = oChofer.Telefono;
                    
@@ -40,7 +44,7 @@ namespace Vista.View
         }
             protected void aceptar_Click(object sender, EventArgs e)
             {
-                Modelo.Chofer oChofer = ControladoraChoferes.getINSTANCIA.ObtenerChofer(Convert.ToInt32(this.Documento));
+                Modelo.Chofer oChofer = ControladoraChoferes.getINSTANCIA.ObtenerChofer(Convert.ToInt32(this.Documento.Text));
                
             oChofer.Nombre = this.Nombre.Text;
             oChofer.Apellido = this.Apellido.Text;
@@ -64,16 +68,10 @@ namespace Vista.View
             {
                 oChofer.Foto = oChofer.Documento.ToString() + (Foto.FileName.Substring(Foto.FileName.Length - 4));
             }
-            else
-            {
-                if(oChofer.Foto != Foto.FileName.Substring(Foto.FileName.Length - 4))
-                {
-                    oChofer.Foto ="~/Images/avatar_anonimo.jpg";
-                }
-            }
+          
             
-            ControladoraChoferes.getINSTANCIA.ModificarChofer(oChofer);               
-
+            ControladoraChoferes.getINSTANCIA.ModificarChofer(oChofer);
+            Response.Redirect("Choferes.aspx");
 
             }
         }

@@ -8,10 +8,12 @@
             <li class="active">Nuevo Chofer</li>
         </ol>
     </div>
-    <h2>Alta de Choferes</h2>
+    <h2>Alta de Choferes</h2>    
      <p>
         <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/View/Choferes.aspx">Volver</asp:HyperLink>
     </p>
+
+    <form runat="server">
         <table style="width: 81%;" class="table table-hover">
      
         <tr>
@@ -146,5 +148,5 @@
                 &nbsp;</td>
         </tr>
     </table>
-
+</form>
 </asp:Content>

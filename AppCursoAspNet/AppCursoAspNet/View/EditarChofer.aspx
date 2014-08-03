@@ -12,6 +12,7 @@
      <p>
         <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/View/Choferes.aspx">Volver</asp:HyperLink>
     </p>
+    <form runat="server">
         <table style="width: 81%;" class="table table-hover">
      
         <tr>
@@ -143,5 +144,5 @@
                 &nbsp;</td>
         </tr>
     </table>
-
+</form>
 </asp:Content>
