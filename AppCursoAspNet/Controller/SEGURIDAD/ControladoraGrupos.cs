@@ -41,6 +41,12 @@ namespace Controladora.SEGURIDAD
             Modelo.SingletonSeguridad.ObtenerInstancia().SaveChanges();
         }
 
+        public Grupo ObtenerGrupo(string grupoId)
+        {
+            Grupo oGrupo = Modelo.SingletonSeguridad.ObtenerInstancia().Grupos.Find(grupoId);
+            return oGrupo;
+        }
+
         public bool VerificarGrupo(Grupo oGrupo)
         {
             List<Grupo> Lista = Modelo.SingletonSeguridad.ObtenerInstancia().Grupos.Where(oGru => oGru.IDGrupo == oGrupo.IDGrupo).ToList();
