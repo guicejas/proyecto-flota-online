@@ -19,7 +19,7 @@ namespace Modelo
             this.CuentaCorriente = new HashSet<CuentaCorriente>();
         }
     
-        public int Cuit { get; set; }
+        public long Cuit { get; set; }
         public string RazonSocial { get; set; }
         public string Domicilio { get; set; }
         public string Telefono { get; set; }

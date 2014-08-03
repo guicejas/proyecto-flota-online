@@ -10,7 +10,7 @@
 namespace Vista.View {
     
     
-    public partial class NuevoEmpresa {
+    public partial class EditarEmpresa {
         
         /// <summary>
         /// HyperLink1 control.

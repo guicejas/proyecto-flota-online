@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 08/03/2014 11:53:57
+-- Date Created: 08/03/2014 17:44:06
 -- Generated from EDMX file: C:\Users\Adelquis\Documents\GitHub\proyecto-flota-online\AppCursoAspNet\Model\SistFlota_ModeloDatos.edmx
 -- --------------------------------------------------
 
@@ -36,7 +36,7 @@ IF OBJECT_ID(N'[dbo].[FK_CuentaCorrienteTurno]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Turnos] DROP CONSTRAINT [FK_CuentaCorrienteTurno];
 GO
 IF OBJECT_ID(N'[dbo].[FK_EmpresaCuentaCorriente]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CuentaCorrienteSet] DROP CONSTRAINT [FK_EmpresaCuentaCorriente];
+    ALTER TABLE [dbo].[CuentaCorrientes] DROP CONSTRAINT [FK_EmpresaCuentaCorriente];
 GO
 
 -- --------------------------------------------------
@@ -58,11 +58,11 @@ GO
 IF OBJECT_ID(N'[dbo].[Choferes]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Choferes];
 GO
-IF OBJECT_ID(N'[dbo].[CuentaCorrienteSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[CuentaCorrienteSet];
+IF OBJECT_ID(N'[dbo].[CuentaCorrientes]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CuentaCorrientes];
 GO
-IF OBJECT_ID(N'[dbo].[EmpresaSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[EmpresaSet];
+IF OBJECT_ID(N'[dbo].[Empresas]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Empresas];
 GO
 
 -- --------------------------------------------------
@@ -147,13 +147,13 @@ CREATE TABLE [dbo].[CuentaCorrientes] (
     [Fecha] datetime  NOT NULL,
     [Monto] decimal(18,0)  NOT NULL,
     [Estado] nvarchar(max)  NOT NULL,
-    [Empresa_Cuit] int  NOT NULL
+    [Empresa_Cuit] bigint  NOT NULL
 );
 GO
 
 -- Creating table 'Empresas'
 CREATE TABLE [dbo].[Empresas] (
-    [Cuit] int  NOT NULL,
+    [Cuit] bigint  NOT NULL,
     [RazonSocial] nvarchar(max)  NOT NULL,
     [Domicilio] nvarchar(max)  NOT NULL,
     [Telefono] nvarchar(max)  NOT NULL,

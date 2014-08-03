@@ -102,6 +102,7 @@
     <Content Include="Login.aspx" />
     <Content Include="View\Choferes.aspx" />
     <Content Include="View\EditarChofer.aspx" />
+    <Content Include="View\EditarEmpresa.aspx" />
     <Content Include="View\EditarVehiculo.aspx" />
     <Content Include="View\EliminarChofer.aspx" />
     <Content Include="View\Empresas.aspx" />
@@ -259,8 +260,16 @@
     <Compile Include="View\EditarChofer.aspx.designer.cs">
       <DependentUpon>EditarChofer.aspx</DependentUpon>
     </Compile>
+    <Compile Include="View\EditarEmpresa.aspx.cs">
+      <DependentUpon>EditarEmpresa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\EditarEmpresa.aspx.designer.cs">
+      <DependentUpon>EditarEmpresa.aspx</DependentUpon>
+    </Compile>
     <Compile Include="View\EditarVehiculo.aspx.cs">
       <DependentUpon>EditarVehiculo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="View\EditarVehiculo.aspx.designer.cs">
       <DependentUpon>EditarVehiculo.aspx</DependentUpon>
@@ -295,6 +304,7 @@
     </Compile>
     <Compile Include="View\NuevoVehiculo.aspx.cs">
       <DependentUpon>NuevoVehiculo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="View\NuevoVehiculo.aspx.designer.cs">
       <DependentUpon>NuevoVehiculo.aspx</DependentUpon>
@@ -368,12 +378,14 @@
     </Compile>
     <Compile Include="View\Turnos.aspx.cs">
       <DependentUpon>Turnos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="View\Turnos.aspx.designer.cs">
       <DependentUpon>Turnos.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Vehiculos.aspx.cs">
       <DependentUpon>Vehiculos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="View\Vehiculos.aspx.designer.cs">
       <DependentUpon>Vehiculos.aspx</DependentUpon>

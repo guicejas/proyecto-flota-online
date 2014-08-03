@@ -20,7 +20,7 @@ namespace Vista.View
         }
         protected void listaEmprsas_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            int empresaId = Convert.ToInt32(this.listaEmpresas.Rows[e.RowIndex].Cells[0].Text);
+            long empresaId = Convert.ToInt64(this.listaEmpresas.Rows[e.RowIndex].Cells[0].Text);
             ControladoraEmpresas.getINSTANCIA.EliminarEmpresa(empresaId);
             e.Cancel = true;
             this.listaEmpresas.DataSource = null;
@@ -41,7 +41,8 @@ namespace Vista.View
             txtFiltroCuit.Text = "";
             txtFiltroRazonSocial.Text = "";
             txtFiltroLocalidad.Text = "";
-            txtFiltroCorreo.Text = "";            
+            txtFiltroCorreo.Text = "";
+            listaEmpresas.SelectMethod = "GetEmpresasFilter";
         }
 
         public List<Modelo.Empresa> GetEmpresasFilter()

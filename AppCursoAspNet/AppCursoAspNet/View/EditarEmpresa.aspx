@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="NuevoEmpresa.aspx.cs" Inherits="Vista.View.NuevoEmpresa" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="EditarEmpresa.aspx.cs" Inherits="Vista.View.EditarEmpresa" %>
+
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div>
@@ -20,7 +21,7 @@
             <td>
                 Cuit</td>
             <td>
-                    <asp:TextBox ID="Cuit" runat="server" CssClass="form-control" MaxLength="11"></asp:TextBox>
+                    <asp:TextBox ID="Cuit" runat="server" CssClass="form-control" MaxLength="11" Enabled="false"></asp:TextBox>
 
                 </td>
             <td>

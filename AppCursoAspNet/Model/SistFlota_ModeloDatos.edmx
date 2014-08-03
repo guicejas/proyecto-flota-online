@@ -122,13 +122,13 @@
     <Property Name="Fecha" Type="datetime" Nullable="false" />
     <Property Name="Monto" Type="decimal" Nullable="false" />
     <Property Name="Estado" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Empresa_Cuit" Type="int" Nullable="false" />
+    <Property Name="Empresa_Cuit" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Empresas">
     <Key>
       <PropertyRef Name="Cuit" />
     </Key>
-    <Property Name="Cuit" Type="int" Nullable="false" />
+    <Property Name="Cuit" Type="bigint" Nullable="false" />
     <Property Name="RazonSocial" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Domicilio" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Telefono" Type="nvarchar(max)" Nullable="false" />
@@ -376,7 +376,7 @@
           <Key>
             <PropertyRef Name="Cuit" />
           </Key>
-          <Property Name="Cuit" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Cuit" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="RazonSocial" Type="String" Nullable="false" />
           <Property Name="Domicilio" Type="String" Nullable="false" />
           <Property Name="Telefono" Type="String" Nullable="false" />

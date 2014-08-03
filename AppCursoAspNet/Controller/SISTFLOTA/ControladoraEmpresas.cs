@@ -27,7 +27,7 @@ namespace Controladora
             Modelo.SingletonSistFlota.ObtenerInstancia().Empresas.Add(oEmpresa);
             Modelo.SingletonSistFlota.ObtenerInstancia().SaveChanges();
         }
-        public void EliminarEmpresa(int idEmpresa)
+        public void EliminarEmpresa(long idEmpresa)
         {
             Modelo.Empresa oEmpresa = Modelo.SingletonSistFlota.ObtenerInstancia().Empresas.Find(idEmpresa);
             Modelo.SingletonSistFlota.ObtenerInstancia().Empresas.Remove(oEmpresa);
@@ -55,34 +55,12 @@ namespace Controladora
             return true;
         }
 
-        /*public List<Modelo.Gasto> ListarGastosFiltrados(string Id, Modelo.Vehiculo oVehiculoF, Modelo.TipodeGasto oTipodeGastoF, string Monto, string Estado, string Descripcion, DateTime VenceDesde, DateTime VenceHasta)
-        {
-            List<Modelo.Gasto> Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.ToList();
-            if (Id.ToString() != "")
-                Filtrado = Filtrado.Where(oGas => oGas.Id == Convert.ToInt32(Id)).ToList();
-            if (oVehiculoF != null)
-                Filtrado = Filtrado.Where(oGas => oGas.Vehiculo == oVehiculoF).ToList();
-            if (oTipodeGastoF != null)
-                Filtrado = Filtrado.Where(oGas => oGas.TipodeGasto == oTipodeGastoF).ToList();
-            if (Monto.ToString() != "")
-                Filtrado = Filtrado.Where(oGas => oGas.Monto == Convert.ToDecimal(Monto)).ToList();
-            if (Estado != "")
-                Filtrado = Filtrado.Where(oGas => oGas.Estado == Estado).ToList();
-            if (Descripcion != "")
-                Filtrado = Filtrado.Where(oGas => oGas.Descripcion.Contains(Descripcion)).ToList();
-            if (VenceDesde.ToString() != null)
-                Filtrado = Filtrado.Where(oGas => oGas.FechaVencimiento > VenceDesde).ToList();
-            if (VenceHasta.ToString() != null)
-                Filtrado = Filtrado.Where(oGas => oGas.FechaVencimiento < VenceHasta).ToList();
-
-            return Filtrado;
-        }*/
-
+        
         public List<Modelo.Empresa> ListarEmpresasFiltrados(string cuit,string razonSocial, string localidad, string correo)
         {
             List<Modelo.Empresa> Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Empresas.ToList();
             if (cuit != null)
-                Filtrado = Filtrado.Where(oEmp => oEmp.Cuit > Convert.ToInt32(cuit)).ToList();
+                Filtrado = Filtrado.Where(oEmp => oEmp.Cuit == Convert.ToInt64(cuit)).ToList();
             if (razonSocial != null)
                 Filtrado = Filtrado.Where(oEmp => oEmp.RazonSocial.IndexOf(razonSocial, System.StringComparison.OrdinalIgnoreCase)>=0).ToList();
             if (localidad != null)
@@ -93,6 +71,10 @@ namespace Controladora
             return Filtrado;
         }
 
-        
+        public Modelo.Empresa ObtenerEmpresa(long cuit)
+        {
+            Modelo.Empresa oEmpresa = Modelo.SingletonSistFlota.ObtenerInstancia().Empresas.Find(cuit);
+            return oEmpresa;
+        }
     }
 }
