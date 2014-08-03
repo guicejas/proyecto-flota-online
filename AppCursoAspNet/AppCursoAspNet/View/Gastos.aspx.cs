@@ -17,7 +17,6 @@ namespace Vista
            
         }
 
-
         public List<Modelo.Gasto> GetGastos()
         {
             return ControladoraGastos.getINSTANCIA.ListarGastos();
@@ -42,8 +41,7 @@ namespace Vista
         protected void btnFiltrar_Click(object sender, EventArgs e)
         {
             if (txtFiltroDescripcion.Text != "" || txtFiltroEstado.Text != "" || txtFiltroFechaVencimiento.Text != "" || txtFiltroVehiculo.Text != "")
-            { listaGastos.SelectMethod = "GetGastosFilter"; }
-            
+            { listaGastos.SelectMethod = "GetGastosFilter"; }            
                 
         }
         

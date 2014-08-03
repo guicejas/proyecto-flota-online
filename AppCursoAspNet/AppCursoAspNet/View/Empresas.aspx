@@ -38,7 +38,7 @@
                 </tr>
             </table>
 
-            <asp:GridView ID="listaEmpresas" runat="server" AutoGenerateColumns="False" CellPadding="4" SelectMethod="GetEmpresas" CssClass="table table-striped table-hover" OnRowDeleting="listaEmpresas_RowDeleting" OnRowEditing="listaEmpresas_RowEditing">
+            <asp:GridView ID="listaEmpresas" runat="server" AutoGenerateColumns="False" CellPadding="4" SelectMethod="GetEmpresas" CssClass="table table-striped table-hover" OnRowDeleting="listaEmprsas_RowDeleting" OnRowEditing="listaEmpresas_RowEditing">
                 <EmptyDataTemplate>
                     No hay Empresas cargadas.
                 </EmptyDataTemplate>
@@ -53,8 +53,6 @@
                     <asp:CommandField ShowEditButton="True" EditImageUrl="~/Images/edit-item.png" EditText="Editar" HeaderImageUrl="~/Images/edit-item.png" />
                     <asp:CommandField ShowDeleteButton="True" DeleteImageUrl="~/Images/delete-item.png" DeleteText="Borrar" HeaderImageUrl="~/Images/delete-item.png" />
                 </Columns>
-
-
             </asp:GridView>
         </ContentTemplate>
     </asp:UpdatePanel>

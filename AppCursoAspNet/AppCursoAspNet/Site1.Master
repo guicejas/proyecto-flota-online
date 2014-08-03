@@ -58,6 +58,15 @@
                                <li><a runat="server" href="~/View/MonitorGastos"><span class="glyphicon glyphicon-dashboard yellow-icon"></span>Monitor de Gastos</a></li>
                            </ul>
                        </li>
+
+                            <li class="dropdown">
+                           <a runat="server" href="~/View/Empresas" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-building yellow-icon"></span>Empresas<b class="caret"></b></a>
+                           <ul class="dropdown-menu">
+                               <li><a runat="server" href="~/View/Empresas"><span class="glyphicon glyphicon-coins yellow-icon"></span>Gestionar Empresas</a></li>
+                               <li><a runat="server" href="~/View/NuevoEmpresa"><span class="glyphicon glyphicon-circle_plus yellow-icon"></span>Nueva Empresa</a></li>                               
+                           </ul>
+                       </li>
+
                        <li class="dropdown">
                            <a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-adjust_alt yellow-icon"></span>Administración<b class="caret"></b></a>
                            <ul class="dropdown-menu">

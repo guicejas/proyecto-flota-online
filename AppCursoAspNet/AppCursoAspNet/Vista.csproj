@@ -106,6 +106,7 @@
     <Content Include="View\EliminarChofer.aspx" />
     <Content Include="View\Empresas.aspx" />
     <Content Include="View\NuevoChofer.aspx" />
+    <Content Include="View\NuevoEmpresa.aspx" />
     <Content Include="View\NuevoVehiculo.aspx" />
     <Content Include="View\ReporteGastos.aspx" />
     <Content Include="View\PagarGasto.aspx" />
@@ -284,6 +285,13 @@
     </Compile>
     <Compile Include="View\NuevoChofer.aspx.designer.cs">
       <DependentUpon>NuevoChofer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\NuevoEmpresa.aspx.cs">
+      <DependentUpon>NuevoEmpresa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\NuevoEmpresa.aspx.designer.cs">
+      <DependentUpon>NuevoEmpresa.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\NuevoVehiculo.aspx.cs">
       <DependentUpon>NuevoVehiculo.aspx</DependentUpon>
