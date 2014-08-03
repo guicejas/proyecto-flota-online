@@ -25,8 +25,8 @@
                     <Columns>
                         <asp:BoundField DataField="IDPerfil" HeaderText="ID" />
                         <asp:BoundField DataField="Grupo.IDGrupo" HeaderText="Grupo" />
-                        <asp:BoundField DataField="Grupo.IDPermiso" HeaderText="Permiso" />
-                        <asp:BoundField DataField="Grupo.IDFormulario" HeaderText="Formulario" />
+                        <asp:BoundField DataField="Permiso.IDPermiso" HeaderText="Permiso" />
+                        <asp:BoundField DataField="Formulario.IDFormulario" HeaderText="Formulario" />
 
                         <asp:CommandField ShowEditButton="True" EditImageUrl="~/Images/edit-item.png" EditText="Editar" HeaderImageUrl="~/Images/edit-item.png" />
                         <asp:CommandField ShowDeleteButton="True" DeleteImageUrl="~/Images/delete-item.png" DeleteText="Borrar" HeaderImageUrl="~/Images/delete-item.png" />

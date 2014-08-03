@@ -13,5 +13,12 @@ namespace Controladora.SEGURIDAD
         {
             return Modelo.SingletonSeguridad.ObtenerInstancia().Permisos.OrderBy(c => c.IDPermiso).ToList();
         }
+
+        public Permiso ObtenerPermiso(string permisoId)
+        {
+            Permiso oPermiso = Modelo.SingletonSeguridad.ObtenerInstancia().Permisos.Find(permisoId);
+            return oPermiso;
+        }
+
     }
 }

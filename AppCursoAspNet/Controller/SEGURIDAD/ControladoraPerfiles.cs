@@ -40,6 +40,12 @@ namespace Controladora.SEGURIDAD
             Modelo.SingletonSeguridad.ObtenerInstancia().SaveChanges();
         }
 
+        public Perfil ObtenerPerfil(int perfilId)
+        {
+            Perfil oPerfil = Modelo.SingletonSeguridad.ObtenerInstancia().Perfiles.Find(perfilId);
+            return oPerfil;
+        }
+
         // ------------------------------------------ //
 
         //MODELO.Auditoría.AuditoriaPerfiles modAuPerfiles = new MODELO.Auditoría.AuditoriaPerfiles();

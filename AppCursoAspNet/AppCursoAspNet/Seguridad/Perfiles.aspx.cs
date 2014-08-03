@@ -21,7 +21,7 @@ namespace Vista.Seguridad
             return ctrlPerfiles.ListarPerfiles();
         }
 
-        protected void listaGrupos_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void listaPerfiles_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int perfilId = Convert.ToInt32(this.listaPerfiles.Rows[e.RowIndex].Cells[0].Text);
             ctrlPerfiles.EliminarPerfil(perfilId);
@@ -29,7 +29,7 @@ namespace Vista.Seguridad
             this.listaPerfiles.DataSource = null;
         }
 
-        protected void listaGrupos_RowEditing(object sender, GridViewEditEventArgs e)
+        protected void listaPerfiles_RowEditing(object sender, GridViewEditEventArgs e)
         {
             int perfilId = Convert.ToInt32(this.listaPerfiles.Rows[e.NewEditIndex].Cells[0].Text);
             Response.Redirect("EditarPerfil?PerfilId=" + perfilId);
