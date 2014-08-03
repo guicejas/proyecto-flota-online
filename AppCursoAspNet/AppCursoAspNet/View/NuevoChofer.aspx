@@ -18,8 +18,9 @@
             <td>
                 Documento</td>
             <td>
-                <asp:TextBox ID="Documento" runat="server" CssClass="form-control"  MaxLength="8" ></asp:TextBox>                  
-            </td>
+                    <asp:TextBox ID="Documento" runat="server" CssClass="form-control" MaxLength="8"></asp:TextBox>
+
+                </td>
             <td>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Ingrese DNI" ControlToValidate="Documento" CssClass="alert-danger"></asp:RequiredFieldValidator>
                 <br />
