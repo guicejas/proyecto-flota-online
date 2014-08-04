@@ -63,6 +63,7 @@
     <Compile Include="SISTFLOTA\ControladoraEmpresas.cs" />
     <Compile Include="SISTFLOTA\ControladoraGastos.cs" />
     <Compile Include="SISTFLOTA\ControladoraTiposdeGasto.cs" />
+    <Compile Include="SISTFLOTA\ControladoraTurnos.cs" />
     <Compile Include="SISTFLOTA\ControladoraVehiculos.cs" />
     <Compile Include="SISTFLOTA\Strategy\Contexto.cs" />
     <Compile Include="SISTFLOTA\Strategy\EXCELStrategy.cs" />

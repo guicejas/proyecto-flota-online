@@ -33,7 +33,13 @@
                     <div id="menuPrincipal" runat="server">
                         <ul class="nav navbar-nav">
 <li><a runat="server" href="~/View/Index"><span class="glyphicon glyphicon-home yellow-icon"></span>Incio</a></li>                       
-                       <li><a runat="server" href="~/View/Turnos"><span class="glyphicon glyphicon-dashboard yellow-icon"></span>Turnos</a></li>
+                        <li class="dropdown">
+                           <a runat="server" href="~/View/Turnos" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-dashboard yellow-icon"></span>Turnos<b class="caret"></b></a>
+                           <ul class="dropdown-menu">
+                               <li><a runat="server" href="~/View/Turnos"><span class="glyphicon glyphicon-dashboard yellow-icon"></span>Gestionar Turnos</a></li>
+                               <li><a runat="server" href="~/View/NuevoVehiculo"><span class="glyphicon glyphicon-car yellow-icon"></span>Nuevo Vehiculo</a></li>
+                            </ul>
+                       </li>   
 
                        <li class="dropdown">
                            <a runat="server" href="~/View/Vehiculos" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-car yellow-icon"></span>Vehiculos<b class="caret"></b></a>

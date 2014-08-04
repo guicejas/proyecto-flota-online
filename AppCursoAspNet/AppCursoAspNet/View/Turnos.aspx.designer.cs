@@ -13,12 +13,21 @@ namespace Vista.View {
     public partial class Turnos {
         
         /// <summary>
-        /// listaGastos control.
+        /// listaTurnos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView listaGastos;
+        protected global::System.Web.UI.WebControls.GridView listaTurnos;
+        
+        /// <summary>
+        /// ObjectTurnos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectTurnos;
     }
 }
