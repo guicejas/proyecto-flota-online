@@ -10,7 +10,7 @@
 namespace Vista.Seguridad {
     
     
-    public partial class EditarUsuario {
+    public partial class VerUsuario {
         
         /// <summary>
         /// HyperLink1 control.
@@ -31,15 +31,6 @@ namespace Vista.Seguridad {
         protected global::System.Web.UI.WebControls.TextBox usuario;
         
         /// <summary>
-        /// RequiredFieldValidator2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
-        
-        /// <summary>
         /// nombreyapellido control.
         /// </summary>
         /// <remarks>
@@ -49,15 +40,6 @@ namespace Vista.Seguridad {
         protected global::System.Web.UI.WebControls.TextBox nombreyapellido;
         
         /// <summary>
-        /// RequiredFieldValidator3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
-        
-        /// <summary>
         /// email control.
         /// </summary>
         /// <remarks>
@@ -65,15 +47,6 @@ namespace Vista.Seguridad {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl email;
-        
-        /// <summary>
-        /// RequiredFieldValidator4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
         
         /// <summary>
         /// LbGrupos control.
@@ -92,14 +65,5 @@ namespace Vista.Seguridad {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox habilitado;
-        
-        /// <summary>
-        /// aceptar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button aceptar;
     }
 }

@@ -66,6 +66,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\copy-item.png" />
     <Content Include="ResetPassword.aspx" />
     <Content Include="Content\bootstrap - Original.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -96,6 +97,7 @@
     <Content Include="Seguridad\NuevoUsuario.aspx" />
     <Content Include="Seguridad\Perfiles.aspx" />
     <Content Include="Seguridad\Usuarios.aspx" />
+    <Content Include="Seguridad\VerUsuario.aspx" />
     <Content Include="View\About.aspx" />
     <Content Include="View\Auditoria.aspx" />
     <Content Include="View\Ayuda.aspx" />
@@ -215,6 +217,13 @@
     </Compile>
     <Compile Include="Seguridad\Usuarios.aspx.designer.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\VerUsuario.aspx.cs">
+      <DependentUpon>VerUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seguridad\VerUsuario.aspx.designer.cs">
+      <DependentUpon>VerUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>

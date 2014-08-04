@@ -70,9 +70,9 @@
                        <li class="dropdown">
                            <a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-adjust_alt yellow-icon"></span>Administración<b class="caret"></b></a>
                            <ul class="dropdown-menu">
-                               <li><a href="#"><span class="glyphicon glyphicon-group yellow-icon"></span>Gestionar Usuarios</a></li>
+                               <li><a href="../Seguridad/Usuarios"><span class="glyphicon glyphicon-group yellow-icon"></span>Gestionar Usuarios</a></li>
                                <li><a href="../Seguridad/Grupos"><span class="glyphicon glyphicon-group yellow-icon"></span>Gestionar Grupos</a></li>
-                               <li><a href="#"><span class="glyphicon glyphicon-group yellow-icon"></span>Gestionar Perfiles</a></li>
+                               <li><a href="../Seguridad/Perfiles"><span class="glyphicon glyphicon-group yellow-icon"></span>Gestionar Perfiles</a></li>
                                <li class="divider"></li>
                                <li><a runat="server" href="~/View/Auditoria"><span class="glyphicon glyphicon-eye_open yellow-icon"></span>Auditoria</a></li>
                            </ul>

@@ -9,7 +9,7 @@
     </div>
     <h2>Alta de Perfil</h2>
     <p>
-        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Perfiles.aspx">Volver</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="Perfiles.aspx">Volver</asp:HyperLink>
     </p>
 
     <form runat="server">
