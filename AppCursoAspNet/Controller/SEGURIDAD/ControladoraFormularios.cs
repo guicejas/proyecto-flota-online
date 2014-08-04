@@ -13,5 +13,11 @@ namespace Controladora.SEGURIDAD
         {
             return Modelo.SingletonSeguridad.ObtenerInstancia().Formularios.OrderBy(c => c.IDFormulario).ToList();
         }
+
+        public Formulario ObtenerFormulario(string formularioId)
+        {
+            Formulario oFormulario = Modelo.SingletonSeguridad.ObtenerInstancia().Formularios.Find(formularioId);
+            return oFormulario;
+        }
     }
 }

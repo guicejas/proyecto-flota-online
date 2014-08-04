@@ -9,9 +9,34 @@ namespace Vista.Seguridad
 {
     public partial class NuevoGrupo : System.Web.UI.Page
     {
+        Controladora.SEGURIDAD.ControladoraGrupos ctrlGrupos = new Controladora.SEGURIDAD.ControladoraGrupos();
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
+
+        protected void aceptar_Click(object sender, EventArgs e)
+        {
+
+
+            Modelo.SEGURIDAD.Grupo oGrupo = new Modelo.SEGURIDAD.Grupo();
+
+            oGrupo.IDGrupo = nombre.Text;
+            oGrupo.Descripcion = descripcion.Text;
+
+            if (ctrlGrupos.VerificarGrupo(oGrupo))
+            {
+                ctrlGrupos.AgregarGrupo(oGrupo);
+                Response.Redirect("Grupos.aspx");
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('El Nombre ingresado ya pertenece a un grupo existente');", true);
+            }
+
+            
+        }
+
     }
 }

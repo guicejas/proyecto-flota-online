@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Vista.Seguridad
 {
-    public partial class EditarUsuario : System.Web.UI.Page
+    public partial class VerUsuario : System.Web.UI.Page
     {
         Controladora.SEGURIDAD.ControladoraGrupos ctrlGrupos = new Controladora.SEGURIDAD.ControladoraGrupos();
         Controladora.SEGURIDAD.ControladoraUsuarios ctrlUsuarios = new Controladora.SEGURIDAD.ControladoraUsuarios();
@@ -26,7 +26,7 @@ namespace Vista.Seguridad
                     this.nombreyapellido.Text = oUsuario.NombreApellido;
                     this.email.Value = oUsuario.Email;
                     this.habilitado.Checked = oUsuario.Habilitado;
-                    
+
                     foreach (Modelo.SEGURIDAD.Grupo i in ctrlGrupos.ListarGrupos())
                     {
                         ListItem item = new ListItem();
@@ -42,8 +42,8 @@ namespace Vista.Seguridad
 
                         }
                     }
-                    
-                    
+
+
 
 
                 }
@@ -54,49 +54,6 @@ namespace Vista.Seguridad
                 }
             }
 
-        }
-
-
-        protected void aceptar_Click(object sender, EventArgs e)
-        {
-
-            if (!ValidarCheckboxListGrupos())
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Debe seleccionar al menos un Grupo');", true);
-                LbGrupos.Focus();
-                return;
-            }
-
-
-            Modelo.SEGURIDAD.Usuario oUsuario = ctrlUsuarios.BuscarUsuario(usuario.Text);
-
-            oUsuario.NombreApellido = nombreyapellido.Text;
-            oUsuario.Email = email.Value;
-            oUsuario.Habilitado = habilitado.Checked;
-
-            oUsuario.Grupo.Clear();
-
-            foreach (ListItem item in LbGrupos.Items)
-            {
-                if (item.Selected)
-                    oUsuario.Grupo.Add(ctrlGrupos.ObtenerGrupo(item.Value));
-            }
-
-                ctrlUsuarios.ModificarUsuario(oUsuario);
-                Response.Redirect("Usuarios.aspx");
- 
-        }
-
-
-        protected bool ValidarCheckboxListGrupos()
-        {
-            bool tieneGrupo = false;
-            foreach (ListItem item in LbGrupos.Items)
-            {
-                if (item.Selected)
-                    tieneGrupo = true;
-            }
-            return tieneGrupo;
         }
     }
 }

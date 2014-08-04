@@ -10,7 +10,7 @@
 namespace Vista.Seguridad {
     
     
-    public partial class Perfiles {
+    public partial class VerUsuario {
         
         /// <summary>
         /// HyperLink1 control.
@@ -22,39 +22,48 @@ namespace Vista.Seguridad {
         protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
         
         /// <summary>
-        /// ScriptManager1 control.
+        /// usuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.WebControls.TextBox usuario;
         
         /// <summary>
-        /// UpdatePanel1 control.
+        /// nombreyapellido control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.WebControls.TextBox nombreyapellido;
         
         /// <summary>
-        /// listaPerfiles control.
+        /// email control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView listaPerfiles;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl email;
         
         /// <summary>
-        /// ObjectPerfiles control.
+        /// LbGrupos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectPerfiles;
+        protected global::System.Web.UI.WebControls.CheckBoxList LbGrupos;
+        
+        /// <summary>
+        /// habilitado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox habilitado;
     }
 }
