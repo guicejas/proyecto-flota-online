@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="Vista.Index" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <p>Bienvenido Admin</p>
+    <p>Bienvenido <%: this.Context.User.Identity.Name %></p>
     <div class="col-lg-8">
         <img src="../Images/TxtPortada.png" /><br />
     </div>

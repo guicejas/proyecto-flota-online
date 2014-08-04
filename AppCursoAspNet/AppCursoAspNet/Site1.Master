@@ -32,7 +32,7 @@
                 <div class="navbar-collapse collapse navbar-responsive-collapse">
                     <div id="menuPrincipal" runat="server">
                         <ul class="nav navbar-nav">
-<li><a runat="server" href="~/View/Index"><span class="glyphicon glyphicon-home yellow-icon"></span>Incio</a></li>                       
+         
                         <li class="dropdown">
                            <a runat="server" href="~/View/Turnos" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-dashboard yellow-icon"></span>Turnos<b class="caret"></b></a>
                            <ul class="dropdown-menu">
@@ -88,7 +88,7 @@
 
                     <ul class="nav navbar-nav navbar-right">
 
-                        <li id="menuAcerca" runat="server"><a runat="server" href="~/View/About"><span class="glyphicon glyphicon-circle_info yellow-icon"></span>Acerca</a></li>
+                        <li id="menuAcerca" runat="server"><a runat="server" href="~/View/About"><span class="glyphicon glyphicon-circle_info yellow-icon"></span></a></li>
                         <li id="menuAyuda" runat="server"><a target="_blank" runat="server" href="~/View/Ayuda" alt="Ayuda" title="Ayuda"><span class="glyphicon glyphicon-circle_question_mark yellow-icon"></span></a></li>
                         <li id="menuUsuario" class="dropdown" runat="server">
                             <a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user yellow-icon"></span><span id="nombreUsuario" runat="server"><%: this.Context.User.Identity.Name %></span><b class="caret"></b></a>
