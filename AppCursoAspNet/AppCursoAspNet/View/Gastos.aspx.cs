@@ -11,9 +11,33 @@ namespace Vista
 {
     public partial class Gastos : System.Web.UI.Page
     {
+        Controladora.SEGURIDAD.ControladoraPerfiles ctrlPerfiles = new Controladora.SEGURIDAD.ControladoraPerfiles();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
+            if (ctrlPerfiles.ObtenerFormularios(HttpContext.Current.User.Identity.Name).Exists(a => a == "Gastos"))
+            {
+                
+            if (!IsPostBack)
+            {
+                List<string> permisos = ctrlPerfiles.ObtenerPermisos(HttpContext.Current.User.Identity.Name, "Gastos");
+
+                if (permisos.Exists(a => a == "TOTAL"))
+                { return; }
+                else
+                {
+                    if (!permisos.Exists(a => a == "ALTA"))
+                        HyperLink1.Visible = false;
+                    if (!permisos.Exists(a => a == "BAJA"))
+                        listaGastos.Columns.RemoveAt(6);
+                    if (!permisos.Exists(a => a == "MODIFICACION"))
+                        listaGastos.Columns.RemoveAt(5);
+                }
+            }
+            }
+            else
+                Response.Redirect("~/NoAutorizado.aspx");
            
         }
 
@@ -26,8 +50,17 @@ namespace Vista
         protected void listaGastos_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int gastoId = Convert.ToInt32(this.listaGastos.Rows[e.RowIndex].Cells[0].Text);
-            ControladoraAudGastos.getINSTANCIA.AuditarGastosBAJA(ControladoraGastos.getINSTANCIA.ObtenerGasto(gastoId));
-            ControladoraGastos.getINSTANCIA.EliminarGasto(gastoId);
+            ControladoraAudGastos.getINSTANCIA.AuditarGastosBAJA(ControladoraGastos.getINSTANCIA.ObtenerGasto(gastoId), HttpContext.Current.User.Identity.Name);
+            
+            if (ControladoraGastos.getINSTANCIA.EliminarGasto(gastoId))
+            {
+                lblModalTitle.Text = "CUIDADO";
+                lblModalBody.Text = "el registro no puede ser eliminado ya que contiene datos asociados.";
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
+                upModal.Update();
+            }
+
+
             e.Cancel = true;
             this.listaGastos.DataSource = null;
         }

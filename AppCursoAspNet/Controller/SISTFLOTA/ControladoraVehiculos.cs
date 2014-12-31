@@ -9,7 +9,7 @@ namespace Controladora
     {
         private static volatile ControladoraVehiculos instancia;
 
-        public ControladoraVehiculos()
+        ControladoraVehiculos()
         {
         }
         public static ControladoraVehiculos getINSTANCIA
@@ -27,11 +27,19 @@ namespace Controladora
             Modelo.SingletonSistFlota.ObtenerInstancia().Vehiculos.Add(oVehiculo);
             Modelo.SingletonSistFlota.ObtenerInstancia().SaveChanges();
         }
-        public void EliminarVehiculo(string patente)
+        public bool EliminarVehiculo(string patente)
         {
             Modelo.Vehiculo oVehiculo = Modelo.SingletonSistFlota.ObtenerInstancia().Vehiculos.Find(patente);
             Modelo.SingletonSistFlota.ObtenerInstancia().Vehiculos.Remove(oVehiculo);
-            Modelo.SingletonSistFlota.ObtenerInstancia().SaveChanges();
+            try
+            {
+                Modelo.SingletonSistFlota.ObtenerInstancia().SaveChanges();
+                return false;
+            }
+            catch
+            {
+                return true;
+            }
         }
         public void ModificarVehiculo(Modelo.Vehiculo oVehiculo)
         {
@@ -52,17 +60,15 @@ namespace Controladora
 
         }
 
-        public List<Modelo.Vehiculo> ListarVehiculosFiltrados(string Patente, string PatenteTaxi, string Marca, string Año)
+        public List<Modelo.Vehiculo> ListarVehiculosFiltrados(string Patente, string PatenteTaxi, string Año)
         {
             List<Modelo.Vehiculo> Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Vehiculos.OrderBy(c => c.Patente).ToList();
-            if (Patente != "")
-                Filtrado = Filtrado.Where(oVeh => oVeh.Patente == Patente).ToList();
-            if (PatenteTaxi != "")
-                Filtrado = Filtrado.Where(oVeh => oVeh.PatenteTaxi == Convert.ToInt32(PatenteTaxi)).ToList();
-            if (Marca != "")
-                Filtrado = Filtrado.Where(oVeh => oVeh.Marca.Contains(Marca)).ToList();
-            if (Año != "")
-                Filtrado = Filtrado.Where(oVeh => oVeh.Año == Convert.ToInt32(Año)).ToList();
+            if (Patente != null)
+                Filtrado = Filtrado.Where(oVeh => oVeh.Patente.IndexOf(Patente, System.StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+            if (PatenteTaxi != null)
+                Filtrado = Filtrado.Where(oVeh => oVeh.PatenteTaxi.ToString().IndexOf(PatenteTaxi, System.StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+            if (Año != null)
+                Filtrado = Filtrado.Where(oVeh => oVeh.Año.ToString().IndexOf(Año, System.StringComparison.OrdinalIgnoreCase) >= 0).ToList();
 
 
             return Filtrado;

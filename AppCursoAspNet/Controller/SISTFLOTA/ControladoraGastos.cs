@@ -10,7 +10,7 @@ namespace Controladora
     {
         private static volatile ControladoraGastos instancia;
 
-        public ControladoraGastos()
+        ControladoraGastos()
         {
         }
         
@@ -28,11 +28,19 @@ namespace Controladora
             Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.Add(oGasto);
             Modelo.SingletonSistFlota.ObtenerInstancia().SaveChanges();
         }
-        public void EliminarGasto(int gastoId)
+        public bool EliminarGasto(int gastoId)
         {
             Modelo.Gasto oGasto = Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.Find(gastoId);
             Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.Remove(oGasto);
-            Modelo.SingletonSistFlota.ObtenerInstancia().SaveChanges();
+            try
+            {
+                Modelo.SingletonSistFlota.ObtenerInstancia().SaveChanges();
+                return false;
+            }
+            catch
+            {
+                return true;
+            }
         }
         public void ModificarGasto(Modelo.Gasto oGasto)
         {
@@ -80,7 +88,7 @@ namespace Controladora
             if (vehiculo != null)
                 Filtrado = Filtrado.Where(oGas => oGas.Vehiculo.Patente.IndexOf(vehiculo, System.StringComparison.OrdinalIgnoreCase) >= 0).ToList();
             if (fechaVencimiento != null)
-                Filtrado = Filtrado.Where(oGas => oGas.FechaVencimiento > Convert.ToDateTime(fechaVencimiento).Date).ToList();
+                Filtrado = Filtrado.Where(oGas => oGas.FechaVencimiento == Convert.ToDateTime(fechaVencimiento).Date).ToList();
             if (estado != null)
                 Filtrado = Filtrado.Where(oGas => oGas.Estado.IndexOf(estado, System.StringComparison.OrdinalIgnoreCase) >= 0).ToList();
             if (descripcion != null)

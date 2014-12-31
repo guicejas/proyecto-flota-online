@@ -16,42 +16,38 @@ namespace Controladora.SEGURIDAD
 
         public bool IniciarSesion(string IDUsuario, string clave) // es de tipo object ya que puede devolver distintos valores
         {
-            int nroError;
-
+            
             Usuario oUsuario; //declaracion de la variable Usuario
             oUsuario = ctrlUsuarios.BuscarUsuario(IDUsuario); //Se asigna a usuario el valor devuelto por BuscarUsuario()
             string password = oEncriptacion.encriptar(clave);
 
             if (oUsuario == null) //Si no se encontró ningún usuario con ese ID....
             {
-                nroError = 1;
                 return false;
             }
             if (oUsuario.Contraseña != password) //Si la contraseña ingresada no coincide con la del usuario..
             {
-                nroError = 2;
                 return false;
             }
             if (oUsuario.Habilitado == false) //si el usuario no está habilitado para iniciar sesión
             {
-                nroError = 3;
                 return false;
             }
 
             oUsuario.Activo = true;
 
             ctrlUsuarios.ModificarUsuario(oUsuario);
-            //ctrlAudLog.AuditarLogIn(oUsuario);
+            Controladora.AUDITORIA.ControladoraAudLog.getINSTANCIA.AuditarLogIn(IDUsuario);
 
             return true; //si está todo OK devuelve el usuario encontrado
         }
 
-        public object ResetearContraseña(string IDUsuario)
+        public object ResetearContraseña(string mailUsuario)
         {
             int nroError;
             
             Usuario oUsuario; //declaracion de la variable Usuario
-            oUsuario = ctrlUsuarios.BuscarUsuario(IDUsuario); //Se asigna a usuario el valor devuelto por BuscarUsuario()
+            oUsuario = ctrlUsuarios.BuscarUsuarioMail(mailUsuario); //Se asigna a usuario el valor devuelto por BuscarUsuario()
 
             if (oUsuario == null) //Si no se encontró ningún usuario con ese ID....
             {
@@ -63,7 +59,10 @@ namespace Controladora.SEGURIDAD
                 ctrlUsuarios.CambiarContraseña(oUsuario);
             }
 
-            return oUsuario; //si está todo OK devuelve el usuario encontrado
+            nroError = 2;
+            return nroError;
+
+            //return oUsuario; //si está todo OK devuelve el usuario encontrado
         }
 
         public void CerrarSesion(string IDusuario)
@@ -72,7 +71,7 @@ namespace Controladora.SEGURIDAD
             oUsuario.Activo = false;
             ctrlUsuarios.ModificarUsuario(oUsuario);
 
-            //ctrlAudLog.AuditarLogOut(oUsuario);
+            Controladora.AUDITORIA.ControladoraAudLog.getINSTANCIA.AuditarLogOut(IDusuario);
         }
     }
 }

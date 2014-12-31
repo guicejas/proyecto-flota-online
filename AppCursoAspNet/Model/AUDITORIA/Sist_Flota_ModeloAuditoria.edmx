@@ -7,6 +7,7 @@
     <Schema Namespace="Sist_Flota_ModeloAuditoria.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="Sist_Flota_ModeloAuditoriaStoreContainer">
     <EntitySet Name="AudGastos" EntityType="Sist_Flota_ModeloAuditoria.Store.AudGastos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LogInsOuts" EntityType="Sist_Flota_ModeloAuditoria.Store.LogInsOuts" store:Type="Tables" Schema="dbo" />
   </EntityContainer>
   <EntityType Name="AudGastos">
     <Key>
@@ -26,12 +27,22 @@
     <Property Name="FechayHora" Type="datetime" Nullable="false" />
     <Property Name="Operacion" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
+  <EntityType Name="LogInsOuts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Usuario" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FechayHora" Type="datetime" Nullable="false" />
+    <Property Name="Operacion" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Sist_Flota_ModeloAuditoria" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
         <EntityContainer Name="Sist_Flota_ModeloAuditoriaContainer" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AudGastos" EntityType="Sist_Flota_ModeloAuditoria.AudGasto" />
+          <EntitySet Name="LogInsOuts" EntityType="Sist_Flota_ModeloAuditoria.LoginLogout" />
         </EntityContainer>
         <EntityType Name="AudGasto">
           <Key>
@@ -47,6 +58,15 @@
           <Property Name="FechaEmision" Type="DateTime" Nullable="true" />
           <Property Name="TipoGasto" Type="Int32" Nullable="false" />
           <Property Name="Vehiculo" Type="String" Nullable="false" />
+          <Property Name="Usuario" Type="String" Nullable="false" />
+          <Property Name="FechayHora" Type="DateTime" Nullable="false" />
+          <Property Name="Operacion" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LoginLogout">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Usuario" Type="String" Nullable="false" />
           <Property Name="FechayHora" Type="DateTime" Nullable="false" />
           <Property Name="Operacion" Type="String" Nullable="false" />
@@ -70,6 +90,16 @@
           <ScalarProperty Name="FechaEmision" ColumnName="FechaEmision" />
           <ScalarProperty Name="TipoGasto" ColumnName="TipoGasto" />
           <ScalarProperty Name="Vehiculo" ColumnName="Vehiculo" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="FechayHora" ColumnName="FechayHora" />
+          <ScalarProperty Name="Operacion" ColumnName="Operacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LogInsOuts">
+      <EntityTypeMapping TypeName="IsTypeOf(Sist_Flota_ModeloAuditoria.LoginLogout)">
+        <MappingFragment StoreEntitySet="LogInsOuts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Usuario" ColumnName="Usuario" />
           <ScalarProperty Name="FechayHora" ColumnName="FechayHora" />
           <ScalarProperty Name="Operacion" ColumnName="Operacion" />

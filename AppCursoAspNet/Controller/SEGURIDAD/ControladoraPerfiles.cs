@@ -9,7 +9,7 @@ namespace Controladora.SEGURIDAD
 {
     public class ControladoraPerfiles
     {
-
+        ControladoraUsuarios ctrlUsuarios = new ControladoraUsuarios();
 
         public List<Perfil> ListarPerfiles()
         {
@@ -50,7 +50,27 @@ namespace Controladora.SEGURIDAD
 
         //MODELO.Auditoría.AuditoriaPerfiles modAuPerfiles = new MODELO.Auditoría.AuditoriaPerfiles();
 
-        public List<Permiso> ObtenerPermisos(string IDform, Usuario oUsuario)
+        public List<string> ObtenerPermisos(string oUsuario, string IDform)
+        {
+
+            List<string> permisos = new List<string>();
+            Usuario User = ctrlUsuarios.BuscarUsuario(oUsuario);
+
+            foreach (Grupo g in User.Grupo)
+            {
+                List<Perfil> ps = g.Perfil.ToList();
+                foreach (Perfil p in ps)
+                {
+                    if (p.Formulario.IDFormulario == IDform)
+                    {
+                        permisos.Add(p.Permiso.IDPermiso);
+                    }
+                }
+            }
+            return permisos;
+        }
+
+        public List<Permiso> ObtenerPermisos(Usuario oUsuario)
         {
             //return MODELO.Seguridad.CatálogoPerfiles.Instancia.ObtenerPermisos(IDform, oUsuario.Grupo);
 
@@ -61,30 +81,50 @@ namespace Controladora.SEGURIDAD
                 List<Perfil> ps = g.Perfil.ToList();
                 foreach (Perfil p in ps)
                 {
-                    if (p.Formulario.IDFormulario == IDform)
-                    {
-                        permisos.Add(p.Permiso);
-                    }
+                    permisos.Add(p.Permiso);
                 }
             }
             return permisos;
         }
 
-        public List<Formulario> ObtenerPermisos(Usuario oUsuario)
+
+        //public List<Formulario> ObtenerFormularios(string oUsuario)
+        //{
+        //    //return MODELO.Seguridad.CatálogoPerfiles.Instancia.ObtenerPermisos(IDform, oUsuario.Grupo);
+
+        //    List<Formulario> formularios = new List<Formulario>();
+
+        //    Usuario User = ctrlUsuarios.BuscarUsuario(oUsuario);
+
+        //    foreach (Grupo g in User.Grupo)
+        //    {
+        //        List<Perfil> ps = g.Perfil.ToList();
+        //        foreach (Perfil p in ps)
+        //        {
+        //            formularios.Add(p.Formulario);
+        //        }
+        //    }
+        //    return formularios;
+        //}
+
+
+        public List<string> ObtenerFormularios(string oUsuario)
         {
             //return MODELO.Seguridad.CatálogoPerfiles.Instancia.ObtenerPermisos(IDform, oUsuario.Grupo);
 
-            List<Formulario> permisos = new List<Formulario>();
+            List<string> formularios = new List<string>();
 
-            foreach (Grupo g in oUsuario.Grupo)
+            Usuario User = ctrlUsuarios.BuscarUsuario(oUsuario);
+
+            foreach (Grupo g in User.Grupo)
             {
                 List<Perfil> ps = g.Perfil.ToList();
                 foreach (Perfil p in ps)
                 {
-                    permisos.Add(p.Formulario);
+                    formularios.Add(p.Formulario.IDFormulario);
                 }
             }
-            return permisos;
+            return formularios;
         }
 
 

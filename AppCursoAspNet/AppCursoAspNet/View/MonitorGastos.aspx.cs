@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Vista.View
 {
-    public partial class ProductList : System.Web.UI.Page
+    public partial class MonitorGastos : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -49,6 +49,7 @@ namespace Vista.View
             barraRoja.Attributes.CssStyle.Value = "width: " + porcRojo.ToString().Replace(",",".") + "%";
             barraRoja.InnerText = porcRojo + "%";
         }
+
         
     }
 }

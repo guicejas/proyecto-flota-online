@@ -4,6 +4,41 @@ body {
     padding-bottom: 20px;
 }
 
+.btnEliminar{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin: 2px;
+    text-align: center;
+    border: 1px solid;
+   width:120px; /* or whatever width you want. */
+   max-width:120px; /* or whatever width you want. */
+   display: inline-block;
+   }
+
+.btnEditar{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin: 2px;
+    text-align: center;
+    border: 1px solid;
+   width:120px; /* or whatever width you want. */
+   max-width:120px; /* or whatever width you want. */
+   display: inline-block;
+}
+
+.tdChofer {
+    align-items: center;
+    justify-content: center;
+    text-align:center; 
+
+    padding-left:15px;
+    padding-right:15px;
+}
+
 .semaforo-verde{
     padding: 15px;
     margin-bottom: 20px;

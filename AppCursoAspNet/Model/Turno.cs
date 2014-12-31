@@ -17,6 +17,7 @@ namespace Modelo
         public Turno()
         {
             this.Gasto = new HashSet<Gasto>();
+            this.CuentaCorriente = new HashSet<CuentaCorriente>();
         }
     
         public int Id { get; set; }
@@ -34,6 +35,6 @@ namespace Modelo
         public virtual Vehiculo Vehiculo { get; set; }
         public virtual Chofer Chofer { get; set; }
         public virtual ICollection<Gasto> Gasto { get; set; }
-        public virtual CuentaCorriente CuentaCorriente { get; set; }
+        public virtual ICollection<CuentaCorriente> CuentaCorriente { get; set; }
     }
 }

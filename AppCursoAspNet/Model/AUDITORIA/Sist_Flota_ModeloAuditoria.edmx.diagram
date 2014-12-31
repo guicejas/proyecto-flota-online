@@ -6,6 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="b66f462c597949aab43eb6f5b56f7db9" Name="Diagram1" >
         <EntityTypeShape EntityType="Sist_Flota_ModeloAuditoria.AudGasto" Width="1.5" PointX="5.75" PointY="1.625" />
+        <EntityTypeShape EntityType="Sist_Flota_ModeloAuditoria.LoginLogout" Width="1.5" PointX="8.25" PointY="2.375" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

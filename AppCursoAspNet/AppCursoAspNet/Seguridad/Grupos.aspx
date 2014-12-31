@@ -25,7 +25,12 @@
                     <asp:BoundField DataField="IDGrupo" HeaderText="Nombre" />
                     <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
                     <asp:CommandField ShowEditButton="True" EditImageUrl="~/Images/edit-item.png" EditText="Editar" HeaderImageUrl="~/Images/edit-item.png" />
-                    <asp:CommandField ShowDeleteButton="True" DeleteImageUrl="~/Images/delete-item.png" DeleteText="Borrar" HeaderImageUrl="~/Images/delete-item.png" />
+                    <asp:TemplateField HeaderImageUrl="~/Images/delete-item.png" ShowHeader="False">
+                        <ItemTemplate>
+                            <asp:LinkButton runat="server" Text="Borrar" CommandName="Delete" CausesValidation="False" ID="LinkButton1" OnClientClick="return confirm('Estas seguro que deseas eliminar este registro?');"></asp:LinkButton>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
                 </Columns>
 
 

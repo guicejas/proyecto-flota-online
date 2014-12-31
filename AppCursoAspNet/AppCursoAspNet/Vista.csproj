@@ -13,12 +13,13 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Vista</RootNamespace>
     <AssemblyName>AppCursoAspNet</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,12 +41,16 @@
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\CursoAsp.Net\Clase4\AppCursoAspNet\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.FriendlyUrls">
       <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.2\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -54,18 +59,19 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\logoqlikview.png" />
+    <Content Include="Images\QlikViewPartner.jpg" />
+    <Content Include="NoAutorizado.aspx" />
     <Content Include="Images\copy-item.png" />
     <Content Include="ResetPassword.aspx" />
     <Content Include="Content\bootstrap - Original.css" />
@@ -86,8 +92,10 @@
     <Content Include="Images\Trypep.png" />
     <Content Include="Images\TxtPortada.png" />
     <Content Include="Logout.aspx" />
+    <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Site.js" />
     <Content Include="Seguridad\EditarGrupo.aspx" />
     <Content Include="Seguridad\EditarPerfil.aspx" />
     <Content Include="Seguridad\EditarUsuario.aspx" />
@@ -98,10 +106,16 @@
     <Content Include="Seguridad\Perfiles.aspx" />
     <Content Include="Seguridad\Usuarios.aspx" />
     <Content Include="Seguridad\VerUsuario.aspx" />
+    <Content Include="View\ReporteQlikView.aspx" />
     <Content Include="View\About.aspx" />
-    <Content Include="View\Auditoria.aspx" />
+    <Content Include="View\AuditoriaLogs.aspx" />
+    <Content Include="View\AuditoriaGastos.aspx" />
     <Content Include="View\Ayuda.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="View\MiCuenta.aspx" />
+    <Content Include="View\VerTurno.aspx" />
+    <Content Include="View\PasswordTemporal.aspx" />
+    <Content Include="View\CambioPassword.aspx" />
     <Content Include="View\Choferes.aspx" />
     <Content Include="View\EditarChofer.aspx" />
     <Content Include="View\EditarEmpresa.aspx" />
@@ -110,6 +124,7 @@
     <Content Include="View\Empresas.aspx" />
     <Content Include="View\NuevoChofer.aspx" />
     <Content Include="View\NuevoEmpresa.aspx" />
+    <Content Include="View\NuevoTurno.aspx" />
     <Content Include="View\NuevoVehiculo.aspx" />
     <Content Include="View\ReporteGastos.aspx" />
     <Content Include="View\PagarGasto.aspx" />
@@ -129,18 +144,27 @@
     <Content Include="fonts\glyphicons-regular.ttf" />
     <Content Include="fonts\glyphicons-regular.woff" />
     <Content Include="Docs\ManualUsuario.pdf" />
+    <Content Include="Docs\IndicadoresQV.qvw" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.0.js" />
     <Content Include="Scripts\jquery-2.1.0.min.js" />
     <Content Include="View\MonitorGastos.aspx" />
     <Content Include="View\Turnos.aspx" />
     <Content Include="View\Vehiculos.aspx" />
+    <Content Include="View\Download.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Scripts\jquery-2.1.0.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NoAutorizado.aspx.cs">
+      <DependentUpon>NoAutorizado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NoAutorizado.aspx.designer.cs">
+      <DependentUpon>NoAutorizado.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ResetPassword.aspx.cs">
       <DependentUpon>ResetPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -226,6 +250,13 @@
     <Compile Include="Seguridad\VerUsuario.aspx.designer.cs">
       <DependentUpon>VerUsuario.aspx</DependentUpon>
     </Compile>
+    <Compile Include="View\ReporteQlikView.aspx.cs">
+      <DependentUpon>ReporteQlikView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\ReporteQlikView.aspx.designer.cs">
+      <DependentUpon>ReporteQlikView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="View\About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -234,12 +265,19 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="View\Auditoria.aspx.cs">
-      <DependentUpon>Auditoria.aspx</DependentUpon>
+    <Compile Include="View\AuditoriaLogs.aspx.cs">
+      <DependentUpon>AuditoriaLogs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="View\Auditoria.aspx.designer.cs">
-      <DependentUpon>Auditoria.aspx</DependentUpon>
+    <Compile Include="View\AuditoriaLogs.aspx.designer.cs">
+      <DependentUpon>AuditoriaLogs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\AuditoriaGastos.aspx.cs">
+      <DependentUpon>AuditoriaGastos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\AuditoriaGastos.aspx.designer.cs">
+      <DependentUpon>AuditoriaGastos.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Ayuda.aspx.cs">
       <DependentUpon>Ayuda.aspx</DependentUpon>
@@ -254,6 +292,34 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\MiCuenta.aspx.cs">
+      <DependentUpon>MiCuenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\MiCuenta.aspx.designer.cs">
+      <DependentUpon>MiCuenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\VerTurno.aspx.cs">
+      <DependentUpon>VerTurno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\VerTurno.aspx.designer.cs">
+      <DependentUpon>VerTurno.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\PasswordTemporal.aspx.cs">
+      <DependentUpon>PasswordTemporal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\PasswordTemporal.aspx.designer.cs">
+      <DependentUpon>PasswordTemporal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\CambioPassword.aspx.cs">
+      <DependentUpon>CambioPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\CambioPassword.aspx.designer.cs">
+      <DependentUpon>CambioPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Choferes.aspx.cs">
       <DependentUpon>Choferes.aspx</DependentUpon>
@@ -310,6 +376,13 @@
     </Compile>
     <Compile Include="View\NuevoEmpresa.aspx.designer.cs">
       <DependentUpon>NuevoEmpresa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\NuevoTurno.aspx.cs">
+      <DependentUpon>NuevoTurno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\NuevoTurno.aspx.designer.cs">
+      <DependentUpon>NuevoTurno.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\NuevoVehiculo.aspx.cs">
       <DependentUpon>NuevoVehiculo.aspx</DependentUpon>
@@ -398,6 +471,13 @@
     </Compile>
     <Compile Include="View\Vehiculos.aspx.designer.cs">
       <DependentUpon>Vehiculos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Download.aspx.cs">
+      <DependentUpon>Download.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Download.aspx.designer.cs">
+      <DependentUpon>Download.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

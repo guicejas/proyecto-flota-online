@@ -11,8 +11,24 @@ namespace Vista
     public partial class NuevoGasto : System.Web.UI.Page
     {
 
+        Controladora.SEGURIDAD.ControladoraPerfiles ctrlPerfiles = new Controladora.SEGURIDAD.ControladoraPerfiles();
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (ctrlPerfiles.ObtenerFormularios(HttpContext.Current.User.Identity.Name).Exists(a => a == "Gastos"))
+            {
+                List<string> permisos = ctrlPerfiles.ObtenerPermisos(HttpContext.Current.User.Identity.Name, "Gastos");
+
+                if (permisos.Exists(a => a == "TOTAL"))
+                { return; }
+                else
+                {
+                    if (!permisos.Exists(a => a == "ALTA"))
+                        Response.Redirect("~/NoAutorizado.aspx"); ;
+                }
+            }
+            else
+                Response.Redirect("~/NoAutorizado.aspx");
 
         }
 
@@ -29,7 +45,7 @@ namespace Vista
             oGasto.Estado = this.DlEstado.SelectedValue;
             oGasto.FechaVencimiento = Convert.ToDateTime(this.txtFecha.Value);
             oGasto.Vehiculo = ControladoraVehiculos.getINSTANCIA.ObtenerVehiculo(this.DlVehiculo.SelectedValue);
-            oGasto.Usuario = "admin";
+            oGasto.Usuario = HttpContext.Current.User.Identity.Name;
             oGasto.FechayHora = DateTime.Now;
             oGasto.Operacion = "ALTA";
             ControladoraGastos.getINSTANCIA.AgregarGasto(oGasto);
@@ -50,6 +66,22 @@ namespace Vista
                 this.boxHoraInfraccion.Visible = false;
             }
         }
+
+
+
+
+        public IList<Modelo.Vehiculo> ListarVehiculos()
+        {
+
+            return Controladora.ControladoraVehiculos.getINSTANCIA.ListarVehiculos();
+        }
+
+                public IList<Modelo.TipodeGasto> ListarTiposdeGasto()
+        {
+
+            return Controladora.ControladoraTiposdeGasto.getINSTANCIA.ListarTiposdeGasto();
+        }
+
 
 
 

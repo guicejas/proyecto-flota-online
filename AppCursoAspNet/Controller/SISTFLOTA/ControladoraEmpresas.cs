@@ -10,7 +10,7 @@ namespace Controladora
     {
         private static volatile ControladoraEmpresas instancia;
 
-        public ControladoraEmpresas()
+        ControladoraEmpresas()
         {
         }
         public static ControladoraEmpresas getINSTANCIA
@@ -27,11 +27,19 @@ namespace Controladora
             Modelo.SingletonSistFlota.ObtenerInstancia().Empresas.Add(oEmpresa);
             Modelo.SingletonSistFlota.ObtenerInstancia().SaveChanges();
         }
-        public void EliminarEmpresa(long idEmpresa)
+        public bool EliminarEmpresa(long idEmpresa)
         {
             Modelo.Empresa oEmpresa = Modelo.SingletonSistFlota.ObtenerInstancia().Empresas.Find(idEmpresa);
             Modelo.SingletonSistFlota.ObtenerInstancia().Empresas.Remove(oEmpresa);
-            Modelo.SingletonSistFlota.ObtenerInstancia().SaveChanges();
+            try
+            {
+                Modelo.SingletonSistFlota.ObtenerInstancia().SaveChanges();
+                return false;
+            }
+            catch
+            {
+                return true;
+            }
         }
         public void ModificarEmpresa(Modelo.Empresa oEmpresa)
         {
@@ -75,6 +83,11 @@ namespace Controladora
         {
             Modelo.Empresa oEmpresa = Modelo.SingletonSistFlota.ObtenerInstancia().Empresas.Find(cuit);
             return oEmpresa;
+        }
+
+        public List<Modelo.CuentaCorriente> ListarCuentasCorrientes()
+        {
+           return Modelo.SingletonSistFlota.ObtenerInstancia().CuentaCorrientes.ToList();
         }
     }
 }

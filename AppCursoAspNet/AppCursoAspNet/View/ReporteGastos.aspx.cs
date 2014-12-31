@@ -33,11 +33,13 @@ namespace Vista.View
 
 
                         // get the file bytes to download to the browser
-                       byte[] fileBytes = System.IO.File.ReadAllBytes(@"C:\Program Files (x86)\IIS Express\" + fileName);
+                      // byte[] fileBytes = System.IO.File.ReadAllBytes(@"C:\Program Files\IIS Express\" + fileName);
                         // NOTE: You could also read the file bytes from a database as well.
 
                         // download this file to the browser
-                        StreamFileToBrowser(fileName, fileBytes);
+                        //StreamFileToBrowser(fileName, fileBytes);
+
+                       Response.Redirect("Download.aspx?file=" + fileName);
 
                     }
                     else
@@ -55,6 +57,8 @@ namespace Vista.View
 
                 }
             }
+
+            
 
             Response.Redirect("MonitorGastos.aspx");
 

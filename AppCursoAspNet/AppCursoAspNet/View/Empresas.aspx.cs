@@ -10,9 +10,28 @@ namespace Vista.View
 {
     public partial class Empresas : System.Web.UI.Page
     {
+        Controladora.SEGURIDAD.ControladoraPerfiles ctrlPerfiles = new Controladora.SEGURIDAD.ControladoraPerfiles();
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (ctrlPerfiles.ObtenerFormularios(HttpContext.Current.User.Identity.Name).Exists(a => a == "Empresas"))
+            {
+                List<string> permisos = ctrlPerfiles.ObtenerPermisos(HttpContext.Current.User.Identity.Name, "Empresas");
 
+                if (permisos.Exists(a => a == "TOTAL"))
+                { return; }
+                else
+                {
+                    if (!permisos.Exists(a => a == "ALTA"))
+                        HyperLink1.Visible = false;
+                    if (!permisos.Exists(a => a == "BAJA"))
+                       listaEmpresas.Columns.RemoveAt(7);
+                    if (!permisos.Exists(a => a == "MODIFICACION"))
+                        listaEmpresas.Columns.RemoveAt(6);
+                }
+            }
+            else
+                Response.Redirect("~/NoAutorizado.aspx");
         }
         public List<Modelo.Empresa> GetEmpresas()
         {
@@ -21,7 +40,14 @@ namespace Vista.View
         protected void listaEmprsas_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             long empresaId = Convert.ToInt64(this.listaEmpresas.Rows[e.RowIndex].Cells[0].Text);
-            ControladoraEmpresas.getINSTANCIA.EliminarEmpresa(empresaId);
+            if(ControladoraEmpresas.getINSTANCIA.EliminarEmpresa(empresaId))
+            {
+                lblModalTitle.Text = "CUIDADO";
+                lblModalBody.Text = "La empresa no puede ser eliminada ya que contiene datos asociados.";
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
+                upModal.Update();
+            }
+
             e.Cancel = true;
             this.listaEmpresas.DataSource = null;
         }

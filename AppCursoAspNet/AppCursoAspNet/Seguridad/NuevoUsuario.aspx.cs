@@ -12,8 +12,17 @@ namespace Vista.Seguridad
         Controladora.SEGURIDAD.ControladoraGrupos ctrlGrupos = new Controladora.SEGURIDAD.ControladoraGrupos();
         Controladora.SEGURIDAD.ControladoraUsuarios ctrlUsuarios = new Controladora.SEGURIDAD.ControladoraUsuarios();
 
+        Controladora.SEGURIDAD.ControladoraPerfiles ctrlPerfiles = new Controladora.SEGURIDAD.ControladoraPerfiles();
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (ctrlPerfiles.ObtenerFormularios(HttpContext.Current.User.Identity.Name).Exists(a => a == "Administracion"))
+            {
+                return;
+            }
+            else
+                Response.Redirect("~/NoAutorizado.aspx");
+
 
         }
 
@@ -46,8 +55,8 @@ namespace Vista.Seguridad
             if (ctrlUsuarios.VerificarUsuario(oUsuario))
             {
                 ctrlUsuarios.AgregarUsuario(oUsuario);
-                ctrlUsuarios.CambiarContraseña(oUsuario); // DESCOMENTAR EN PRODUCCION
-                Response.Redirect("Usuarios.aspx?msj=El usuario a sido creado correctamente, el password ha sido enviado a: " + oUsuario.Email);
+                string mensaje = ctrlUsuarios.CambiarContraseña(oUsuario); // DESCOMENTAR EN PRODUCCION
+                Response.Redirect("Usuarios.aspx?msj=" + mensaje);
             }
             else
             {

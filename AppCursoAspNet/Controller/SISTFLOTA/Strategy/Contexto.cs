@@ -32,12 +32,6 @@ namespace Controladora.SISTFLOTA.Strategy
                         estrategia = new Controladora.SISTFLOTA.Strategy.PDFStrategy();
                         break;
                     }
-                case "TXT":
-                    {
-                        estrategia = new Controladora.SISTFLOTA.Strategy.TXTStrategy();
-                        System.Diagnostics.Debug.WriteLine(estrategia.ToString() + " Soy una estrategia de tipo TXTStrategy - Vista");
-                        break;
-                    }
                 default:
                     {
                         estrategia = new Controladora.SISTFLOTA.Strategy.PDFStrategy();

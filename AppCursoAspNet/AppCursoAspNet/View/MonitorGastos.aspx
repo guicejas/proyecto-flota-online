@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="MonitorGastos.aspx.cs" Inherits="Vista.View.ProductList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="MonitorGastos.aspx.cs" Inherits="Vista.View.MonitorGastos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
         <div>
@@ -20,18 +20,13 @@
         <span class="glyphicon glyphicon-"></span>
             <b>Generar Informe de Gastos: </b>
         <a href="/View/ReporteGastos.aspx?Formato=PDF" class="btn" role="button" runat="server">
-            <span class="glyphicon glyphicon-mac"></span>
+            <span class="glyphicon glyphicon-disk_export yellow-icon"></span>
             <b>PDF</b>
         </a>
 
         <a href="/View/ReporteGastos.aspx?Formato=EXCEL" class="btn" role="button" runat="server">
-            <span class="glyphicon glyphicon-mac"></span>
+            <span class="glyphicon glyphicon-disk_export yellow-icon"></span>
             <b>EXCEL</b>
-        </a>
-
-                <a href="/View/ReporteGastos.aspx?Formato=TXT" class="btn" role="button" runat="server">
-            <span class="glyphicon glyphicon-mac"></span>
-            <b>TXT</b>
         </a>
 
         <br />
@@ -107,6 +102,6 @@
             </table>
         </LayoutTemplate>
     </asp:ListView>
-    <asp:ObjectDataSource ID="ObjectMonitorGastos" runat="server" SelectMethod="ListarGastosMonitor" TypeName="Controladora.ControladoraGastos"></asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="ObjectMonitorGastos" runat="server" SelectMethod="ListMonitorGastos_GetData" TypeName="Vista.View.MonitorGastos"></asp:ObjectDataSource>
     <b></b>
 </asp:Content>

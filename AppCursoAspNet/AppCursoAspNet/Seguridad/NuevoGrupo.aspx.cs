@@ -11,8 +11,12 @@ namespace Vista.Seguridad
     {
         Controladora.SEGURIDAD.ControladoraGrupos ctrlGrupos = new Controladora.SEGURIDAD.ControladoraGrupos();
 
+        Controladora.SEGURIDAD.ControladoraPerfiles ctrlPerfiles = new Controladora.SEGURIDAD.ControladoraPerfiles();
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!ctrlPerfiles.ObtenerFormularios(HttpContext.Current.User.Identity.Name).Exists(a => a == "Administracion"))
+                Response.Redirect("~/NoAutorizado.aspx");
 
         }
 

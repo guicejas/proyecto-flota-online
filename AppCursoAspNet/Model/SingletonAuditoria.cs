@@ -10,16 +10,16 @@ namespace Modelo
     public partial class SingletonAuditoria
     {
 
-        private static SistFlota_ModeloAuditoriaContainer Instancia = null;
+        private static Sist_Flota_ModeloAuditoriaContainer Instancia = null;
 
         private SingletonAuditoria()
         { }
 
-        public static SistFlota_ModeloAuditoriaContainer ObtenerInstancia()
+        public static Sist_Flota_ModeloAuditoriaContainer ObtenerInstancia()
         {
             if (Instancia == null)
             {
-                Instancia = new SistFlota_ModeloAuditoriaContainer();
+                Instancia = new Sist_Flota_ModeloAuditoriaContainer();
             }
 
             return Instancia;

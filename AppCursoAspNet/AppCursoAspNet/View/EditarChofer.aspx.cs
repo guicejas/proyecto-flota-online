@@ -25,10 +25,8 @@ namespace Vista.View
                     this.Domicilio.Text = oChofer.Domicilio;
                     this.Localidad.Text = oChofer.Localidad;
                     this.Licencia.Text = oChofer.Licencia;
-                    string fech = (oChofer.FechaNacimiento.ToShortDateString());
                     //hay que pasar la fecha de formato dd/mm/aaa a dd-mm-aaaa para que lo tome el input
-                    
-                    this.FechNac.Value = fech;
+                    this.FechNac.Value = (oChofer.FechaNacimiento.ToString("yyyy-MM-dd"));
                     
                     this.email.Value = oChofer.Correo.ToString();
                     this.Telefono.Text = oChofer.Telefono;

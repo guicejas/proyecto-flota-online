@@ -10,8 +10,24 @@ namespace Vista.View
 {
     public partial class NuevoVehiculo : System.Web.UI.Page
     {
+        Controladora.SEGURIDAD.ControladoraPerfiles ctrlPerfiles = new Controladora.SEGURIDAD.ControladoraPerfiles();
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (ctrlPerfiles.ObtenerFormularios(HttpContext.Current.User.Identity.Name).Exists(a => a == "Vehiculos"))
+            {
+                List<string> permisos = ctrlPerfiles.ObtenerPermisos(HttpContext.Current.User.Identity.Name, "Vehiculos");
+
+                if (permisos.Exists(a => a == "TOTAL"))
+                { return; }
+                else
+                {
+                    if (!permisos.Exists(a => a == "ALTA"))
+                        Response.Redirect("~/NoAutorizado.aspx"); ;
+                }
+            }
+            else
+                Response.Redirect("~/NoAutorizado.aspx");
 
         }
 

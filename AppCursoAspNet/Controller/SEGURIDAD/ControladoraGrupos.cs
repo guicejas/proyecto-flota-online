@@ -61,5 +61,12 @@ namespace Controladora.SEGURIDAD
         {
             return Modelo.SingletonSeguridad.ObtenerInstancia().Grupos.Where(oGru => oGru.IDGrupo.Contains(IDgrupo)).OrderBy(c => c.IDGrupo).ToList();
         }
+
+        public Grupo ObtenerGrupodeUsuario(string idUsuario)
+        {
+            Usuario oUsuario = Modelo.SingletonSeguridad.ObtenerInstancia().Usuarios.Find(idUsuario);
+            Grupo oGrupo = oUsuario.Grupo.FirstOrDefault();
+            return oGrupo;
+        }
     }
 }

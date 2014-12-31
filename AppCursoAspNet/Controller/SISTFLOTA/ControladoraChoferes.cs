@@ -11,7 +11,7 @@ namespace Controladora
     {
         private static volatile ControladoraChoferes instancia;
 
-        public ControladoraChoferes()
+        ControladoraChoferes()
         {
         }
         public static ControladoraChoferes getINSTANCIA
@@ -28,11 +28,19 @@ namespace Controladora
             Modelo.SingletonSistFlota.ObtenerInstancia().Choferes.Add(oChofer);
             Modelo.SingletonSistFlota.ObtenerInstancia().SaveChanges();
         }
-        public void EliminarChofer(int documento)
+        public bool EliminarChofer(int documento)
         {
             Modelo.Chofer oChofer = Modelo.SingletonSistFlota.ObtenerInstancia().Choferes.Find(documento);
             Modelo.SingletonSistFlota.ObtenerInstancia().Choferes.Remove(oChofer);
-            Modelo.SingletonSistFlota.ObtenerInstancia().SaveChanges();
+            try
+            {
+                Modelo.SingletonSistFlota.ObtenerInstancia().SaveChanges();
+                return false;
+            }
+            catch
+            {
+                return true;
+            }
         }
         public void ModificarChofer(Modelo.Chofer oChofer)
         {
@@ -70,6 +78,19 @@ namespace Controladora
         {
             Modelo.Chofer oChofer = Modelo.SingletonSistFlota.ObtenerInstancia().Choferes.Find(DNI);
             return oChofer;
+        }
+
+        public List<Modelo.Chofer> ListarChoferesFiltrados(string documento, string nombre, string localidad)
+        {
+            List<Modelo.Chofer> Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Choferes.ToList();
+            if (documento != null)
+                Filtrado = Filtrado.Where(oCho => oCho.Documento == Convert.ToInt64(documento)).ToList();
+            if (nombre != null)
+                Filtrado = Filtrado.Where(oCho => oCho.Nombre.IndexOf(nombre, System.StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+            if (localidad != null)
+                Filtrado = Filtrado.Where(oCho => oCho.Localidad.IndexOf(localidad, System.StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+
+            return Filtrado;
         }
     }
 }

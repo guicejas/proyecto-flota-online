@@ -14,8 +14,15 @@ namespace Vista.Seguridad
         Controladora.SEGURIDAD.ControladoraPermisos ctrlPermisos = new Controladora.SEGURIDAD.ControladoraPermisos();
         Controladora.SEGURIDAD.ControladoraFormularios ctrlFormularios = new Controladora.SEGURIDAD.ControladoraFormularios();
 
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (ctrlPerfiles.ObtenerFormularios(HttpContext.Current.User.Identity.Name).Exists(a => a == "Administracion"))
+            {
+                return;
+            }
+            else
+                Response.Redirect("~/NoAutorizado.aspx");
 
         }
 

@@ -10,7 +10,7 @@ namespace Controladora
 
         private static volatile ControladoraTiposdeGasto instancia;
 
-        public ControladoraTiposdeGasto()
+        ControladoraTiposdeGasto()
         {
         }
 

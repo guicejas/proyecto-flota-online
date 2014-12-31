@@ -26,6 +26,14 @@ namespace Vista.View
                     this.monto.Text = oGasto.Monto.ToString();
                     this.IDgasto.Value = oGasto.Id.ToString();
                     this.cbxTipoGasto.SelectedValue = oGasto.TipodeGasto.Id.ToString();
+                    //if (oGasto.FechaEmision.HasValue)
+                        //this.txtFechaInfraccion.Value = Convert.ToInt16(oGasto.FechaEmision.ToString());
+                            //.ToString("yyyy-MM-dd");
+                    //if (oGasto.HoraEmision.HasValue)
+                        //this.HoraInfraccion.Value = (DateTime)oGasto.HoraEmision.ToString("yyyy-MM-dd");
+
+                    this.DlVehiculo.SelectedValue = oGasto.Vehiculo.Patente.ToString();
+                    this.txtFecha.Value = oGasto.FechaVencimiento.ToString("yyyy-MM-dd");
 
                 }
                 catch (NullReferenceException ex)
@@ -62,7 +70,7 @@ namespace Vista.View
             oGasto.Estado = this.DlEstado.SelectedValue;
             oGasto.FechaVencimiento = Convert.ToDateTime(this.txtFecha.Value);
             oGasto.Vehiculo = ControladoraVehiculos.getINSTANCIA.ObtenerVehiculo(this.DlVehiculo.SelectedValue);
-            oGasto.Usuario = "admin";
+            oGasto.Usuario = HttpContext.Current.User.Identity.Name;
             oGasto.FechayHora = DateTime.Now;
 
             oGasto.TipodeGasto = ControladoraTiposdeGasto.getINSTANCIA.ObtenerTipodeGasto(Convert.ToInt32(cbxTipoGasto.SelectedValue));

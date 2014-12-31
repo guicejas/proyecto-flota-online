@@ -36,7 +36,7 @@ namespace Vista
 
         protected void Application_Error(object sender, EventArgs e)
         {
-            //Response.Redirect("Error.aspx?error=Se ha producido un error en el sistema. Por favor intente más tarde.");
+            //Response.Redirect("Error.aspx?error=Se ha producido un error en el sistema. Por favor intente más tarde. <br/>"+ e.ToString());
         }
 
         protected void Session_End(object sender, EventArgs e)

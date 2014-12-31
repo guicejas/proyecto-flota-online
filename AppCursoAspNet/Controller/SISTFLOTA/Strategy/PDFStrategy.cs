@@ -14,7 +14,6 @@ namespace Controladora.SISTFLOTA.Strategy
     {
       
         Controladora.ControladoraVehiculos ctrlVehiculos = Controladora.ControladoraVehiculos.getINSTANCIA;
-        Controladora.ControladoraGastos ctrlGastos = new Controladora.ControladoraGastos();
 
         public string GenerarReporteGastos()
         {
@@ -108,7 +107,7 @@ namespace Controladora.SISTFLOTA.Strategy
                         datatable.AddCell(new Paragraph(oVehiculos[i].Patente, FontFactory.GetFont("ARIAL", 12, 1)));
                         datatable.AddCell(oVehiculos[i].Año.ToString());
 
-                        List<Modelo.Gasto> oGastos = ctrlGastos.ListarGastosdeVehiculo(oVehiculos[i].Patente);
+                        List<Modelo.Gasto> oGastos = Controladora.ControladoraGastos.getINSTANCIA.ListarGastosdeVehiculo(oVehiculos[i].Patente);
 
                         if (oGastos.Count > 0)
                         {
@@ -163,7 +162,7 @@ namespace Controladora.SISTFLOTA.Strategy
                     doc.Close();
                 }
 
-                catch (Exception ex)
+                catch //(Exception ex)
                 {
 
                     //this.Redirect("Error.aspx?error=" + ex.Message);
@@ -308,7 +307,7 @@ namespace Controladora.SISTFLOTA.Strategy
                 
             }
 
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 //Response.Redirect("Error.aspx?error=Se ha producido un error en el sistema. Por favor intente más tarde.\n" + ex.Message.ToString());
             }

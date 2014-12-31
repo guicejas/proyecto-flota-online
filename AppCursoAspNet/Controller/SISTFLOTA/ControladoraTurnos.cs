@@ -10,7 +10,7 @@ namespace Controladora
     {
         private static volatile ControladoraTurnos instancia;
 
-        public ControladoraTurnos()
+        ControladoraTurnos()
         {
         }
         public static ControladoraTurnos getINSTANCIA
@@ -27,11 +27,19 @@ namespace Controladora
             Modelo.SingletonSistFlota.ObtenerInstancia().Turnos.Add(oTurno);
             Modelo.SingletonSistFlota.ObtenerInstancia().SaveChanges();
         }
-        public void EliminarTurno(int idTurno)
+        public bool EliminarTurno(int idTurno)
         {
             Modelo.Turno oTurno = Modelo.SingletonSistFlota.ObtenerInstancia().Turnos.Find(idTurno);
             Modelo.SingletonSistFlota.ObtenerInstancia().Turnos.Remove(oTurno);
-            Modelo.SingletonSistFlota.ObtenerInstancia().SaveChanges();
+            try
+            {
+                Modelo.SingletonSistFlota.ObtenerInstancia().SaveChanges();
+                return false;
+            }
+            catch
+            {
+                return true;
+            }
         }
         public void ModificarTurno(Modelo.Turno oTurno)
         {
@@ -47,6 +55,20 @@ namespace Controladora
         {
             Modelo.Turno oTurno = Modelo.SingletonSistFlota.ObtenerInstancia().Turnos.Find(idTurno);
             return oTurno;
+        }
+
+
+        public List<Modelo.Turno> ListarTurnosFiltrados(string chofer, Nullable<System.DateTime> fecha, string vehiculo)
+        {
+            List<Modelo.Turno> Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Turnos.ToList();
+            if (vehiculo != null)
+                Filtrado = Filtrado.Where(oTur => oTur.Vehiculo.Patente.IndexOf(vehiculo, System.StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+            if (fecha != null)
+                Filtrado = Filtrado.Where(oTur => oTur.FechaInicio == Convert.ToDateTime(fecha).Date).ToList();
+            if (chofer != null)
+                Filtrado = Filtrado.Where(oTur => oTur.Chofer.NombreCompleto.IndexOf(chofer, System.StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+
+            return Filtrado;
         }
     }
 }

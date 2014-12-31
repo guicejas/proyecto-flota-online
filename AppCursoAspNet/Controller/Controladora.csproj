@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Controladora</RootNamespace>
     <AssemblyName>Controller</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,17 +32,22 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CarlosAg.ExcelXmlWriter">
-      <HintPath>..\..\..\..\facu\SAP\CarlosAg.ExcelXmlWriter.dll</HintPath>
+      <HintPath>.\CarlosAg.ExcelXmlWriter.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp">
-      <HintPath>..\..\..\..\facu\SAP\itextsharp-all-5.5.2\itextsharp.dll</HintPath>
+      <HintPath>.\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -59,6 +65,7 @@
     <Compile Include="SEGURIDAD\ControladoraPermisos.cs" />
     <Compile Include="SEGURIDAD\ControladoraUsuarios.cs" />
     <Compile Include="SEGURIDAD\Encriptacion.cs" />
+    <Compile Include="SEGURIDAD\MODULOSEGURIDAD\CustomAuthenticationModule.cs" />
     <Compile Include="SISTFLOTA\ControladoraChoferes.cs" />
     <Compile Include="SISTFLOTA\ControladoraEmpresas.cs" />
     <Compile Include="SISTFLOTA\ControladoraGastos.cs" />
@@ -73,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Modelo.csproj">

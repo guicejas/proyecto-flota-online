@@ -50,7 +50,7 @@ namespace Controladora.AUDITORIA
 
         }
 
-        public void AuditarGastosBAJA(Gasto oGasto)
+        public void AuditarGastosBAJA(Gasto oGasto, string oUsuario)
         {
             AudGasto oGastoAUDI = new AudGasto();
 
@@ -63,7 +63,7 @@ namespace Controladora.AUDITORIA
             oGastoAUDI.FechaEmision = oGasto.FechaEmision;
             oGastoAUDI.TipoGasto = oGasto.TipodeGasto.Id;
             oGastoAUDI.Vehiculo = oGasto.Vehiculo.Patente;
-            oGastoAUDI.Usuario = oGasto.Usuario;
+            oGastoAUDI.Usuario = oUsuario;
             oGastoAUDI.FechayHora = Convert.ToDateTime(oGasto.FechayHora);
             oGastoAUDI.Operacion = "BAJA";
 
@@ -101,7 +101,7 @@ namespace Controladora.AUDITORIA
         }
 
 
-        public List<AudGasto> FiltrarAudGastos(string User, Nullable<System.DateTime> Fecha, string Operacion)
+        public List<AudGasto> FiltrarAudGastos(string User, Nullable<System.DateTime> Fecha, string Operacion, string Gasto)
         {
             List<AudGasto> Filtrado = Modelo.SingletonAuditoria.ObtenerInstancia().AudGastos.ToList();
              if (User != null)
@@ -110,6 +110,8 @@ namespace Controladora.AUDITORIA
                 Filtrado = Filtrado.Where(oLog => oLog.FechayHora.Date == Convert.ToDateTime(Fecha).Date).ToList();
             if (Operacion != null)
                 Filtrado = Filtrado.Where(oLog => oLog.Operacion.IndexOf(Operacion, System.StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+            if (Gasto != null)
+                Filtrado = Filtrado.Where(oLog => oLog.IdGasto == Convert.ToInt32(Gasto)).ToList();
 
 
             return Filtrado;

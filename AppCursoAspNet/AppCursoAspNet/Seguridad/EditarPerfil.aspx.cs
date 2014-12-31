@@ -13,9 +13,13 @@ namespace Vista.Seguridad
         Controladora.SEGURIDAD.ControladoraPerfiles ctrlPerfil = new Controladora.SEGURIDAD.ControladoraPerfiles();
         Controladora.SEGURIDAD.ControladoraPermisos ctrlPermisos = new Controladora.SEGURIDAD.ControladoraPermisos();
         Controladora.SEGURIDAD.ControladoraFormularios ctrlFormularios = new Controladora.SEGURIDAD.ControladoraFormularios();
+        Controladora.SEGURIDAD.ControladoraPerfiles ctrlPerfiles = new Controladora.SEGURIDAD.ControladoraPerfiles();
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!ctrlPerfiles.ObtenerFormularios(HttpContext.Current.User.Identity.Name).Exists(a => a == "Administracion"))
+                Response.Redirect("~/NoAutorizado.aspx");
+
             if (!IsPostBack)
             {
                 int perfilId = Convert.ToInt32(Request.QueryString["PerfilId"]);

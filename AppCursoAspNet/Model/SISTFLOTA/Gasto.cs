@@ -66,6 +66,12 @@ namespace Modelo
             }
             return color;
         }
-
+        public string id_desc
+        {
+            get
+            {
+                return Id + " " + Descripcion;
+            }
+        }
     }
 }

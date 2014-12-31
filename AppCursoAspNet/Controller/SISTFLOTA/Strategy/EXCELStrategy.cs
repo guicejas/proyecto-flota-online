@@ -16,11 +16,9 @@ namespace Controladora.SISTFLOTA.Strategy
 {
     public class EXCELStrategy : IStrategy
     {
-        Controladora.ControladoraGastos ctrlGastos = new Controladora.ControladoraGastos();
-
         public string GenerarReporteGastos()
         {
-            string filename = @"C:\Program Files (x86)\IIS Express\Reportexcel.xml";
+            string filename = @"C:\Program Files\IIS Express\Reportexcel.xml";
             Workbook book = new Workbook();
             // -----------------------------------------------
             //  Properties
@@ -170,7 +168,7 @@ namespace Controladora.SISTFLOTA.Strategy
                         cell.Data.Type = DataType.Number;
                         cell.Data.Text = oVehiculos[i].Año.ToString();
 
-                        List<Modelo.Gasto> oGastos = ctrlGastos.ListarGastosdeVehiculo(oVehiculos[i].Patente);
+                        List<Modelo.Gasto> oGastos = Controladora.ControladoraGastos.getINSTANCIA.ListarGastosdeVehiculo(oVehiculos[i].Patente);
 
                         if (oGastos.Count > 0)
                         {

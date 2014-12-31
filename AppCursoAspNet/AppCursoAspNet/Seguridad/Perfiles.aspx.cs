@@ -13,6 +13,13 @@ namespace Vista.Seguridad
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (ctrlPerfiles.ObtenerFormularios(HttpContext.Current.User.Identity.Name).Exists(a => a == "Administracion"))
+            {
+                return;
+            }
+            //else
+            //    Response.Redirect("~/NoAutorizado.aspx");
+
 
         }
 

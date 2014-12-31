@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-//using Modelo.SEGURIDAD;
+using Modelo.AUDITORIA;
+using Modelo.SEGURIDAD;
 using Modelo;
 
 
@@ -10,50 +11,68 @@ namespace Controladora.AUDITORIA
 {
     public class ControladoraAudLog
     {
-/*
-        public void AuditarLogIn(Usuario oUsuario)
+        private static volatile ControladoraAudLog instancia;
+
+        private ControladoraAudLog()
         {
+             
+        }
+
+        public static ControladoraAudLog getINSTANCIA
+        {
+            get
+            {
+                if (instancia == null) instancia = new ControladoraAudLog();
+                return instancia;
+            }
+        }
+
+        Controladora.SEGURIDAD.ControladoraUsuarios ctrlUsuarios = new SEGURIDAD.ControladoraUsuarios();
+
+
+        public void AuditarLogIn(string oUsuario)
+        {
+
             LoginLogout oLogIn = new LoginLogout();
-            oLogIn.Usuario = oUsuario.IDusuario;
+            oLogIn.Usuario = oUsuario;
             oLogIn.FechayHora = DateTime.Now;
             oLogIn.Operacion = "LogIn";
 
-            Modelo.Auditoria.ObtenerInstancia().AddToLogInsOuts(oLogIn);
-            Modelo.Auditoria.ObtenerInstancia().SaveChanges();
+            Modelo.SingletonAuditoria.ObtenerInstancia().LogInsOuts.Add(oLogIn);
+            Modelo.SingletonAuditoria.ObtenerInstancia().SaveChanges();
         }
 
-        public void AuditarLogOut(Usuario oUsuario)
+        public void AuditarLogOut(string oUsuario)
         {
             LoginLogout oLogOut = new LoginLogout();
-            oLogOut.Usuario = oUsuario.IDusuario;
+            oLogOut.Usuario = oUsuario;
             oLogOut.FechayHora = DateTime.Now;
             oLogOut.Operacion = "LogOut";
 
-            Modelo.Auditoria.ObtenerInstancia().AddToLogInsOuts(oLogOut);
-            Modelo.Auditoria.ObtenerInstancia().SaveChanges();
+            Modelo.SingletonAuditoria.ObtenerInstancia().LogInsOuts.Add(oLogOut);
+            Modelo.SingletonAuditoria.ObtenerInstancia().SaveChanges();
         }
 
-        public List<LoginLogout> ListarLogs()
+        public List<Modelo.AUDITORIA.LoginLogout> ListarLogs()
         {
-            return Modelo.Auditoria.ObtenerInstancia().LogInsOuts.ToList();
+            return Modelo.SingletonAuditoria.ObtenerInstancia().LogInsOuts.ToList();
         }
 
-        public List<LoginLogout> FiltrarLogs(string User, DateTime Fecha, string Operacion)
+        public List<Modelo.AUDITORIA.LoginLogout> FiltrarLogs(string User, Nullable<System.DateTime> Fecha, string Operacion)
         {
-            List<LoginLogout> Filtrado = Modelo.Auditoria.ObtenerInstancia().LogInsOuts.ToList();
-            if (User != "")
-                Filtrado = Filtrado.Where(oLog => oLog.Usuario.Contains(User)).ToList();
-            //if (Fecha != null)
-                Filtrado = Filtrado.Where(oLog => oLog.FechayHora.Date == Fecha.Date).ToList();
+            List<LoginLogout> Filtrado = Modelo.SingletonAuditoria.ObtenerInstancia().LogInsOuts.ToList();
+            if (User != null)
+                Filtrado = Filtrado.Where(oLog => oLog.Usuario.IndexOf(User, System.StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+            if (Fecha != null)
+                Filtrado = Filtrado.Where(oLog => oLog.FechayHora.Date == Convert.ToDateTime(Fecha).Date).ToList();
             if (Operacion != null)
-                if (Operacion != "Todos")
-                    Filtrado = Filtrado.Where(oLog => oLog.Operacion.Contains(Operacion)).ToList();
+                Filtrado = Filtrado.Where(oLog => oLog.Operacion.IndexOf(Operacion, System.StringComparison.OrdinalIgnoreCase) >= 0).ToList();
 
 
             return Filtrado;
 
         }
 
-*/
+
     }
 }

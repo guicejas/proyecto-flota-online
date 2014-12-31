@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 08/03/2014 17:44:06
--- Generated from EDMX file: C:\Users\Adelquis\Documents\GitHub\proyecto-flota-online\AppCursoAspNet\Model\SistFlota_ModeloDatos.edmx
+-- Date Created: 12/15/2014 15:10:16
+-- Generated from EDMX file: C:\Users\Windows 7\Downloads\AppCursoAspNet2\AppCursoAspNet\Model\SistFlota_ModeloDatos.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -121,8 +121,7 @@ CREATE TABLE [dbo].[Turnos] (
     [Comentarios] nvarchar(max)  NOT NULL,
     [GastoId] int  NULL,
     [Vehiculo_Patente] nvarchar(7)  NOT NULL,
-    [Chofer_Documento] int  NOT NULL,
-    [CuentaCorriente_Id] int  NOT NULL
+    [Chofer_Documento] int  NOT NULL
 );
 GO
 
@@ -147,6 +146,7 @@ CREATE TABLE [dbo].[CuentaCorrientes] (
     [Fecha] datetime  NOT NULL,
     [Monto] decimal(18,0)  NOT NULL,
     [Estado] nvarchar(max)  NOT NULL,
+    [Turno_Id] int  NOT NULL,
     [Empresa_Cuit] bigint  NOT NULL
 );
 GO
@@ -287,19 +287,19 @@ ON [dbo].[Gastos]
     ([Turno_Id]);
 GO
 
--- Creating foreign key on [CuentaCorriente_Id] in table 'Turnos'
-ALTER TABLE [dbo].[Turnos]
+-- Creating foreign key on [Turno_Id] in table 'CuentaCorrientes'
+ALTER TABLE [dbo].[CuentaCorrientes]
 ADD CONSTRAINT [FK_CuentaCorrienteTurno]
-    FOREIGN KEY ([CuentaCorriente_Id])
-    REFERENCES [dbo].[CuentaCorrientes]
+    FOREIGN KEY ([Turno_Id])
+    REFERENCES [dbo].[Turnos]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_CuentaCorrienteTurno'
 CREATE INDEX [IX_FK_CuentaCorrienteTurno]
-ON [dbo].[Turnos]
-    ([CuentaCorriente_Id]);
+ON [dbo].[CuentaCorrientes]
+    ([Turno_Id]);
 GO
 
 -- Creating foreign key on [Empresa_Cuit] in table 'CuentaCorrientes'

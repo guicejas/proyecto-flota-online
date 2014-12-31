@@ -6,7 +6,8 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ASP.NET</title>
+    <title>Sistema Gestion Flota de Taxis Online - Trypep sistemas - 2014</title>
+    <link rel="shortcut icon" href="Images/taxi.ico" type="image/x-icon" />
 
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link href="Content/glyphicons.css" rel="stylesheet" />
@@ -14,6 +15,9 @@
 
     <script type="text/javascript" src="../Scripts/jquery-2.1.0.min.js"></script>
     <script type="text/javascript" src="../Scripts/bootstrap.js"></script>
+    <script type="text/javascript" src="../Scripts/Site.js"></script>
+    <script type="text/javascript" src="../Scripts/bootbox.js"></script>
+    
 </head>
 
 <body>
@@ -33,54 +37,57 @@
                     <div id="menuPrincipal" runat="server">
                         <ul class="nav navbar-nav">
          
-                        <li class="dropdown">
-                           <a runat="server" href="~/View/Turnos" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-dashboard yellow-icon"></span>Turnos<b class="caret"></b></a>
+                        <li class="dropdown" runat="server" id="menuTurnos">
+                           <a runat="server" href="~/View/Turnos" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-notes yellow-icon"></span>Turnos<b class="caret"></b></a>
                            <ul class="dropdown-menu">
-                               <li><a runat="server" href="~/View/Turnos"><span class="glyphicon glyphicon-dashboard yellow-icon"></span>Gestionar Turnos</a></li>
-                               <li><a runat="server" href="~/View/NuevoVehiculo"><span class="glyphicon glyphicon-car yellow-icon"></span>Nuevo Vehiculo</a></li>
+                               <li><a runat="server" href="~/View/Turnos"><span class="glyphicon glyphicon-notes yellow-icon"></span>Gestionar Turnos</a></li>
+                               <li id="menuNuevoTurno" runat="server"><a runat="server" href="~/View/NuevoTurno"><span class="glyphicon glyphicon-circle_plus yellow-icon"></span>Nuevo Turno</a></li>
                             </ul>
                        </li>   
 
-                       <li class="dropdown">
+                       <li class="dropdown" runat="server" id="menuVehiculos">
                            <a runat="server" href="~/View/Vehiculos" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-car yellow-icon"></span>Vehiculos<b class="caret"></b></a>
                            <ul class="dropdown-menu">
                                <li><a runat="server" href="~/View/Vehiculos"><span class="glyphicon glyphicon-cars yellow-icon"></span>Gestionar Vehiculos</a></li>
-                               <li><a runat="server" href="~/View/NuevoVehiculo"><span class="glyphicon glyphicon-car yellow-icon"></span>Nuevo Vehiculo</a></li>
+                               <li id="menuNuevoVehiculo" runat="server"><a runat="server" href="~/View/NuevoVehiculo"><span class="glyphicon glyphicon-circle_plus yellow-icon"></span>Nuevo Vehiculo</a></li>
                             </ul>
                        </li>                       
-                         <li class="dropdown">
+                         <li class="dropdown" runat="server" id="menuChoferes">
                            <a runat="server" href="~/View/Choferes" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-group yellow-icon"></span>Choferes<b class="caret"></b></a>
                            <ul class="dropdown-menu">
                                <li><a runat="server" href="~/View/Choferes"><span class="glyphicon glyphicon-group yellow-icon"></span>Gestionar Choferes</a></li>
-                               <li><a runat="server" href="~/View/NuevoChofer"><span class="glyphicon glyphicon-old_man yellow-icon"></span>Nuevo Chofer</a></li>
+                               <li id="menuNuevoChofer" runat="server"><a runat="server" href="~/View/NuevoChofer"><span class="glyphicon glyphicon-circle_plus yellow-icon"></span>Nuevo Chofer</a></li>
                             </ul>
                        </li>                                                                  
-                       <li class="dropdown">
+                       <li class="dropdown" runat="server" id="menuGastos">
                            <a runat="server" href="~/View/Gastos" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-coins yellow-icon"></span>Gastos<b class="caret"></b></a>
                            <ul class="dropdown-menu">
                                <li><a runat="server" href="~/View/Gastos"><span class="glyphicon glyphicon-coins yellow-icon"></span>Gestionar Gastos</a></li>
-                               <li><a runat="server" href="~/View/NuevoGasto"><span class="glyphicon glyphicon-circle_plus yellow-icon"></span>Nuevo Gasto</a></li>
+                               <li id="menuNuevoGasto" runat="server"><a runat="server" href="~/View/NuevoGasto"><span class="glyphicon glyphicon-circle_plus yellow-icon"></span>Nuevo Gasto</a></li>
                                <li class="divider"></li>
-                               <li><a runat="server" href="~/View/MonitorGastos"><span class="glyphicon glyphicon-dashboard yellow-icon"></span>Monitor de Gastos</a></li>
+                               <li id="menuMonitorGastos" runat="server"><a runat="server" href="~/View/MonitorGastos"><span class="glyphicon glyphicon-dashboard yellow-icon"></span>Monitor de Gastos</a></li>
                            </ul>
                        </li>
 
-                            <li class="dropdown">
+                            <li class="dropdown" runat="server" id="menuEmpresas">
                            <a runat="server" href="~/View/Empresas" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-building yellow-icon"></span>Empresas<b class="caret"></b></a>
                            <ul class="dropdown-menu">
                                <li><a runat="server" href="~/View/Empresas"><span class="glyphicon glyphicon-coins yellow-icon"></span>Gestionar Empresas</a></li>
-                               <li><a runat="server" href="~/View/NuevoEmpresa"><span class="glyphicon glyphicon-circle_plus yellow-icon"></span>Nueva Empresa</a></li>                               
+                               <li id="menuNuevaEmpresa" runat="server"><a runat="server" href="~/View/NuevoEmpresa"><span class="glyphicon glyphicon-circle_plus yellow-icon"></span>Nueva Empresa</a></li>                               
                            </ul>
                        </li>
 
-                       <li class="dropdown">
+                       <li class="dropdown" runat="server" id="menuAdministracion">
                            <a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-adjust_alt yellow-icon"></span>Administración<b class="caret"></b></a>
                            <ul class="dropdown-menu">
                                <li><a href="../Seguridad/Usuarios"><span class="glyphicon glyphicon-group yellow-icon"></span>Gestionar Usuarios</a></li>
                                <li><a href="../Seguridad/Grupos"><span class="glyphicon glyphicon-group yellow-icon"></span>Gestionar Grupos</a></li>
                                <li><a href="../Seguridad/Perfiles"><span class="glyphicon glyphicon-group yellow-icon"></span>Gestionar Perfiles</a></li>
                                <li class="divider"></li>
-                               <li><a runat="server" href="~/View/Auditoria"><span class="glyphicon glyphicon-eye_open yellow-icon"></span>Auditoria</a></li>
+                               <li><a runat="server" href="~/View/AuditoriaGastos"><span class="glyphicon glyphicon-eye_open yellow-icon"></span>Auditoria Gastos</a></li>
+                               <li><a runat="server" href="~/View/AuditoriaLogs"><span class="glyphicon glyphicon-eye_open yellow-icon"></span>Auditoria Login/Logout</a></li>
+                               <li class="divider"></li>
+                               <li><a runat="server" href="~/View/ReporteQlikView"><span class="glyphicon glyphicon-dashboard yellow-icon"></span>Reportes QlikView</a></li>
                            </ul>
                        </li>
                         </ul>
@@ -93,7 +100,8 @@
                         <li id="menuUsuario" class="dropdown" runat="server">
                             <a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user yellow-icon"></span><span id="nombreUsuario" runat="server"><%: this.Context.User.Identity.Name %></span><b class="caret"></b></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#"><span class="glyphicon glyphicon-cogwheelsv"></span>Configurar</a></li>
+                                <li><a href="../View/MiCuenta"><span class="glyphicon glyphicon-nameplate yellow-icon"></span>Mi Cuenta</a></li>
+                                <li><a href="../View/CambioPassword"><span class="glyphicon glyphicon-user yellow-icon"></span>Cambiar Contraseña</a></li>
                                 <li class="divider"></li>
                                 <li><a href="../Logout.aspx"><span class="glyphicon glyphicon-exit yellow-icon"></span>Salir del sistema</a></li>
                             </ul>

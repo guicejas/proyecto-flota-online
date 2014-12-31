@@ -10,7 +10,7 @@
 namespace Vista.View {
     
     
-    public partial class ProductList {
+    public partial class MonitorGastos {
         
         /// <summary>
         /// barraVerde control.

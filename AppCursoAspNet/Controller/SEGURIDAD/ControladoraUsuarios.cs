@@ -16,6 +16,7 @@ namespace Controladora.SEGURIDAD
         public void CargaInicialBD()
         {
 
+            
             if (Modelo.SingletonSeguridad.ObtenerInstancia().Usuarios.ToList().Count == 0)
             {
 
@@ -29,39 +30,34 @@ namespace Controladora.SEGURIDAD
                 aGrupo.Descripcion = "Grupo de Invitados";
                 Modelo.SingletonSeguridad.ObtenerInstancia().Grupos.Add(aGrupo);
 
-                Formulario oFormulario = new Formulario();
-                oFormulario.IDFormulario = "GestionGrupos";
-                oFormulario.Descripcion = "Formulario de Gestion de Grupos";
-                Modelo.SingletonSeguridad.ObtenerInstancia().Formularios.Add(oFormulario);
-
                 Formulario aFormulario = new Formulario();
-                aFormulario.IDFormulario = "GestionPerfiles";
-                aFormulario.Descripcion = "Formulario de Gestion de Perfiles";
+                aFormulario.IDFormulario = "Administracion";
+                aFormulario.Descripcion = "Formulario de Gestion de Administracion";
                 Modelo.SingletonSeguridad.ObtenerInstancia().Formularios.Add(aFormulario);
 
                 Formulario cFormulario = new Formulario();
-                cFormulario.IDFormulario = "GestionUsuarios";
-                cFormulario.Descripcion = "Formulario de Gestion de Usuarios";
+                cFormulario.IDFormulario = "Choferes";
+                cFormulario.Descripcion = "Formulario de Gestion de Choferes";
                 Modelo.SingletonSeguridad.ObtenerInstancia().Formularios.Add(cFormulario);
 
                 Formulario dFormulario = new Formulario();
-                dFormulario.IDFormulario = "GestionGastos";
-                dFormulario.Descripcion = "Formulario de Gestion de Gastos";
+                dFormulario.IDFormulario = "Empresas";
+                dFormulario.Descripcion = "Formulario de Gestion de Empresas";
                 Modelo.SingletonSeguridad.ObtenerInstancia().Formularios.Add(dFormulario);
 
                 Formulario eFormulario = new Formulario();
-                eFormulario.IDFormulario = "GestionVehiculos";
-                eFormulario.Descripcion = "Formulario de Gestion de Vehiculos";
+                eFormulario.IDFormulario = "Gastos";
+                eFormulario.Descripcion = "Formulario de Gestion de Gastos";
                 Modelo.SingletonSeguridad.ObtenerInstancia().Formularios.Add(eFormulario);
 
                 Formulario fFormulario = new Formulario();
-                fFormulario.IDFormulario = "Monitor";
-                fFormulario.Descripcion = "Formulario de Monitor";
+                fFormulario.IDFormulario = "Turnos";
+                fFormulario.Descripcion = "Formulario de Turnos";
                 Modelo.SingletonSeguridad.ObtenerInstancia().Formularios.Add(fFormulario);
 
                 Formulario gFormulario = new Formulario();
-                gFormulario.IDFormulario = "Informes";
-                gFormulario.Descripcion = "Formulario de Informes";
+                gFormulario.IDFormulario = "Vehiculos";
+                gFormulario.Descripcion = "Formulario de Vehiculos";
                 Modelo.SingletonSeguridad.ObtenerInstancia().Formularios.Add(gFormulario);
 
                 Permiso oPermiso = new Permiso();
@@ -89,10 +85,16 @@ namespace Controladora.SEGURIDAD
                 cPermiso.Descripcion = "Permisos totales sobre el formulario";
                 Modelo.SingletonSeguridad.ObtenerInstancia().Permisos.Add(cPermiso);
 
+                Perfil oPerfil = new Perfil();
+                oPerfil.Formulario = aFormulario;
+                oPerfil.Grupo = oGrupo;
+                oPerfil.Permiso = cPermiso;
+                Modelo.SingletonSeguridad.ObtenerInstancia().Perfiles.Add(oPerfil);
+
                 Usuario oUsuario = new Usuario();
                 oUsuario.IDUsuario = "admin";
                 oUsuario.Contraseña = "admin";
-                oUsuario.Email = "guillermo.cejas@admin.com";
+                oUsuario.Email = "guillermo.cejas@yopmail.com";
                 oUsuario.Activo = false;
                 oUsuario.Habilitado = true;
                 oUsuario.NombreApellido = "Guillermo Cejas";
@@ -127,7 +129,7 @@ namespace Controladora.SEGURIDAD
             //    {
             //        g.Usuario.Remove(u);
             //    }
-
+            
             Modelo.SingletonSeguridad.ObtenerInstancia().Usuarios.Remove(oUsuario);
             Modelo.SingletonSeguridad.ObtenerInstancia().SaveChanges();
         }
@@ -141,6 +143,16 @@ namespace Controladora.SEGURIDAD
         public Usuario BuscarUsuario(string IDusuario)
         {
             Usuario user = Modelo.SingletonSeguridad.ObtenerInstancia().Usuarios.FirstOrDefault(oUsu => oUsu.IDUsuario == IDusuario);
+            if (user != null)
+            {
+                return user;
+            }
+            return null;
+        }
+
+        public Usuario BuscarUsuarioMail(string eMailusuario)
+        {
+            Usuario user = Modelo.SingletonSeguridad.ObtenerInstancia().Usuarios.FirstOrDefault(oUsu => oUsu.Email == eMailusuario);
             if (user != null)
             {
                 return user;
@@ -178,7 +190,7 @@ namespace Controladora.SEGURIDAD
             return new string(chars);
         }
 
-        public void CambiarContraseña(Usuario oUsuario)
+        public string CambiarContraseña(Usuario oUsuario)
         {
             string nuevoPass = CrearRandomPassword(8);
 
@@ -191,25 +203,52 @@ namespace Controladora.SEGURIDAD
             correo.Subject = "Nueva contraseña. Sistema Flota de Taxis";
             correo.Body = "<h2>SISTEMA GESTION FLOTA DE TAXIS</h2><br>" + oUsuario.NombreApellido.ToString() + ",<br><br>Su nueva contraseña es " + nuevoPass + "<br><br><br> <center><font color='grey' size='2'><hr> <br> La información que contiene este email, incluidos sus archivos adjuntos, es confidencial, y sólo para conocimiento y uso de las personas a las cuales está dirigida. La Trypep Sistemas no se hace responsable de las alteraciones que pudiera sufrir el mensaje una vez enviado.Si por error recibe este correo, le rogamos aceptar nuestras disculpas y, al mismo tiempo, le solicitamos notificarlo a la persona que lo envió, abstenerse de divulgar su contenido y borrarlo de inmediato. <br> <b><i>TRYPEP SISTEMAS</i></b></font></center><br>";
 
-
-
             SmtpClient cliente = new SmtpClient("smtp.gmail.com");
             cliente.Port = 587;
             cliente.Credentials = new System.Net.NetworkCredential("trypep.sisflotaxis@gmail.com", "trypeptaxis");
             cliente.EnableSsl = true;
-            cliente.Send(correo);
-
-            //}
-            //catch
-            //{
-            //    return;
-            //}
 
             oUsuario.Contraseña = oEncriptar.encriptar(nuevoPass);
             oUsuario.PrimeraVez = true;
             ModificarUsuario(oUsuario);
 
+            try
+            {
+                cliente.Send(correo);
+                correo.Dispose();
+                return "El usuario a sido creado correctamente, el password ha sido enviado a:" + oUsuario.Email.ToString();
+
+            }
+            catch (Exception ex)
+            {
+                return "Error al enviar el correo electronico."+ex.Message;
+
+            }
+
         }
+
+
+        public void CambiarContraseña(string usuario, string nuevoPass)
+        {
+            Usuario oUsuario = BuscarUsuario(usuario);
+
+            oUsuario.Contraseña = oEncriptar.encriptar(nuevoPass);
+            oUsuario.PrimeraVez = false;
+            ModificarUsuario(oUsuario);
+
+        }
+
+
+        public bool ValidarPassword(string IDusuario, string pass)
+        {
+            Usuario user = Modelo.SingletonSeguridad.ObtenerInstancia().Usuarios.FirstOrDefault(oUsu => oUsu.IDUsuario == IDusuario);
+            if (user.Contraseña != oEncriptar.encriptar(pass))
+            {
+                return true;
+            }
+            return false;
+        }
+
 
     }
 }

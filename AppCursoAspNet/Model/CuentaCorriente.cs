@@ -14,17 +14,12 @@ namespace Modelo
     
     public partial class CuentaCorriente
     {
-        public CuentaCorriente()
-        {
-            this.Turno = new HashSet<Turno>();
-        }
-    
         public int Id { get; set; }
         public System.DateTime Fecha { get; set; }
         public decimal Monto { get; set; }
         public string Estado { get; set; }
     
-        public virtual ICollection<Turno> Turno { get; set; }
+        public virtual Turno Turno { get; set; }
         public virtual Empresa Empresa { get; set; }
     }
 }
