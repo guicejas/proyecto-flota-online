@@ -7,21 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Modelo
+namespace Modelo.SEGURIDAD
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class CuentaCorriente
+    public partial class Premium : TipoLicencia
     {
-        public int Id { get; set; }
-        public System.DateTime Fecha { get; set; }
-        public decimal Monto { get; set; }
-        public string Estado { get; set; }
-        public string fIDFlota { get; set; }
-        public string Activo { get; set; }
-    
-        public virtual Turno Turno { get; set; }
-        public virtual Empresa Empresa { get; set; }
+        public string CantUsuarios { get; set; }
     }
 }

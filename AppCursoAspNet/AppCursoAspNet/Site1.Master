@@ -17,6 +17,20 @@
     <script type="text/javascript" src="../Scripts/bootstrap.js"></script>
     <script type="text/javascript" src="../Scripts/Site.js"></script>
     <script type="text/javascript" src="../Scripts/bootbox.js"></script>
+    <script type="text/javascript" src="../Scripts/bootstrap-confirmation.js"></script>
+    <script type="text/javascript">
+        !function ($) {
+
+            $(function () {
+
+                $('[data-toggle="confirmation"]').confirmation();
+                $('[data-toggle="confirmation-singleton"]').confirmation({ singleton: true });
+                $('[data-toggle="confirmation-popout"]').confirmation({ popout: true });
+
+            })
+
+        }(window.jQuery)
+        </script>
     
 </head>
 

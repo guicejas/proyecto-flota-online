@@ -12,25 +12,20 @@ namespace Modelo.SEGURIDAD
     using System;
     using System.Collections.Generic;
     
-    public partial class Usuario
+    public partial class Licencia
     {
-        public Usuario()
+        public Licencia()
         {
-            this.Habilitado = true;
-            this.Activo = false;
-            this.PrimeraVez = true;
-            this.Grupo = new HashSet<Grupo>();
+            this.TipoLicencia = new HashSet<TipoLicencia>();
         }
     
-        public string IDUsuario { get; set; }
-        public string NombreApellido { get; set; }
-        public string Contraseña { get; set; }
-        public string Email { get; set; }
-        public bool Habilitado { get; set; }
-        public bool Activo { get; set; }
-        public bool PrimeraVez { get; set; }
+        public int Id { get; set; }
+        public string FechaInicio { get; set; }
+        public string FechaFin { get; set; }
+        public string FechaPago { get; set; }
+        public string NroTransaccion { get; set; }
     
-        public virtual ICollection<Grupo> Grupo { get; set; }
         public virtual Flota Flota { get; set; }
+        public virtual ICollection<TipoLicencia> TipoLicencia { get; set; }
     }
 }

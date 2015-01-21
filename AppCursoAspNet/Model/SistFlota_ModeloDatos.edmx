@@ -285,6 +285,8 @@
           <NavigationProperty Name="TipodeGasto" Relationship="SistFlota_ModeloDatos.TipodeGastoGasto" FromRole="Gasto" ToRole="TipodeGasto" />
           <NavigationProperty Name="Vehiculo" Relationship="SistFlota_ModeloDatos.VehiculoGasto" FromRole="Gasto" ToRole="Vehiculo" />
           <NavigationProperty Name="Turno" Relationship="SistFlota_ModeloDatos.GastoTurno" FromRole="Gasto" ToRole="Turno" />
+          <Property Name="fIDFlota" Type="String" Nullable="false" />
+          <Property Name="Activo" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Vehiculo">
           <Key>
@@ -300,6 +302,8 @@
           <Property Name="TurnoId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Gasto" Relationship="SistFlota_ModeloDatos.VehiculoGasto" FromRole="Vehiculo" ToRole="Gasto" />
           <NavigationProperty Name="Turno" Relationship="SistFlota_ModeloDatos.VehiculoTurno" FromRole="Vehiculo" ToRole="Turno" />
+          <Property Name="fIDFlota" Type="String" Nullable="false" />
+          <Property Name="Activo" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Turno">
           <Key>
@@ -320,6 +324,8 @@
           <NavigationProperty Name="Chofer" Relationship="SistFlota_ModeloDatos.TurnoChofer" FromRole="Turno" ToRole="Chofer" />
           <NavigationProperty Name="Gasto" Relationship="SistFlota_ModeloDatos.GastoTurno" FromRole="Turno" ToRole="Gasto" />
           <NavigationProperty Name="CuentaCorriente" Relationship="SistFlota_ModeloDatos.CuentaCorrienteTurno" FromRole="Turno" ToRole="CuentaCorriente" />
+          <Property Name="fIDFlota" Type="String" Nullable="false" />
+          <Property Name="Activo" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Chofer">
           <Key>
@@ -336,6 +342,8 @@
           <Property Name="Correo" Type="String" Nullable="false" />
           <Property Name="Foto" Type="String" Nullable="false" DefaultValue="avatar_anonimo.jpg" />
           <NavigationProperty Name="Turno" Relationship="SistFlota_ModeloDatos.TurnoChofer" FromRole="Chofer" ToRole="Turno" />
+          <Property Name="fIDFlota" Type="String" Nullable="false" />
+          <Property Name="Activo" Type="String" Nullable="false" />
         </EntityType>
         <Association Name="TipodeGastoGasto">
           <End Type="SistFlota_ModeloDatos.TipodeGasto" Role="TipodeGasto" Multiplicity="1" />
@@ -367,6 +375,8 @@
           <Property Name="Estado" Type="String" Nullable="false" />
           <NavigationProperty Name="Turno" Relationship="SistFlota_ModeloDatos.CuentaCorrienteTurno" FromRole="CuentaCorriente" ToRole="Turno" />
           <NavigationProperty Name="Empresa" Relationship="SistFlota_ModeloDatos.EmpresaCuentaCorriente" FromRole="CuentaCorriente" ToRole="Empresa" />
+          <Property Name="fIDFlota" Type="String" Nullable="false" />
+          <Property Name="Activo" Type="String" Nullable="false" />
         </EntityType>
         <Association Name="CuentaCorrienteTurno">
           <End Type="SistFlota_ModeloDatos.CuentaCorriente" Role="CuentaCorriente" Multiplicity="*" />
@@ -383,6 +393,8 @@
           <Property Name="Localidad" Type="String" Nullable="false" />
           <Property Name="Correo" Type="String" Nullable="false" />
           <NavigationProperty Name="CuentaCorriente" Relationship="SistFlota_ModeloDatos.EmpresaCuentaCorriente" FromRole="Empresa" ToRole="CuentaCorriente" />
+          <Property Name="fIDFlota" Type="String" Nullable="false" />
+          <Property Name="Activo" Type="String" Nullable="false" />
         </EntityType>
         <Association Name="EmpresaCuentaCorriente">
           <End Type="SistFlota_ModeloDatos.Empresa" Role="Empresa" Multiplicity="1" />

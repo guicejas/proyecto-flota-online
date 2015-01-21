@@ -93,6 +93,7 @@
     <Content Include="Images\TxtPortada.png" />
     <Content Include="Logout.aspx" />
     <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\bootstrap-confirmation.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Site.js" />

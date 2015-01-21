@@ -31,6 +31,8 @@ namespace Modelo
         public decimal RecaudacionEfectivo { get; set; }
         public string Comentarios { get; set; }
         public Nullable<int> GastoId { get; set; }
+        public string fIDFlota { get; set; }
+        public string Activo { get; set; }
     
         public virtual Vehiculo Vehiculo { get; set; }
         public virtual Chofer Chofer { get; set; }

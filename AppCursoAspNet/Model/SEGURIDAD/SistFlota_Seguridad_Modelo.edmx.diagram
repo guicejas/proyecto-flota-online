@@ -14,6 +14,21 @@
         <AssociationConnector Association="SistFlota_Seguridad_Modelo.GrupoPerfil" />
         <AssociationConnector Association="SistFlota_Seguridad_Modelo.PerfilPermiso" />
         <AssociationConnector Association="SistFlota_Seguridad_Modelo.FormularioPerfil" />
+        <EntityTypeShape EntityType="SistFlota_Seguridad_Modelo.Flota" Width="1.5" PointX="1.875" PointY="4.375" />
+        <EntityTypeShape EntityType="SistFlota_Seguridad_Modelo.TipoLicencia" Width="1.5" PointX="6.25" PointY="4.75" />
+        <EntityTypeShape EntityType="SistFlota_Seguridad_Modelo.Demo" Width="1.5" PointX="3.75" PointY="7.125" />
+        <InheritanceConnector EntityType="SistFlota_Seguridad_Modelo.Demo" />
+        <EntityTypeShape EntityType="SistFlota_Seguridad_Modelo.Premium" Width="1.5" PointX="7.875" PointY="7.125" />
+        <InheritanceConnector EntityType="SistFlota_Seguridad_Modelo.Premium" />
+        <AssociationConnector Association="SistFlota_Seguridad_Modelo.UsuarioFlota" />
+        <EntityTypeShape EntityType="SistFlota_Seguridad_Modelo.Basica" Width="1.5" PointX="5.75" PointY="7.125" />
+        <InheritanceConnector EntityType="SistFlota_Seguridad_Modelo.Basica" />
+        <InheritanceConnector EntityType="SistFlota_Seguridad_Modelo.Basica" />
+        <InheritanceConnector EntityType="SistFlota_Seguridad_Modelo.Premium" />
+        <InheritanceConnector EntityType="SistFlota_Seguridad_Modelo.Demo" />
+        <EntityTypeShape EntityType="SistFlota_Seguridad_Modelo.Licencia" Width="1.5" PointX="4" PointY="4" />
+        <AssociationConnector Association="SistFlota_Seguridad_Modelo.FlotaLicencia" />
+        <AssociationConnector Association="SistFlota_Seguridad_Modelo.LicenciaTipoLicencia" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

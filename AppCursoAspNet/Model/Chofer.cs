@@ -30,6 +30,8 @@ namespace Modelo
         public System.DateTime FechaNacimiento { get; set; }
         public string Correo { get; set; }
         public string Foto { get; set; }
+        public string fIDFlota { get; set; }
+        public string Activo { get; set; }
     
         public virtual ICollection<Turno> Turno { get; set; }
     }

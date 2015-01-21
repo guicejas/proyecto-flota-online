@@ -25,6 +25,8 @@ namespace Modelo
         public string Telefono { get; set; }
         public string Localidad { get; set; }
         public string Correo { get; set; }
+        public string fIDFlota { get; set; }
+        public string Activo { get; set; }
     
         public virtual ICollection<CuentaCorriente> CuentaCorriente { get; set; }
     }

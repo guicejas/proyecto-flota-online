@@ -7,21 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Modelo
+namespace Modelo.SEGURIDAD
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class CuentaCorriente
+    public partial class Flota
     {
-        public int Id { get; set; }
-        public System.DateTime Fecha { get; set; }
-        public decimal Monto { get; set; }
-        public string Estado { get; set; }
-        public string fIDFlota { get; set; }
-        public string Activo { get; set; }
+        public Flota()
+        {
+            this.Usuario = new HashSet<Usuario>();
+            this.Licencia = new HashSet<Licencia>();
+        }
     
-        public virtual Turno Turno { get; set; }
-        public virtual Empresa Empresa { get; set; }
+        public int Id { get; set; }
+        public string RazonSocial { get; set; }
+    
+        public virtual ICollection<Usuario> Usuario { get; set; }
+        public virtual ICollection<Licencia> Licencia { get; set; }
     }
 }

@@ -28,6 +28,8 @@ namespace Modelo
         public string Color { get; set; }
         public int Kilometraje { get; set; }
         public int TurnoId { get; set; }
+        public string fIDFlota { get; set; }
+        public string Activo { get; set; }
     
         public virtual ICollection<Gasto> Gasto { get; set; }
         public virtual ICollection<Turno> Turno { get; set; }

@@ -169,6 +169,21 @@
             <End Role="Formulario" EntitySet="Formularios" />
             <End Role="Perfil" EntitySet="Perfiles" />
           </AssociationSet>
+          <EntitySet Name="Flotas" EntityType="SistFlota_Seguridad_Modelo.Flota" />
+          <EntitySet Name="Licencias" EntityType="SistFlota_Seguridad_Modelo.TipoLicencia" />
+          <AssociationSet Name="UsuarioFlota" Association="SistFlota_Seguridad_Modelo.UsuarioFlota">
+            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="Flota" EntitySet="Flotas" />
+          </AssociationSet>
+          <EntitySet Name="LicenciaSet" EntityType="SistFlota_Seguridad_Modelo.Licencia" />
+          <AssociationSet Name="FlotaLicencia" Association="SistFlota_Seguridad_Modelo.FlotaLicencia">
+            <End Role="Flota" EntitySet="Flotas" />
+            <End Role="Licencia" EntitySet="LicenciaSet" />
+          </AssociationSet>
+          <AssociationSet Name="LicenciaTipoLicencia" Association="SistFlota_Seguridad_Modelo.LicenciaTipoLicencia">
+            <End Role="Licencia" EntitySet="LicenciaSet" />
+            <End Role="TipoLicencia" EntitySet="Licencias" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Permiso">
           <Key>
@@ -216,6 +231,7 @@
           <Property Name="Activo" Type="Boolean" Nullable="false" DefaultValue="False" />
           <Property Name="PrimeraVez" Type="Boolean" Nullable="false" DefaultValue="True" />
           <NavigationProperty Name="Grupo" Relationship="SistFlota_Seguridad_Modelo.UsuarioGrupo" FromRole="Usuario" ToRole="Grupo" />
+          <NavigationProperty Name="Flota" Relationship="SistFlota_Seguridad_Modelo.UsuarioFlota" FromRole="Usuario" ToRole="Flota" />
         </EntityType>
         <Association Name="UsuarioGrupo">
           <End Type="SistFlota_Seguridad_Modelo.Usuario" Role="Usuario" Multiplicity="*" />
@@ -232,6 +248,55 @@
         <Association Name="FormularioPerfil">
           <End Type="SistFlota_Seguridad_Modelo.Formulario" Role="Formulario" Multiplicity="1" />
           <End Type="SistFlota_Seguridad_Modelo.Perfil" Role="Perfil" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Flota">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RazonSocial" Type="String" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="SistFlota_Seguridad_Modelo.UsuarioFlota" FromRole="Flota" ToRole="Usuario" />
+          <NavigationProperty Name="Licencia" Relationship="SistFlota_Seguridad_Modelo.FlotaLicencia" FromRole="Flota" ToRole="Licencia" />
+        </EntityType>
+        <EntityType Name="TipoLicencia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Duracion" Type="String" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" />
+          <NavigationProperty Name="Licencia" Relationship="SistFlota_Seguridad_Modelo.LicenciaTipoLicencia" FromRole="TipoLicencia" ToRole="Licencia" />
+        </EntityType>
+        <EntityType Name="Demo" BaseType="SistFlota_Seguridad_Modelo.TipoLicencia" />
+        <EntityType Name="Premium" BaseType="SistFlota_Seguridad_Modelo.TipoLicencia" >
+          <Property Name="CantUsuarios" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="UsuarioFlota">
+          <End Type="SistFlota_Seguridad_Modelo.Usuario" Role="Usuario" Multiplicity="*" />
+          <End Type="SistFlota_Seguridad_Modelo.Flota" Role="Flota" Multiplicity="1" />
+        </Association>
+        <EntityType Name="Basica" BaseType="SistFlota_Seguridad_Modelo.TipoLicencia" >
+          <Property Name="Patrocinador" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Licencia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaInicio" Type="String" Nullable="false" />
+          <Property Name="FechaFin" Type="String" Nullable="false" />
+          <NavigationProperty Name="Flota" Relationship="SistFlota_Seguridad_Modelo.FlotaLicencia" FromRole="Licencia" ToRole="Flota" />
+          <NavigationProperty Name="TipoLicencia" Relationship="SistFlota_Seguridad_Modelo.LicenciaTipoLicencia" FromRole="Licencia" ToRole="TipoLicencia" />
+          <Property Name="FechaPago" Type="String" Nullable="false" />
+          <Property Name="NroTransaccion" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="FlotaLicencia">
+          <End Type="SistFlota_Seguridad_Modelo.Flota" Role="Flota" Multiplicity="1" />
+          <End Type="SistFlota_Seguridad_Modelo.Licencia" Role="Licencia" Multiplicity="*" />
+        </Association>
+        <Association Name="LicenciaTipoLicencia">
+          <End Type="SistFlota_Seguridad_Modelo.Licencia" Role="Licencia" Multiplicity="1" />
+          <End Type="SistFlota_Seguridad_Modelo.TipoLicencia" Role="TipoLicencia" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>

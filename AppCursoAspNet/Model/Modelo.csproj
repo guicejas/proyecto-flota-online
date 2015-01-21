@@ -82,6 +82,15 @@
     <Compile Include="Empresa.cs">
       <DependentUpon>SistFlota_ModeloDatos.tt</DependentUpon>
     </Compile>
+    <Compile Include="SEGURIDAD\Basica.cs">
+      <DependentUpon>SistFlota_Seguridad_Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SEGURIDAD\Demo.cs">
+      <DependentUpon>SistFlota_Seguridad_Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SEGURIDAD\Flota.cs">
+      <DependentUpon>SistFlota_Seguridad_Modelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="SEGURIDAD\FormsPrincipal.cs" />
     <Compile Include="SEGURIDAD\Formulario.cs">
       <DependentUpon>SistFlota_Seguridad_Modelo.tt</DependentUpon>
@@ -90,11 +99,17 @@
       <DependentUpon>SistFlota_Seguridad_Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="SEGURIDAD\IMyAppPrincipal.cs" />
+    <Compile Include="SEGURIDAD\Licencia.cs">
+      <DependentUpon>SistFlota_Seguridad_Modelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="SEGURIDAD\Perfil.cs">
       <DependentUpon>SistFlota_Seguridad_Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="SEGURIDAD\PerfilPartial.cs" />
     <Compile Include="SEGURIDAD\Permiso.cs">
+      <DependentUpon>SistFlota_Seguridad_Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SEGURIDAD\Premium.cs">
       <DependentUpon>SistFlota_Seguridad_Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="SEGURIDAD\SistFlota_Seguridad_Modelo.Context.cs">
@@ -111,6 +126,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SistFlota_Seguridad_Modelo.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="SEGURIDAD\TipoLicencia.cs">
+      <DependentUpon>SistFlota_Seguridad_Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="SEGURIDAD\UserCache.cs" />
     <Compile Include="SEGURIDAD\Usuario.cs">
