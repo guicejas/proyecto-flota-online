@@ -12,6 +12,7 @@ namespace Vista.View
     public partial class Vehiculos : System.Web.UI.Page
     {
         Controladora.SEGURIDAD.ControladoraPerfiles ctrlPerfiles = new Controladora.SEGURIDAD.ControladoraPerfiles();
+        Controladora.SEGURIDAD.ControladoraFlotas ctrlFlotas = new Controladora.SEGURIDAD.ControladoraFlotas();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -42,7 +43,7 @@ namespace Vista.View
 
         public List<Modelo.Vehiculo> GetVehiculos()
         {
-            return ControladoraVehiculos.getINSTANCIA.ListarVehiculos();
+            return ControladoraVehiculos.getINSTANCIA.ListarVehiculos(ctrlFlotas.ObtenerFlotadeUsuario(this.Context.User.Identity.Name).Id.ToString());
         }
 
         protected void listaVehiculos_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -104,7 +105,7 @@ namespace Vista.View
                 año = txtFiltroAño.Text;
             }
 
-            return ControladoraVehiculos.getINSTANCIA.ListarVehiculosFiltrados(patente, patenteTaxi, año);
+            return ControladoraVehiculos.getINSTANCIA.ListarVehiculosFiltrados(ctrlFlotas.ObtenerFlotadeUsuario(this.Context.User.Identity.Name).Id.ToString(), patente, patenteTaxi, año);
         }
     }
 }

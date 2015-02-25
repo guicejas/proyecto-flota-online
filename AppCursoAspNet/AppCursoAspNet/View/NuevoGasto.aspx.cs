@@ -12,6 +12,7 @@ namespace Vista
     {
 
         Controladora.SEGURIDAD.ControladoraPerfiles ctrlPerfiles = new Controladora.SEGURIDAD.ControladoraPerfiles();
+        Controladora.SEGURIDAD.ControladoraFlotas ctrlFlotas = new Controladora.SEGURIDAD.ControladoraFlotas();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -73,7 +74,7 @@ namespace Vista
         public IList<Modelo.Vehiculo> ListarVehiculos()
         {
 
-            return Controladora.ControladoraVehiculos.getINSTANCIA.ListarVehiculos();
+            return Controladora.ControladoraVehiculos.getINSTANCIA.ListarVehiculos(ctrlFlotas.ObtenerFlotadeUsuario(this.Context.User.Identity.Name).Id.ToString());
         }
 
                 public IList<Modelo.TipodeGasto> ListarTiposdeGasto()

@@ -24,8 +24,8 @@ namespace Modelo
         public string Usuario { get; set; }
         public Nullable<System.DateTime> FechayHora { get; set; }
         public string Operacion { get; set; }
-        public string fIDFlota { get; set; }
-        public string Activo { get; set; }
+        public int fIDFlota { get; set; }
+        public short Activo { get; set; }
     
         public virtual TipodeGasto TipodeGasto { get; set; }
         public virtual Vehiculo Vehiculo { get; set; }

@@ -59,6 +59,7 @@
     <Compile Include="AUDITORIA\ControladoraAudLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SEGURIDAD\ControladoraFormularios.cs" />
+    <Compile Include="SEGURIDAD\ControladoraFlotas.cs" />
     <Compile Include="SEGURIDAD\ControladoraGrupos.cs" />
     <Compile Include="SEGURIDAD\ControladoraLogin.cs" />
     <Compile Include="SEGURIDAD\ControladoraPerfiles.cs" />

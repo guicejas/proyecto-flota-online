@@ -20,9 +20,9 @@ namespace Modelo.SEGURIDAD
         }
     
         public int Id { get; set; }
-        public string FechaInicio { get; set; }
-        public string FechaFin { get; set; }
-        public string FechaPago { get; set; }
+        public System.DateTime FechaInicio { get; set; }
+        public System.DateTime FechaFin { get; set; }
+        public System.DateTime FechaPago { get; set; }
         public string NroTransaccion { get; set; }
     
         public virtual Flota Flota { get; set; }

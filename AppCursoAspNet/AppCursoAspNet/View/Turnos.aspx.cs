@@ -11,6 +11,7 @@ namespace Vista.View
     public partial class Turnos : System.Web.UI.Page
     {
         Controladora.SEGURIDAD.ControladoraPerfiles ctrlPerfiles = new Controladora.SEGURIDAD.ControladoraPerfiles();
+        Controladora.SEGURIDAD.ControladoraFlotas ctrlFlotas = new Controladora.SEGURIDAD.ControladoraFlotas();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -39,7 +40,7 @@ namespace Vista.View
         }
         public List<Modelo.Turno> GetTurnos()
         {
-            return ControladoraTurnos.getINSTANCIA.ListarTurnos();
+            return ControladoraTurnos.getINSTANCIA.ListarTurnos(ctrlFlotas.ObtenerFlotadeUsuario(this.Context.User.Identity.Name).Id.ToString());
         }
         protected void listaTurnos_RowEditing(object sender, GridViewEditEventArgs e)
         {
@@ -125,7 +126,7 @@ namespace Vista.View
                 vehiculo = txtFiltroVehiculo.Text;
             }
 
-            return ControladoraTurnos.getINSTANCIA.ListarTurnosFiltrados(chofer, fecha, vehiculo);
+            return ControladoraTurnos.getINSTANCIA.ListarTurnosFiltrados(ctrlFlotas.ObtenerFlotadeUsuario(this.Context.User.Identity.Name).Id.ToString(), chofer, fecha, vehiculo);
         }
 
 

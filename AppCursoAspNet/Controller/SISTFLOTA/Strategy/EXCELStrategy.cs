@@ -8,6 +8,8 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 using System.Xml;
 using CarlosAg.ExcelXmlWriter;
 using Controladora;
@@ -153,7 +155,7 @@ namespace Controladora.SISTFLOTA.Strategy
             cell.Data.Text = "TOTAL";
 
 
-             List<Modelo.Vehiculo> oVehiculos = ControladoraVehiculos.getINSTANCIA.ListarVehiculosGastos();
+            List<Modelo.Vehiculo> oVehiculos = ControladoraVehiculos.getINSTANCIA.ListarVehiculosGastos(HttpContext.Current.Request.Cookies["userInfoSGOFT"]["flotaId"].ToString());
 
 
                     for (int i = 0; i < oVehiculos.Count; i++)

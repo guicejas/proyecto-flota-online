@@ -42,15 +42,21 @@ namespace Controladora
                 return true;
             }
         }
+
         public void ModificarChofer(Modelo.Chofer oChofer)
         {
             Modelo.SingletonSistFlota.ObtenerInstancia().Entry(oChofer).State = System.Data.Entity.EntityState.Modified;
             Modelo.SingletonSistFlota.ObtenerInstancia().SaveChanges();
         }
-        public List<Modelo.Chofer> ListarChoferes()
-        {
-            return Modelo.SingletonSistFlota.ObtenerInstancia().Choferes.ToList();
 
+        public List<Modelo.Chofer> ListarChoferes(string flotaId)
+        {
+            int flota = Convert.ToInt32(flotaId);
+
+            if (flota == 0)
+                return Modelo.SingletonSistFlota.ObtenerInstancia().Choferes.ToList();
+            else
+                return Modelo.SingletonSistFlota.ObtenerInstancia().Choferes.Where(oChof => oChof.fIDFlota == flota).ToList();
         }
 
         public bool VerificarChofer(Modelo.Chofer oChofer)

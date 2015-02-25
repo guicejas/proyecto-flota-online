@@ -7,12 +7,13 @@ using iTextSharp.text.pdf;
 using System.IO;
 using System.Diagnostics;
 using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace Controladora.SISTFLOTA.Strategy
 {
     public class PDFStrategy : IStrategy
     {
-      
         Controladora.ControladoraVehiculos ctrlVehiculos = Controladora.ControladoraVehiculos.getINSTANCIA;
 
         public string GenerarReporteGastos()
@@ -92,6 +93,7 @@ namespace Controladora.SISTFLOTA.Strategy
 
 
 
+
                     datatable.HeaderRows = 1;
 
                     datatable.DefaultCell.BorderWidth = 1;
@@ -99,56 +101,59 @@ namespace Controladora.SISTFLOTA.Strategy
 
                     //SE GENERA EL CUERPO DEL PDF
 
-                    List<Modelo.Vehiculo> oVehiculos = ctrlVehiculos.ListarVehiculosGastos();
+                    List<Modelo.Vehiculo> oVehiculos = ctrlVehiculos.ListarVehiculosGastos(HttpContext.Current.Request.Cookies["userInfoSGOFT"]["flotaId"].ToString());
 
-                    for (int i = 0; i < oVehiculos.Count; i++)
+                    if (oVehiculos.Count > 0)
                     {
-                        //datatable.AddCell(oVehiculos[i].Patente);
-                        datatable.AddCell(new Paragraph(oVehiculos[i].Patente, FontFactory.GetFont("ARIAL", 12, 1)));
-                        datatable.AddCell(oVehiculos[i].Año.ToString());
-
-                        List<Modelo.Gasto> oGastos = Controladora.ControladoraGastos.getINSTANCIA.ListarGastosdeVehiculo(oVehiculos[i].Patente);
-
-                        if (oGastos.Count > 0)
+                        for (int i = 0; i < oVehiculos.Count; i++)
                         {
+                            //datatable.AddCell(oVehiculos[i].Patente);
+                            datatable.AddCell(new Paragraph(oVehiculos[i].Patente, FontFactory.GetFont("ARIAL", 12, 1)));
+                            datatable.AddCell(oVehiculos[i].Año.ToString());
 
-                            datatable.AddCell(oGastos[0].Descripcion);
-                            datatable.AddCell("$ " + oGastos[0].Monto.ToString());
+                            List<Modelo.Gasto> oGastos = Controladora.ControladoraGastos.getINSTANCIA.ListarGastosdeVehiculo(oVehiculos[i].Patente);
 
-                            datatable.CompleteRow();
-
-                            for (int j = 1; j < oGastos.Count; j++)
+                            if (oGastos.Count > 0)
                             {
-                                datatable.AddCell("");
-                                datatable.AddCell("");
-                                datatable.AddCell(oGastos[j].Descripcion);
-                                datatable.AddCell("$ " + oGastos[j].Monto.ToString());
+
+                                datatable.AddCell(oGastos[0].Descripcion);
+                                datatable.AddCell("$ " + oGastos[0].Monto.ToString());
+
                                 datatable.CompleteRow();
 
+                                for (int j = 1; j < oGastos.Count; j++)
+                                {
+                                    datatable.AddCell("");
+                                    datatable.AddCell("");
+                                    datatable.AddCell(oGastos[j].Descripcion);
+                                    datatable.AddCell("$ " + oGastos[j].Monto.ToString());
+                                    datatable.CompleteRow();
+
+                                }
+
+
+
+                                datatable.AddCell("");
+                                datatable.AddCell("");
+
                             }
-                        
-
-
-                        datatable.AddCell("");
-                        datatable.AddCell("");
-
-                        }
-                        datatable.DefaultCell.BorderWidth = 2;
-                        datatable.AddCell(new Paragraph("TOTAL", FontFactory.GetFont("ARIAL", 12, 3)));
-                        datatable.AddCell(new Paragraph("$ " + oGastos.Sum(x => x.Monto).ToString(), FontFactory.GetFont("ARIAL", 12, 3)));
-                        datatable.DefaultCell.BorderWidth = 1;
-                        datatable.CompleteRow();
-                        if (i < oVehiculos.Count - 1)
-                        {
-                            datatable.AddCell("");
+                            datatable.DefaultCell.BorderWidth = 2;
+                            datatable.AddCell(new Paragraph("TOTAL", FontFactory.GetFont("ARIAL", 12, 3)));
+                            datatable.AddCell(new Paragraph("$ " + oGastos.Sum(x => x.Monto).ToString(), FontFactory.GetFont("ARIAL", 12, 3)));
+                            datatable.DefaultCell.BorderWidth = 1;
                             datatable.CompleteRow();
+                            if (i < oVehiculos.Count - 1)
+                            {
+                                datatable.AddCell("");
+                                datatable.CompleteRow();
+                            }
                         }
+
+                        //SE AGREGA LA PDFPTABLE AL DOCUMENTO
+                        //doc.Add(datatable);
                     }
-                    
 
-
-                    //SE AGREGAR LA PDFPTABLE AL DOCUMENTO
-
+                    //SE AGREGA FIN DE DOCUMENTO
                     doc.Add(datatable);
                     doc.Add(new Paragraph(renglonvacio));
                     doc.Add(jpg);
@@ -210,7 +215,7 @@ namespace Controladora.SISTFLOTA.Strategy
                 doc.Add(new Paragraph(encab));
                 doc.Add(new Paragraph(renglonvacio));
 
-                List<Modelo.Vehiculo> oVehiculos = ctrlVehiculos.ListarVehiculos();
+                List<Modelo.Vehiculo> oVehiculos = ctrlVehiculos.ListarVehiculos(HttpContext.Current.Request.Cookies["userInfoSGOFT"]["flotaId"].ToString());
                 List<Modelo.Vehiculo> oVehiculosActivos = ctrlVehiculos.ListarVehiculosActivos();
                 oVehiculosActivos = oVehiculosActivos.OrderBy(x => x.Año).ToList();
                 

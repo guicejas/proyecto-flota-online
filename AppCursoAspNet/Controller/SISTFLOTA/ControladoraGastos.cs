@@ -48,9 +48,14 @@ namespace Controladora
             Modelo.SingletonSistFlota.ObtenerInstancia().SaveChanges();
         }
 
-         public List<Modelo.Gasto> ListarGastos()
+        public List<Modelo.Gasto> ListarGastos(string flotaId)
         {
-            return Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.ToList();
+            int flota = Convert.ToInt32(flotaId);
+
+            if (flota == 0)
+                return Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.ToList();
+            else
+                return Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.Where(oGas => oGas.fIDFlota == flota).ToList();
         }
 
         public Modelo.Gasto ObtenerGasto(int gastoId)
@@ -59,32 +64,46 @@ namespace Controladora
             return oGasto;
          }
 
-        public List<Modelo.Gasto> ListarGastosFiltrados(string Id, Modelo.Vehiculo oVehiculoF, Modelo.TipodeGasto oTipodeGastoF, string Monto, string Estado, string Descripcion, DateTime VenceDesde, DateTime VenceHasta)
-        {
-            List<Modelo.Gasto> Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.ToList();
-            if (Id.ToString() != "")
-                Filtrado = Filtrado.Where(oGas => oGas.Id == Convert.ToInt32(Id)).ToList();
-            if (oVehiculoF != null)
-                Filtrado = Filtrado.Where(oGas => oGas.Vehiculo == oVehiculoF).ToList();
-            if (oTipodeGastoF != null)
-                Filtrado = Filtrado.Where(oGas => oGas.TipodeGasto == oTipodeGastoF).ToList();
-            if (Monto.ToString() != "")
-                Filtrado = Filtrado.Where(oGas => oGas.Monto == Convert.ToDecimal(Monto)).ToList();
-            if (Estado != "")
-                Filtrado = Filtrado.Where(oGas => oGas.Estado == Estado).ToList();
-            if (Descripcion != "")
-                Filtrado = Filtrado.Where(oGas => oGas.Descripcion.Contains(Descripcion)).ToList();
-            if (VenceDesde.ToString() != null)
-                Filtrado = Filtrado.Where(oGas => oGas.FechaVencimiento > VenceDesde).ToList();
-            if (VenceHasta.ToString() != null)
-                Filtrado = Filtrado.Where(oGas => oGas.FechaVencimiento < VenceHasta).ToList();
-           
-            return Filtrado;
-        }
+        //public List<Modelo.Gasto> ListarGastosFiltrados(string flotaId, string Id, Modelo.Vehiculo oVehiculoF, Modelo.TipodeGasto oTipodeGastoF, string Monto, string Estado, string Descripcion, DateTime VenceDesde, DateTime VenceHasta)
+        //{
+        //    int flota = Convert.ToInt32(flotaId);
+        //    List<Modelo.Gasto> Filtrado;
 
-        public List<Modelo.Gasto> ListarGastosFiltrados(string descripcion, Nullable<System.DateTime> fechaVencimiento, string estado, string vehiculo)
+        //    if (flota == 0)
+        //        Filtrado =  Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.ToList();
+        //    else
+        //        Filtrado =  Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.Where(oGas => oGas.fIDFlota == flota).ToList();
+
+        //    if (Id.ToString() != "")
+        //        Filtrado = Filtrado.Where(oGas => oGas.Id == Convert.ToInt32(Id)).ToList();
+        //    if (oVehiculoF != null)
+        //        Filtrado = Filtrado.Where(oGas => oGas.Vehiculo == oVehiculoF).ToList();
+        //    if (oTipodeGastoF != null)
+        //        Filtrado = Filtrado.Where(oGas => oGas.TipodeGasto == oTipodeGastoF).ToList();
+        //    if (Monto.ToString() != "")
+        //        Filtrado = Filtrado.Where(oGas => oGas.Monto == Convert.ToDecimal(Monto)).ToList();
+        //    if (Estado != "")
+        //        Filtrado = Filtrado.Where(oGas => oGas.Estado == Estado).ToList();
+        //    if (Descripcion != "")
+        //        Filtrado = Filtrado.Where(oGas => oGas.Descripcion.Contains(Descripcion)).ToList();
+        //    if (VenceDesde.ToString() != null)
+        //        Filtrado = Filtrado.Where(oGas => oGas.FechaVencimiento > VenceDesde).ToList();
+        //    if (VenceHasta.ToString() != null)
+        //        Filtrado = Filtrado.Where(oGas => oGas.FechaVencimiento < VenceHasta).ToList();
+           
+        //    return Filtrado;
+        //}
+
+        public List<Modelo.Gasto> ListarGastosFiltrados(string flotaId, string descripcion, Nullable<System.DateTime> fechaVencimiento, string estado, string vehiculo)
         {
-            List<Modelo.Gasto> Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.ToList();
+            int flota = Convert.ToInt32(flotaId);
+            List<Modelo.Gasto> Filtrado;
+
+            if (flota == 0)
+                Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.ToList();
+            else
+                Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.Where(oGas => oGas.fIDFlota == flota).ToList();
+            
             if (vehiculo != null)
                 Filtrado = Filtrado.Where(oGas => oGas.Vehiculo.Patente.IndexOf(vehiculo, System.StringComparison.OrdinalIgnoreCase) >= 0).ToList();
             if (fechaVencimiento != null)

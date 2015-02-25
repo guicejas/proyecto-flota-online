@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/15/2014 15:10:16
--- Generated from EDMX file: C:\Users\Windows 7\Downloads\AppCursoAspNet2\AppCursoAspNet\Model\SistFlota_ModeloDatos.edmx
+-- Date Created: 02/25/2015 12:10:01
+-- Generated from EDMX file: C:\Users\Windows 7\Documents\GitHub\proyecto-flota-online\AppCursoAspNet\Model\SistFlota_ModeloDatos.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -33,7 +33,7 @@ IF OBJECT_ID(N'[dbo].[FK_GastoTurno]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Gastos] DROP CONSTRAINT [FK_GastoTurno];
 GO
 IF OBJECT_ID(N'[dbo].[FK_CuentaCorrienteTurno]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Turnos] DROP CONSTRAINT [FK_CuentaCorrienteTurno];
+    ALTER TABLE [dbo].[CuentaCorrientes] DROP CONSTRAINT [FK_CuentaCorrienteTurno];
 GO
 IF OBJECT_ID(N'[dbo].[FK_EmpresaCuentaCorriente]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CuentaCorrientes] DROP CONSTRAINT [FK_EmpresaCuentaCorriente];
@@ -88,6 +88,8 @@ CREATE TABLE [dbo].[Gastos] (
     [Usuario] nvarchar(max)  NULL,
     [FechayHora] datetime  NULL,
     [Operacion] nvarchar(max)  NULL,
+    [fIDFlota] int  NOT NULL,
+    [Activo] smallint  NOT NULL,
     [TipodeGasto_Id] int  NOT NULL,
     [Vehiculo_Patente] nvarchar(7)  NOT NULL,
     [Turno_Id] int  NULL
@@ -103,7 +105,9 @@ CREATE TABLE [dbo].[Vehiculos] (
     [Año] int  NOT NULL,
     [Color] nvarchar(max)  NOT NULL,
     [Kilometraje] int  NOT NULL,
-    [TurnoId] int  NOT NULL
+    [TurnoId] int  NOT NULL,
+    [fIDFlota] int  NOT NULL,
+    [Activo] smallint  NOT NULL
 );
 GO
 
@@ -120,6 +124,8 @@ CREATE TABLE [dbo].[Turnos] (
     [RecaudacionEfectivo] decimal(18,0)  NOT NULL,
     [Comentarios] nvarchar(max)  NOT NULL,
     [GastoId] int  NULL,
+    [fIDFlota] bigint  NOT NULL,
+    [Activo] smallint  NOT NULL,
     [Vehiculo_Patente] nvarchar(7)  NOT NULL,
     [Chofer_Documento] int  NOT NULL
 );
@@ -136,7 +142,9 @@ CREATE TABLE [dbo].[Choferes] (
     [Telefono] nvarchar(max)  NOT NULL,
     [FechaNacimiento] datetime  NOT NULL,
     [Correo] nvarchar(max)  NOT NULL,
-    [Foto] nvarchar(max)  NOT NULL
+    [Foto] nvarchar(max)  NOT NULL,
+    [fIDFlota] int  NOT NULL,
+    [Activo] smallint  NOT NULL
 );
 GO
 
@@ -146,6 +154,8 @@ CREATE TABLE [dbo].[CuentaCorrientes] (
     [Fecha] datetime  NOT NULL,
     [Monto] decimal(18,0)  NOT NULL,
     [Estado] nvarchar(max)  NOT NULL,
+    [fIDFlota] int  NOT NULL,
+    [Activo] smallint  NOT NULL,
     [Turno_Id] int  NOT NULL,
     [Empresa_Cuit] bigint  NOT NULL
 );
@@ -158,7 +168,9 @@ CREATE TABLE [dbo].[Empresas] (
     [Domicilio] nvarchar(max)  NOT NULL,
     [Telefono] nvarchar(max)  NOT NULL,
     [Localidad] nvarchar(max)  NOT NULL,
-    [Correo] nvarchar(max)  NOT NULL
+    [Correo] nvarchar(max)  NOT NULL,
+    [fIDFlota] int  NOT NULL,
+    [Activo] smallint  NOT NULL
 );
 GO
 

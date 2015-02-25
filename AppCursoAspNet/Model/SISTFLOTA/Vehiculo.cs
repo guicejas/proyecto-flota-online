@@ -32,7 +32,7 @@ namespace Modelo
             }
         }
 
-        public string Activo
+        public string ActivoTaxi
         {
             get
             {

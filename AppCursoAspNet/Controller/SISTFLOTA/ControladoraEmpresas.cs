@@ -46,9 +46,14 @@ namespace Controladora
             Modelo.SingletonSistFlota.ObtenerInstancia().Entry(oEmpresa).State = System.Data.Entity.EntityState.Modified;
             Modelo.SingletonSistFlota.ObtenerInstancia().SaveChanges();
         }
-        public List<Modelo.Empresa> ListarEmpresas()
+        public List<Modelo.Empresa> ListarEmpresas(string flotaId)
         {
-            return Modelo.SingletonSistFlota.ObtenerInstancia().Empresas.ToList();
+            int flota = Convert.ToInt32(flotaId);
+
+            if (flota == 0)
+                return Modelo.SingletonSistFlota.ObtenerInstancia().Empresas.ToList();
+            else
+                return Modelo.SingletonSistFlota.ObtenerInstancia().Empresas.Where(oEmp => oEmp.fIDFlota == flota).ToList();
 
         }
 
@@ -64,9 +69,16 @@ namespace Controladora
         }
 
         
-        public List<Modelo.Empresa> ListarEmpresasFiltrados(string cuit,string razonSocial, string localidad, string correo)
+        public List<Modelo.Empresa> ListarEmpresasFiltrados(string flotaId, string cuit,string razonSocial, string localidad, string correo)
         {
-            List<Modelo.Empresa> Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Empresas.ToList();
+            int flota = Convert.ToInt32(flotaId);
+            List<Modelo.Empresa> Filtrado;
+
+            if (flota == 0)
+                Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Empresas.ToList();
+            else
+                Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Empresas.Where(oEmp => oEmp.fIDFlota == flota).ToList();
+
             if (cuit != null)
                 Filtrado = Filtrado.Where(oEmp => oEmp.Cuit == Convert.ToInt64(cuit)).ToList();
             if (razonSocial != null)

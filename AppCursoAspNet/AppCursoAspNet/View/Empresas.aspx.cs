@@ -11,6 +11,7 @@ namespace Vista.View
     public partial class Empresas : System.Web.UI.Page
     {
         Controladora.SEGURIDAD.ControladoraPerfiles ctrlPerfiles = new Controladora.SEGURIDAD.ControladoraPerfiles();
+        Controladora.SEGURIDAD.ControladoraFlotas ctrlFlotas = new Controladora.SEGURIDAD.ControladoraFlotas();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -35,7 +36,7 @@ namespace Vista.View
         }
         public List<Modelo.Empresa> GetEmpresas()
         {
-            return ControladoraEmpresas.getINSTANCIA.ListarEmpresas();
+            return ControladoraEmpresas.getINSTANCIA.ListarEmpresas(ctrlFlotas.ObtenerFlotadeUsuario(this.Context.User.Identity.Name).Id.ToString());
         }
         protected void listaEmprsas_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
@@ -97,7 +98,7 @@ namespace Vista.View
             {
                 correo = txtFiltroCorreo.Text;
             }
-            return ControladoraEmpresas.getINSTANCIA.ListarEmpresasFiltrados(cuit, razonSocial, localidad, correo);
+            return ControladoraEmpresas.getINSTANCIA.ListarEmpresasFiltrados(ctrlFlotas.ObtenerFlotadeUsuario(this.Context.User.Identity.Name).Id.ToString(), cuit, razonSocial, localidad, correo);
         }
     }
 }

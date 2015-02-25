@@ -17,6 +17,7 @@ namespace Modelo
         public Chofer()
         {
             this.Foto = "avatar_anonimo.jpg";
+            this.Activo = 1;
             this.Turno = new HashSet<Turno>();
         }
     
@@ -30,8 +31,8 @@ namespace Modelo
         public System.DateTime FechaNacimiento { get; set; }
         public string Correo { get; set; }
         public string Foto { get; set; }
-        public string fIDFlota { get; set; }
-        public string Activo { get; set; }
+        public int fIDFlota { get; set; }
+        public short Activo { get; set; }
     
         public virtual ICollection<Turno> Turno { get; set; }
     }

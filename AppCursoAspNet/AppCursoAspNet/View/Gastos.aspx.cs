@@ -12,6 +12,7 @@ namespace Vista
     public partial class Gastos : System.Web.UI.Page
     {
         Controladora.SEGURIDAD.ControladoraPerfiles ctrlPerfiles = new Controladora.SEGURIDAD.ControladoraPerfiles();
+        Controladora.SEGURIDAD.ControladoraFlotas ctrlFlotas = new Controladora.SEGURIDAD.ControladoraFlotas();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -43,7 +44,7 @@ namespace Vista
 
         public List<Modelo.Gasto> GetGastos()
         {
-            return ControladoraGastos.getINSTANCIA.ListarGastos();
+            return ControladoraGastos.getINSTANCIA.ListarGastos((ctrlFlotas.ObtenerFlotadeUsuario(this.Context.User.Identity.Name).Id.ToString()));
         }
 
 
@@ -115,7 +116,7 @@ namespace Vista
             {
                 vehiculo = txtFiltroVehiculo.Text;
             }
-            return ControladoraGastos.getINSTANCIA.ListarGastosFiltrados(descripcion, fecha, estado, vehiculo);
+            return ControladoraGastos.getINSTANCIA.ListarGastosFiltrados((ctrlFlotas.ObtenerFlotadeUsuario(this.Context.User.Identity.Name).Id.ToString()),descripcion, fecha, estado, vehiculo);
         }
 
     }

@@ -19,6 +19,7 @@ namespace Controladora.SEGURIDAD
             
             if (Modelo.SingletonSeguridad.ObtenerInstancia().Usuarios.ToList().Count == 0)
             {
+                // Grupos por defecto
 
                 Grupo oGrupo = new Grupo();
                 oGrupo.IDGrupo = "Administrador";
@@ -26,9 +27,16 @@ namespace Controladora.SEGURIDAD
                 Modelo.SingletonSeguridad.ObtenerInstancia().Grupos.Add(oGrupo);
 
                 Grupo aGrupo = new Grupo();
-                aGrupo.IDGrupo = "Invitado";
-                aGrupo.Descripcion = "Grupo de Invitados";
+                aGrupo.IDGrupo = "Chofer";
+                aGrupo.Descripcion = "Grupo de Choferes";
                 Modelo.SingletonSeguridad.ObtenerInstancia().Grupos.Add(aGrupo);
+
+                Grupo bGrupo = new Grupo();
+                bGrupo.IDGrupo = "Contador";
+                bGrupo.Descripcion = "Grupo de Contadores";
+                Modelo.SingletonSeguridad.ObtenerInstancia().Grupos.Add(bGrupo);
+
+                // Fromularios - Paginas
 
                 Formulario aFormulario = new Formulario();
                 aFormulario.IDFormulario = "Administracion";
@@ -60,6 +68,8 @@ namespace Controladora.SEGURIDAD
                 gFormulario.Descripcion = "Formulario de Vehiculos";
                 Modelo.SingletonSeguridad.ObtenerInstancia().Formularios.Add(gFormulario);
 
+                // Permisos
+
                 Permiso oPermiso = new Permiso();
                 oPermiso.IDPermiso = "ALTA";
                 oPermiso.Descripcion = "Permisos de alta";
@@ -85,6 +95,12 @@ namespace Controladora.SEGURIDAD
                 cPermiso.Descripcion = "Permisos totales sobre el formulario";
                 Modelo.SingletonSeguridad.ObtenerInstancia().Permisos.Add(cPermiso);
 
+                Flota oFlota = new Flota();
+                oFlota.RazonSocial = "TRYPEP";
+                Modelo.SingletonSeguridad.ObtenerInstancia().Flotas.Add(oFlota);
+
+                // Perfil Administrador
+
                 Perfil oPerfil = new Perfil();
                 oPerfil.Formulario = aFormulario;
                 oPerfil.Grupo = oGrupo;
@@ -101,6 +117,7 @@ namespace Controladora.SEGURIDAD
                 oUsuario.PrimeraVez = false;
                 oUsuario.Grupo.Add(oGrupo);
                 oUsuario.Contraseña = oEncriptar.encriptar(oUsuario.Contraseña);
+                oUsuario.Flota = oFlota;
 
                 Modelo.SingletonSeguridad.ObtenerInstancia().Usuarios.Add(oUsuario);
                 Modelo.SingletonSeguridad.ObtenerInstancia().SaveChanges();

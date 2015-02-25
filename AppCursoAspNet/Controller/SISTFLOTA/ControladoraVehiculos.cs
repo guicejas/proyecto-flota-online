@@ -53,16 +53,28 @@ namespace Controladora
             return oVehiculo;
         }
 
-        public List<Modelo.Vehiculo> ListarVehiculos()
+        public List<Modelo.Vehiculo> ListarVehiculos(string flotaId)
         {
-            return Modelo.SingletonSistFlota.ObtenerInstancia().Vehiculos.OrderBy(c => c.Patente).ToList();
+            int flota = Convert.ToInt32(flotaId);
 
+            if (flota == 0)
+                return Modelo.SingletonSistFlota.ObtenerInstancia().Vehiculos.OrderBy(c => c.Patente).ToList();
+            else
+                return Modelo.SingletonSistFlota.ObtenerInstancia().Vehiculos.Where(c => c.fIDFlota == flota).OrderBy(c => c.Patente).ToList();
 
         }
 
-        public List<Modelo.Vehiculo> ListarVehiculosFiltrados(string Patente, string PatenteTaxi, string Año)
+        public List<Modelo.Vehiculo> ListarVehiculosFiltrados(string flotaId, string Patente, string PatenteTaxi, string Año)
         {
-            List<Modelo.Vehiculo> Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Vehiculos.OrderBy(c => c.Patente).ToList();
+
+            int flota = Convert.ToInt32(flotaId);
+            List<Modelo.Vehiculo> Filtrado;
+
+            if (flota == 0)
+                Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Vehiculos.OrderBy(c => c.Patente).ToList();
+            else
+                Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Vehiculos.Where(c => c.fIDFlota == flota).OrderBy(c => c.Patente).ToList();
+
             if (Patente != null)
                 Filtrado = Filtrado.Where(oVeh => oVeh.Patente.IndexOf(Patente, System.StringComparison.OrdinalIgnoreCase) >= 0).ToList();
             if (PatenteTaxi != null)
@@ -100,8 +112,20 @@ namespace Controladora
 
         public List<Modelo.Vehiculo> ListarVehiculosGastos()
         {
-
+            
             List<Modelo.Vehiculo> list = Modelo.SingletonSistFlota.ObtenerInstancia().Vehiculos.ToList();
+
+            list = list.OrderByDescending(c => c.sumaGastos).ToList();
+
+            return list;
+        }
+
+        public List<Modelo.Vehiculo> ListarVehiculosGastos(string flotaId)
+        {
+
+            int flota = Convert.ToInt32(flotaId);
+
+            List<Modelo.Vehiculo> list = Modelo.SingletonSistFlota.ObtenerInstancia().Vehiculos.Where(c => c.fIDFlota == flota).ToList();
 
             list = list.OrderByDescending(c => c.sumaGastos).ToList();
 

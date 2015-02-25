@@ -14,12 +14,17 @@ namespace Modelo
     
     public partial class CuentaCorriente
     {
+        public CuentaCorriente()
+        {
+            this.Activo = 1;
+        }
+    
         public int Id { get; set; }
         public System.DateTime Fecha { get; set; }
         public decimal Monto { get; set; }
         public string Estado { get; set; }
-        public string fIDFlota { get; set; }
-        public string Activo { get; set; }
+        public int fIDFlota { get; set; }
+        public short Activo { get; set; }
     
         public virtual Turno Turno { get; set; }
         public virtual Empresa Empresa { get; set; }

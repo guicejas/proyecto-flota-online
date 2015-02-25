@@ -9,11 +9,16 @@ namespace Vista.View
 {
     public partial class NuevoTurno : System.Web.UI.Page
     {
-     
+        Controladora.SEGURIDAD.ControladoraFlotas ctrlFlotas = new Controladora.SEGURIDAD.ControladoraFlotas();
+        string flotaId;
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
+
+            // Recupero el id de flota desde la cookies de otorgada en el log in
+            if (Request.Cookies["userInfoSGOFT"] != null)
+                flotaId = Server.HtmlEncode(Request.Cookies["userInfoSGOFT"]["flotaId"]);
         }
 
         protected void aceptar_Click(object sender, EventArgs e)
@@ -57,27 +62,27 @@ namespace Vista.View
         public IList<Modelo.Vehiculo> ListarVehiculos()
         {
 
-            return Controladora.ControladoraVehiculos.getINSTANCIA.ListarVehiculos();
+            return Controladora.ControladoraVehiculos.getINSTANCIA.ListarVehiculos(flotaId);
         }
 
         public IList<Modelo.Gasto> ListarGastos()
         {
 
-            return Controladora.ControladoraGastos.getINSTANCIA.ListarGastos();
+            return Controladora.ControladoraGastos.getINSTANCIA.ListarGastos(flotaId);
         }
 
 
         public IList<Modelo.Empresa> ListarEmpresas()
         {
 
-            return Controladora.ControladoraEmpresas.getINSTANCIA.ListarEmpresas();
+            return Controladora.ControladoraEmpresas.getINSTANCIA.ListarEmpresas(flotaId);
         }
 
 
         public IList<Modelo.Chofer> ListarChoferes()
         {
 
-            return Controladora.ControladoraChoferes.getINSTANCIA.ListarChoferes();
+            return Controladora.ControladoraChoferes.getINSTANCIA.ListarChoferes(flotaId);
         }
 
 

@@ -15,6 +15,7 @@ namespace Vista
         Controladora.SEGURIDAD.ControladoraUsuarios ctrlUsuarios = new Controladora.SEGURIDAD.ControladoraUsuarios();
         Controladora.SEGURIDAD.ControladoraPerfiles ctrlPerfiles = new Controladora.SEGURIDAD.ControladoraPerfiles();
         Controladora.SEGURIDAD.ControladoraGrupos ctrlGrupos = new Controladora.SEGURIDAD.ControladoraGrupos();
+        Controladora.SEGURIDAD.ControladoraFlotas ctrlFlotas = new Controladora.SEGURIDAD.ControladoraFlotas();
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -42,6 +43,8 @@ namespace Vista
                 //Response.Redirect("View/Index.aspx");
                 Modelo.SEGURIDAD.Grupo grupolUsuario = ctrlGrupos.ObtenerGrupodeUsuario(inputUsuario.Value);
 
+                Modelo.SEGURIDAD.Flota flotaUsuario = ctrlFlotas.ObtenerFlotadeUsuario(inputUsuario.Value);
+
                 				//Invoca a componente que se encarga del Cache de los datos
 				//en este caso de las páginas a las que el perfil tiene acceso
 				Modelo.SEGURIDAD.UserCache.AddPaginasToCache(grupolUsuario.IDGrupo, ctrlPerfiles.ObtenerFormularios(inputUsuario.Value),System.Web.HttpContext.Current); 
@@ -64,7 +67,20 @@ namespace Vista
 						new HttpCookie(FormsAuthentication.FormsCookieName,
 						crypTicket);
 
-				Response.Cookies.Add(authCookie); 
+				Response.Cookies.Add(authCookie);
+                Session["flotaId"] = flotaUsuario.Id.ToString();
+                  //Response.Cookies.
+
+
+                // Cookies con informacion del usuario
+                HttpCookie userInfoCookie = new HttpCookie("userInfoSGOFT");
+                userInfoCookie.Values["userName"] = inputUsuario.Value;
+                userInfoCookie.Values["grupoId"] = grupolUsuario.IDGrupo;
+                userInfoCookie.Values["flotaId"] = flotaUsuario.Id.ToString();
+                // userInfoCookie.Expires = DateTime.Now.AddDays(1);
+                Response.Cookies.Add(userInfoCookie);
+
+
  
 				// Redirecciono al Usuario - Importante!! no usar el RedirectFromLoginPage
 				// Para que se puedan usar las Cookies de los HttpModules

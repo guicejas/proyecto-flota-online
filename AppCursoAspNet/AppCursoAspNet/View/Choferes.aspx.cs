@@ -12,12 +12,15 @@ namespace Vista.View
     public partial class Choferes : System.Web.UI.Page
     {
         Controladora.SEGURIDAD.ControladoraPerfiles ctrlPerfiles = new Controladora.SEGURIDAD.ControladoraPerfiles();
+        Controladora.SEGURIDAD.ControladoraFlotas ctrlFlotas = new Controladora.SEGURIDAD.ControladoraFlotas();
+        public string flotaID;
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
             if (ctrlPerfiles.ObtenerFormularios(HttpContext.Current.User.Identity.Name).Exists(a => a == "Choferes"))
             {
+
                 if (!IsPostBack)
                 {
                     List<string> permisos = ctrlPerfiles.ObtenerPermisos(HttpContext.Current.User.Identity.Name, "Choferes");
@@ -44,9 +47,8 @@ namespace Vista.View
         public IList<Modelo.Chofer> ListChoferes_GetData()
         {
 
-            return Controladora.ControladoraChoferes.getINSTANCIA.ListarChoferes();
+            return Controladora.ControladoraChoferes.getINSTANCIA.ListarChoferes(ctrlFlotas.ObtenerFlotadeUsuario(this.Context.User.Identity.Name).Id.ToString());
         }
-
 
 
         //protected void btnFiltrar_Click(object sender, EventArgs e)

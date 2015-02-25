@@ -1,22 +1,55 @@
+
+-- --------------------------------------------------
+-- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
+-- --------------------------------------------------
+-- Date Created: 02/25/2015 12:22:54
+-- Generated from EDMX file: C:\Users\Windows 7\Documents\GitHub\proyecto-flota-online\AppCursoAspNet\Model\SEGURIDAD\SistFlota_Seguridad_Modelo.edmx
+-- --------------------------------------------------
+
+SET QUOTED_IDENTIFIER OFF;
+GO
+USE [SistFlota_Seguridad];
+GO
+IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
+GO
+
 -- --------------------------------------------------
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
 IF OBJECT_ID(N'[dbo].[FK_UsuarioGrupo_Usuario]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[UsuarioGrupo] DROP CONSTRAINT [FK_UsuarioGrupo_Usuario];
-
+GO
 IF OBJECT_ID(N'[dbo].[FK_UsuarioGrupo_Grupo]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[UsuarioGrupo] DROP CONSTRAINT [FK_UsuarioGrupo_Grupo];
-
+GO
 IF OBJECT_ID(N'[dbo].[FK_GrupoPerfil]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Perfiles] DROP CONSTRAINT [FK_GrupoPerfil];
-
+GO
 IF OBJECT_ID(N'[dbo].[FK_PerfilPermiso]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Perfiles] DROP CONSTRAINT [FK_PerfilPermiso];
-
+GO
 IF OBJECT_ID(N'[dbo].[FK_FormularioPerfil]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Perfiles] DROP CONSTRAINT [FK_FormularioPerfil];
-
+GO
+IF OBJECT_ID(N'[dbo].[FK_UsuarioFlota]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Usuarios] DROP CONSTRAINT [FK_UsuarioFlota];
+GO
+IF OBJECT_ID(N'[dbo].[FK_FlotaLicencia]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LicenciaSet] DROP CONSTRAINT [FK_FlotaLicencia];
+GO
+IF OBJECT_ID(N'[dbo].[FK_LicenciaTipoLicencia]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Licencias] DROP CONSTRAINT [FK_LicenciaTipoLicencia];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Demo_inherits_TipoLicencia]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Licencias_Demo] DROP CONSTRAINT [FK_Demo_inherits_TipoLicencia];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Premium_inherits_TipoLicencia]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Licencias_Premium] DROP CONSTRAINT [FK_Premium_inherits_TipoLicencia];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Basica_inherits_TipoLicencia]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Licencias_Basica] DROP CONSTRAINT [FK_Basica_inherits_TipoLicencia];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -24,22 +57,40 @@ IF OBJECT_ID(N'[dbo].[FK_FormularioPerfil]', 'F') IS NOT NULL
 
 IF OBJECT_ID(N'[dbo].[Permisos]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Permisos];
-
+GO
 IF OBJECT_ID(N'[dbo].[Perfiles]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Perfiles];
-
+GO
 IF OBJECT_ID(N'[dbo].[Formularios]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Formularios];
-
+GO
 IF OBJECT_ID(N'[dbo].[Grupos]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Grupos];
-
+GO
 IF OBJECT_ID(N'[dbo].[Usuarios]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Usuarios];
-
+GO
+IF OBJECT_ID(N'[dbo].[Flotas]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Flotas];
+GO
+IF OBJECT_ID(N'[dbo].[Licencias]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Licencias];
+GO
+IF OBJECT_ID(N'[dbo].[LicenciaSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[LicenciaSet];
+GO
+IF OBJECT_ID(N'[dbo].[Licencias_Demo]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Licencias_Demo];
+GO
+IF OBJECT_ID(N'[dbo].[Licencias_Premium]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Licencias_Premium];
+GO
+IF OBJECT_ID(N'[dbo].[Licencias_Basica]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Licencias_Basica];
+GO
 IF OBJECT_ID(N'[dbo].[UsuarioGrupo]', 'U') IS NOT NULL
     DROP TABLE [dbo].[UsuarioGrupo];
-
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -50,7 +101,7 @@ CREATE TABLE [dbo].[Permisos] (
     [IDPermiso] nvarchar(50)  NOT NULL,
     [Descripcion] nvarchar(max)  NOT NULL
 );
-
+GO
 
 -- Creating table 'Perfiles'
 CREATE TABLE [dbo].[Perfiles] (
@@ -59,21 +110,21 @@ CREATE TABLE [dbo].[Perfiles] (
     [Permiso_IDPermiso] nvarchar(50)  NOT NULL,
     [Formulario_IDFormulario] nvarchar(50)  NOT NULL
 );
-
+GO
 
 -- Creating table 'Formularios'
 CREATE TABLE [dbo].[Formularios] (
     [IDFormulario] nvarchar(50)  NOT NULL,
     [Descripcion] nvarchar(max)  NOT NULL
 );
-
+GO
 
 -- Creating table 'Grupos'
 CREATE TABLE [dbo].[Grupos] (
     [IDGrupo] nvarchar(50)  NOT NULL,
     [Descripcion] nvarchar(max)  NOT NULL
 );
-
+GO
 
 -- Creating table 'Usuarios'
 CREATE TABLE [dbo].[Usuarios] (
@@ -83,16 +134,64 @@ CREATE TABLE [dbo].[Usuarios] (
     [Email] nvarchar(max)  NOT NULL,
     [Habilitado] bit  NOT NULL,
     [Activo] bit  NOT NULL,
-    [PrimeraVez] bit  NOT NULL
+    [PrimeraVez] bit  NOT NULL,
+    [Flota_Id] int  NOT NULL
 );
+GO
 
+-- Creating table 'Flotas'
+CREATE TABLE [dbo].[Flotas] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [RazonSocial] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'Licencias'
+CREATE TABLE [dbo].[Licencias] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Duracion] nvarchar(max)  NOT NULL,
+    [Descripcion] nvarchar(max)  NOT NULL,
+    [Licencia_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'LicenciaSet'
+CREATE TABLE [dbo].[LicenciaSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [FechaInicio] datetime  NOT NULL,
+    [FechaFin] datetime  NOT NULL,
+    [FechaPago] datetime  NOT NULL,
+    [NroTransaccion] nvarchar(max)  NOT NULL,
+    [Flota_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'Licencias_Demo'
+CREATE TABLE [dbo].[Licencias_Demo] (
+    [Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'Licencias_Premium'
+CREATE TABLE [dbo].[Licencias_Premium] (
+    [CantUsuarios] int  NOT NULL,
+    [Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'Licencias_Basica'
+CREATE TABLE [dbo].[Licencias_Basica] (
+    [Patrocinador] nvarchar(max)  NOT NULL,
+    [Id] int  NOT NULL
+);
+GO
 
 -- Creating table 'UsuarioGrupo'
 CREATE TABLE [dbo].[UsuarioGrupo] (
     [Usuario_IDUsuario] nvarchar(50)  NOT NULL,
     [Grupo_IDGrupo] nvarchar(50)  NOT NULL
 );
-
+GO
 
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
@@ -102,37 +201,73 @@ CREATE TABLE [dbo].[UsuarioGrupo] (
 ALTER TABLE [dbo].[Permisos]
 ADD CONSTRAINT [PK_Permisos]
     PRIMARY KEY CLUSTERED ([IDPermiso] ASC);
-
+GO
 
 -- Creating primary key on [IDPerfil] in table 'Perfiles'
 ALTER TABLE [dbo].[Perfiles]
 ADD CONSTRAINT [PK_Perfiles]
     PRIMARY KEY CLUSTERED ([IDPerfil] ASC);
-
+GO
 
 -- Creating primary key on [IDFormulario] in table 'Formularios'
 ALTER TABLE [dbo].[Formularios]
 ADD CONSTRAINT [PK_Formularios]
     PRIMARY KEY CLUSTERED ([IDFormulario] ASC);
-
+GO
 
 -- Creating primary key on [IDGrupo] in table 'Grupos'
 ALTER TABLE [dbo].[Grupos]
 ADD CONSTRAINT [PK_Grupos]
     PRIMARY KEY CLUSTERED ([IDGrupo] ASC);
-
+GO
 
 -- Creating primary key on [IDUsuario] in table 'Usuarios'
 ALTER TABLE [dbo].[Usuarios]
 ADD CONSTRAINT [PK_Usuarios]
     PRIMARY KEY CLUSTERED ([IDUsuario] ASC);
+GO
 
+-- Creating primary key on [Id] in table 'Flotas'
+ALTER TABLE [dbo].[Flotas]
+ADD CONSTRAINT [PK_Flotas]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'Licencias'
+ALTER TABLE [dbo].[Licencias]
+ADD CONSTRAINT [PK_Licencias]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'LicenciaSet'
+ALTER TABLE [dbo].[LicenciaSet]
+ADD CONSTRAINT [PK_LicenciaSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'Licencias_Demo'
+ALTER TABLE [dbo].[Licencias_Demo]
+ADD CONSTRAINT [PK_Licencias_Demo]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'Licencias_Premium'
+ALTER TABLE [dbo].[Licencias_Premium]
+ADD CONSTRAINT [PK_Licencias_Premium]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'Licencias_Basica'
+ALTER TABLE [dbo].[Licencias_Basica]
+ADD CONSTRAINT [PK_Licencias_Basica]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
 
 -- Creating primary key on [Usuario_IDUsuario], [Grupo_IDGrupo] in table 'UsuarioGrupo'
 ALTER TABLE [dbo].[UsuarioGrupo]
 ADD CONSTRAINT [PK_UsuarioGrupo]
     PRIMARY KEY CLUSTERED ([Usuario_IDUsuario], [Grupo_IDGrupo] ASC);
-
+GO
 
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
@@ -145,7 +280,7 @@ ADD CONSTRAINT [FK_UsuarioGrupo_Usuario]
     REFERENCES [dbo].[Usuarios]
         ([IDUsuario])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
-
+GO
 
 -- Creating foreign key on [Grupo_IDGrupo] in table 'UsuarioGrupo'
 ALTER TABLE [dbo].[UsuarioGrupo]
@@ -154,13 +289,13 @@ ADD CONSTRAINT [FK_UsuarioGrupo_Grupo]
     REFERENCES [dbo].[Grupos]
         ([IDGrupo])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
-
+GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_UsuarioGrupo_Grupo'
 CREATE INDEX [IX_FK_UsuarioGrupo_Grupo]
 ON [dbo].[UsuarioGrupo]
     ([Grupo_IDGrupo]);
-
+GO
 
 -- Creating foreign key on [Grupo_IDGrupo] in table 'Perfiles'
 ALTER TABLE [dbo].[Perfiles]
@@ -169,13 +304,13 @@ ADD CONSTRAINT [FK_GrupoPerfil]
     REFERENCES [dbo].[Grupos]
         ([IDGrupo])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
-
+GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_GrupoPerfil'
 CREATE INDEX [IX_FK_GrupoPerfil]
 ON [dbo].[Perfiles]
     ([Grupo_IDGrupo]);
-
+GO
 
 -- Creating foreign key on [Permiso_IDPermiso] in table 'Perfiles'
 ALTER TABLE [dbo].[Perfiles]
@@ -184,13 +319,13 @@ ADD CONSTRAINT [FK_PerfilPermiso]
     REFERENCES [dbo].[Permisos]
         ([IDPermiso])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
-
+GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_PerfilPermiso'
 CREATE INDEX [IX_FK_PerfilPermiso]
 ON [dbo].[Perfiles]
     ([Permiso_IDPermiso]);
-
+GO
 
 -- Creating foreign key on [Formulario_IDFormulario] in table 'Perfiles'
 ALTER TABLE [dbo].[Perfiles]
@@ -199,13 +334,85 @@ ADD CONSTRAINT [FK_FormularioPerfil]
     REFERENCES [dbo].[Formularios]
         ([IDFormulario])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
-
+GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_FormularioPerfil'
 CREATE INDEX [IX_FK_FormularioPerfil]
 ON [dbo].[Perfiles]
     ([Formulario_IDFormulario]);
+GO
 
+-- Creating foreign key on [Flota_Id] in table 'Usuarios'
+ALTER TABLE [dbo].[Usuarios]
+ADD CONSTRAINT [FK_UsuarioFlota]
+    FOREIGN KEY ([Flota_Id])
+    REFERENCES [dbo].[Flotas]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UsuarioFlota'
+CREATE INDEX [IX_FK_UsuarioFlota]
+ON [dbo].[Usuarios]
+    ([Flota_Id]);
+GO
+
+-- Creating foreign key on [Flota_Id] in table 'LicenciaSet'
+ALTER TABLE [dbo].[LicenciaSet]
+ADD CONSTRAINT [FK_FlotaLicencia]
+    FOREIGN KEY ([Flota_Id])
+    REFERENCES [dbo].[Flotas]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_FlotaLicencia'
+CREATE INDEX [IX_FK_FlotaLicencia]
+ON [dbo].[LicenciaSet]
+    ([Flota_Id]);
+GO
+
+-- Creating foreign key on [Licencia_Id] in table 'Licencias'
+ALTER TABLE [dbo].[Licencias]
+ADD CONSTRAINT [FK_LicenciaTipoLicencia]
+    FOREIGN KEY ([Licencia_Id])
+    REFERENCES [dbo].[LicenciaSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_LicenciaTipoLicencia'
+CREATE INDEX [IX_FK_LicenciaTipoLicencia]
+ON [dbo].[Licencias]
+    ([Licencia_Id]);
+GO
+
+-- Creating foreign key on [Id] in table 'Licencias_Demo'
+ALTER TABLE [dbo].[Licencias_Demo]
+ADD CONSTRAINT [FK_Demo_inherits_TipoLicencia]
+    FOREIGN KEY ([Id])
+    REFERENCES [dbo].[Licencias]
+        ([Id])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Id] in table 'Licencias_Premium'
+ALTER TABLE [dbo].[Licencias_Premium]
+ADD CONSTRAINT [FK_Premium_inherits_TipoLicencia]
+    FOREIGN KEY ([Id])
+    REFERENCES [dbo].[Licencias]
+        ([Id])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Id] in table 'Licencias_Basica'
+ALTER TABLE [dbo].[Licencias_Basica]
+ADD CONSTRAINT [FK_Basica_inherits_TipoLicencia]
+    FOREIGN KEY ([Id])
+    REFERENCES [dbo].[Licencias]
+        ([Id])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
+GO
 
 -- --------------------------------------------------
 -- Script has ended

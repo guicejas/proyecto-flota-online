@@ -14,6 +14,6 @@ namespace Modelo.SEGURIDAD
     
     public partial class Premium : TipoLicencia
     {
-        public string CantUsuarios { get; set; }
+        public int CantUsuarios { get; set; }
     }
 }

@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/09/2014 20:48:42
--- Generated from EDMX file: C:\Users\atrinidad\Documents\Backup vp\Mio\Facu\AppCursoAspNet\Model\AUDITORIA\Sist_Flota_ModeloAuditoria.edmx
+-- Date Created: 02/23/2015 16:45:49
+-- Generated from EDMX file: C:\Users\Windows 7\Documents\GitHub\proyecto-flota-online\AppCursoAspNet\Model\AUDITORIA\Sist_Flota_ModeloAuditoria.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -25,6 +25,9 @@ GO
 IF OBJECT_ID(N'[dbo].[AudGastos]', 'U') IS NOT NULL
     DROP TABLE [dbo].[AudGastos];
 GO
+IF OBJECT_ID(N'[dbo].[LogInsOuts]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[LogInsOuts];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -44,7 +47,8 @@ CREATE TABLE [dbo].[AudGastos] (
     [Vehiculo] nvarchar(max)  NOT NULL,
     [Usuario] nvarchar(max)  NOT NULL,
     [FechayHora] datetime  NOT NULL,
-    [Operacion] nvarchar(max)  NOT NULL
+    [Operacion] nvarchar(max)  NOT NULL,
+    [IdFlota] nvarchar(max)  NOT NULL
 );
 GO
 

@@ -16,6 +16,7 @@ namespace Modelo
     {
         public Empresa()
         {
+            this.Activo = 1;
             this.CuentaCorriente = new HashSet<CuentaCorriente>();
         }
     
@@ -25,8 +26,8 @@ namespace Modelo
         public string Telefono { get; set; }
         public string Localidad { get; set; }
         public string Correo { get; set; }
-        public string fIDFlota { get; set; }
-        public string Activo { get; set; }
+        public int fIDFlota { get; set; }
+        public short Activo { get; set; }
     
         public virtual ICollection<CuentaCorriente> CuentaCorriente { get; set; }
     }

@@ -57,6 +57,8 @@ namespace Vista.View
             oChofer.FechaNacimiento = Convert.ToDateTime(this.FechNac.Value);
             oChofer.Correo = Convert.ToString(this.email.Value);
             oChofer.Telefono = this.Telefono.Text;
+            oChofer.fIDFlota = Convert.ToInt32(Server.HtmlEncode(Request.Cookies["userInfoSGOFT"]["flotaId"]));
+
             try
             {
                 Foto.SaveAs(Server.MapPath("~/Images/") + oChofer.Documento.ToString() + (Foto.FileName.Substring(Foto.FileName.Length - 4)));

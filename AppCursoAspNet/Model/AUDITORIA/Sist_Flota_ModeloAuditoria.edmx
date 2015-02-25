@@ -26,6 +26,7 @@
     <Property Name="Usuario" Type="nvarchar(max)" Nullable="false" />
     <Property Name="FechayHora" Type="datetime" Nullable="false" />
     <Property Name="Operacion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdFlota" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="LogInsOuts">
     <Key>
@@ -61,6 +62,7 @@
           <Property Name="Usuario" Type="String" Nullable="false" />
           <Property Name="FechayHora" Type="DateTime" Nullable="false" />
           <Property Name="Operacion" Type="String" Nullable="false" />
+          <Property Name="IdFlota" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="LoginLogout">
           <Key>
@@ -93,6 +95,7 @@
           <ScalarProperty Name="Usuario" ColumnName="Usuario" />
           <ScalarProperty Name="FechayHora" ColumnName="FechayHora" />
           <ScalarProperty Name="Operacion" ColumnName="Operacion" />
+          <ScalarProperty Name="IdFlota" ColumnName="IdFlota" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

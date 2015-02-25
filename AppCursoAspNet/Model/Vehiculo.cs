@@ -16,6 +16,7 @@ namespace Modelo
     {
         public Vehiculo()
         {
+            this.Activo = 1;
             this.Gasto = new HashSet<Gasto>();
             this.Turno = new HashSet<Turno>();
         }
@@ -28,8 +29,8 @@ namespace Modelo
         public string Color { get; set; }
         public int Kilometraje { get; set; }
         public int TurnoId { get; set; }
-        public string fIDFlota { get; set; }
-        public string Activo { get; set; }
+        public int fIDFlota { get; set; }
+        public short Activo { get; set; }
     
         public virtual ICollection<Gasto> Gasto { get; set; }
         public virtual ICollection<Turno> Turno { get; set; }

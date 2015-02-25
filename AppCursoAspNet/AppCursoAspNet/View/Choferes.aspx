@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Choferes.aspx.cs" Inherits="Vista.View.Choferes" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
     <div>
         <ol class="breadcrumb">
             <li><a href="Index.aspx">Inicio</a></li>
@@ -112,10 +113,9 @@
         </LayoutTemplate>
     </asp:ListView>
 
-    <asp:ObjectDataSource ID="ObjectChofer" runat="server" SelectMethod="ListChoferes_GetData" TypeName="Vista.View.Choferes"></asp:ObjectDataSource>
-           
-            
-            
+    <asp:ObjectDataSource ID="ObjectChofer" runat="server" SelectMethod="ListChoferes_GetData" TypeName="Vista.View.Choferes" >
+    </asp:ObjectDataSource>
+                        
                 <!-- Bootstrap Modal Dialog -->
 <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
