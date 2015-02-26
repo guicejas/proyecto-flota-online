@@ -36,7 +36,6 @@
 
 <body>
     <form>
-        <input type="hidden" id="idFlota" value="<%:Request.Cookies["userInfoSGOFT"]["flotaId"]%>" />
         <div class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">

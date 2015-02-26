@@ -37,6 +37,7 @@ namespace Vista.View
             oTurno.CantidadViajes = Convert.ToInt16(this.cantViajes.Text);
             oTurno.RecaudacionEfectivo = Convert.ToDecimal(this.recaudacion.Text);
             oTurno.Comentarios = this.comentarios.Text;
+            oTurno.fIDFlota = Convert.ToInt32(Server.HtmlEncode(Request.Cookies["userInfoSGOFT"]["flotaId"]));
 
             foreach (ListItem item in ListaGastos.Items)
             {

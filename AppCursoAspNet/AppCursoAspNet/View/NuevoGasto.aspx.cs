@@ -49,6 +49,7 @@ namespace Vista
             oGasto.Usuario = HttpContext.Current.User.Identity.Name;
             oGasto.FechayHora = DateTime.Now;
             oGasto.Operacion = "ALTA";
+            oGasto.fIDFlota = Convert.ToInt32(Server.HtmlEncode(Request.Cookies["userInfoSGOFT"]["flotaId"]));
             ControladoraGastos.getINSTANCIA.AgregarGasto(oGasto);
             Controladora.AUDITORIA.ControladoraAudGastos.getINSTANCIA.AuditarGastosMOD(oGasto);
             Response.Redirect("Gastos.aspx");

@@ -46,6 +46,7 @@ namespace Vista.View
             oEmpresa.Localidad = this.Localidad.Text;
             oEmpresa.Correo = Convert.ToString(this.email.Value);
             oEmpresa.Telefono = this.Telefono.Text;
+            oEmpresa.fIDFlota = Convert.ToInt32(Server.HtmlEncode(Request.Cookies["userInfoSGOFT"]["flotaId"]));
 
             if (ControladoraEmpresas.getINSTANCIA.VerificarEmpresa(oEmpresa))
             {

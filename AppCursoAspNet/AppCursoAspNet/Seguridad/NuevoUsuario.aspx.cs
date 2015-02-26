@@ -11,8 +11,8 @@ namespace Vista.Seguridad
     {
         Controladora.SEGURIDAD.ControladoraGrupos ctrlGrupos = new Controladora.SEGURIDAD.ControladoraGrupos();
         Controladora.SEGURIDAD.ControladoraUsuarios ctrlUsuarios = new Controladora.SEGURIDAD.ControladoraUsuarios();
-
         Controladora.SEGURIDAD.ControladoraPerfiles ctrlPerfiles = new Controladora.SEGURIDAD.ControladoraPerfiles();
+        Controladora.SEGURIDAD.ControladoraFlotas ctrlFlotas = new Controladora.SEGURIDAD.ControladoraFlotas();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -45,6 +45,7 @@ namespace Vista.Seguridad
             oUsuario.Habilitado = habilitado.Checked;
             oUsuario.Contraseña = "newuser";
             oUsuario.PrimeraVez = true;
+            oUsuario.Flota = ctrlFlotas.ObtenerFlota(this.DlFlota.SelectedValue.ToString());
 
             foreach (ListItem item in LbGrupos.Items)
             {

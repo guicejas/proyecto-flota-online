@@ -12,7 +12,7 @@ namespace Controladora.SEGURIDAD
 
         public List<Flota> ListarFlotas()
         {
-            return Modelo.SingletonSeguridad.ObtenerInstancia().Flotas.OrderBy(c => c.Id).ToList();
+            return Modelo.SingletonSeguridad.ObtenerInstancia().Flotas.OrderBy(c => c.RazonSocial).ToList();
         }
 
 
@@ -39,7 +39,9 @@ namespace Controladora.SEGURIDAD
 
         public Flota ObtenerFlota(string flotaId)
         {
-            Flota oFlota = Modelo.SingletonSeguridad.ObtenerInstancia().Flotas.Find(flotaId);
+            int idFlota = Convert.ToInt32(flotaId);
+
+            Flota oFlota = Modelo.SingletonSeguridad.ObtenerInstancia().Flotas.Find(idFlota);
             return oFlota;
         }
 

@@ -43,6 +43,7 @@ namespace Controladora.AUDITORIA
             oGastoAUDI.Usuario = oGasto.Usuario;
             oGastoAUDI.FechayHora = Convert.ToDateTime(oGasto.FechayHora);
             oGastoAUDI.Operacion = oGasto.Operacion;
+            oGastoAUDI.IdFlota = oGasto.fIDFlota.ToString();
 
             Modelo.SingletonAuditoria.ObtenerInstancia().AudGastos.Add(oGastoAUDI);
             Modelo.SingletonAuditoria.ObtenerInstancia().SaveChanges();
@@ -66,6 +67,7 @@ namespace Controladora.AUDITORIA
             oGastoAUDI.Usuario = oUsuario;
             oGastoAUDI.FechayHora = Convert.ToDateTime(oGasto.FechayHora);
             oGastoAUDI.Operacion = "BAJA";
+            oGastoAUDI.IdFlota = oGasto.fIDFlota.ToString();
 
             //Modelo.Auditoria.ObtenerInstancia().AudGastos.Add(oGastoAUDI);
             //Modelo.Auditoria.ObtenerInstancia().SaveChanges();

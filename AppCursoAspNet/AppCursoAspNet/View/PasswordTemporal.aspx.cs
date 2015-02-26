@@ -15,7 +15,7 @@ namespace Vista.View
         protected void Page_Load(object sender, EventArgs e)
         {
             if (ctrlUsuarios.BuscarUsuario(Context.User.Identity.Name).PrimeraVez != true)
-                Response.Redirect("View/Index.aspx");
+                Response.Redirect("Index.aspx");
         }
 
         protected void Change_Password(object sender, EventArgs e)
@@ -38,13 +38,13 @@ namespace Vista.View
 
             ctrlUsuarios.CambiarContraseña(Context.User.Identity.Name, txtPassNuevo.Value);
 
-            Response.Redirect("View/Index.aspx");
+            Response.Redirect("Index.aspx");
 
         }
 
         protected void Omitir_Password(object sender, EventArgs e)
         {
-            Response.Redirect("View/Index.aspx");
+            Response.Redirect("Index.aspx");
         }
     }
 }

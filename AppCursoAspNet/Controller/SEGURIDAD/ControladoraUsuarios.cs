@@ -177,9 +177,14 @@ namespace Controladora.SEGURIDAD
             return null;
         }
 
-        public List<Usuario> ListarUsuarios()
+        public List<Usuario> ListarUsuarios(string flotaId)
         {
-            return Modelo.SingletonSeguridad.ObtenerInstancia().Usuarios.ToList();
+            int flota = Convert.ToInt32(flotaId);
+
+            if (flota == 0)
+                return Modelo.SingletonSeguridad.ObtenerInstancia().Usuarios.ToList();
+            else
+                return Modelo.SingletonSeguridad.ObtenerInstancia().Usuarios.Where(oUsu => oUsu.Flota.Id == flota).ToList();
         }
 
         public bool VerificarUsuario(Usuario oUsuario)

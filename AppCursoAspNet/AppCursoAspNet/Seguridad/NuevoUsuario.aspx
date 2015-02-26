@@ -70,6 +70,21 @@
                 </td>
             </tr>
 
+                        <tr>
+                <td>Flota Perteneciente</td>
+                <td>
+                    <asp:DropDownList ID="DlFlota" CssClass="form-control" runat="server" DataSourceID="ObjectFlota" DataTextField="RazonSocial" DataValueField="Id" AppendDataBoundItems="true">
+                        <asp:ListItem Value="">Seleccionar flota</asp:ListItem>
+                    </asp:DropDownList>
+                    <asp:ObjectDataSource ID="ObjectFlota" runat="server" SelectMethod="ListarFlotas" TypeName="Controladora.SEGURIDAD.ControladoraFlotas"></asp:ObjectDataSource>
+                </td>
+                <td>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Debe seleccionar una flota" ControlToValidate="DlFlota" CssClass="alert-danger"></asp:RequiredFieldValidator></td>
+                <td style="width: 37px">
+                    <br />
+                </td>
+            </tr>
+
             <tr>
                 <td>&nbsp;</td>
                 <td>

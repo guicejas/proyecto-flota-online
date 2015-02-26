@@ -42,6 +42,7 @@ namespace Vista.View
             oVehiculo.Año = Convert.ToInt32(this.Año.Text);
             oVehiculo.Color = this.Color.Text;
             oVehiculo.Kilometraje = Convert.ToInt32(this.Kilometraje.Text);
+            oVehiculo.fIDFlota = Convert.ToInt32(Server.HtmlEncode(Request.Cookies["userInfoSGOFT"]["flotaId"]));
 
            if (ControladoraVehiculos.getINSTANCIA.VerificarVehiculo(oVehiculo))
             {

@@ -10,8 +10,8 @@ namespace Vista.Seguridad
     public partial class Usuarios : System.Web.UI.Page
     {
         Controladora.SEGURIDAD.ControladoraUsuarios ctrlUsuarios = new Controladora.SEGURIDAD.ControladoraUsuarios();
-
         Controladora.SEGURIDAD.ControladoraPerfiles ctrlPerfiles = new Controladora.SEGURIDAD.ControladoraPerfiles();
+        Controladora.SEGURIDAD.ControladoraFlotas ctrlFlotas = new Controladora.SEGURIDAD.ControladoraFlotas();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,7 +27,7 @@ namespace Vista.Seguridad
 
         public List<Modelo.SEGURIDAD.Usuario> GetUsuarios()
         {
-            return ctrlUsuarios.ListarUsuarios();
+            return ctrlUsuarios.ListarUsuarios(ctrlFlotas.ObtenerFlotadeUsuario(this.Context.User.Identity.Name).Id.ToString());
         }
 
         protected void listaUsuarios_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -40,14 +40,14 @@ namespace Vista.Seguridad
 
         protected void listaUsuarios_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            string grupoId = this.listaUsuarios.Rows[e.NewEditIndex].Cells[0].Text;
-            Response.Redirect("EditarUsuario?UsuarioId=" + grupoId);
+            string usuarioId = this.listaUsuarios.Rows[e.NewEditIndex].Cells[0].Text;
+            Response.Redirect("EditarUsuario?UsuarioId=" + usuarioId);
         }
 
         protected void listaUsuarios_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string grupoId = this.listaUsuarios.SelectedRow.Cells[0].Text;
-            Response.Redirect("VerUsuario?UsuarioId=" + grupoId);
+            string usuarioId = this.listaUsuarios.SelectedRow.Cells[0].Text;
+            Response.Redirect("VerUsuario?UsuarioId=" + usuarioId);
         }
 
         
