@@ -10,7 +10,6 @@
     <h2>Gastos</h2>
     <p>
         <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/View/NuevoGasto.aspx" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>Agregar Gasto</asp:HyperLink>
-        <a class="btn btn-large btn-success" data-toggle="confirmation" data-original-title="" title="">Click to toggle confirmation</a>
     </p>
     <form runat="server">
     <asp:ScriptManager ID="ScriptManager1" AllowCustomErrorsRedirect="false" runat="server"></asp:ScriptManager>

@@ -10,13 +10,15 @@
     
     <div class="text-center">
     <br />
-    Sistema Gestion de Flota de Taxis v0.23b
+    Sistema de Flota de Taxis v1.01b
     <br />
     <img src="../Images/Trypep.png" />
     <br />
-    TRYPEP ARGENTINA © - 2014
+    TRYPEP ARGENTINA © - 2015
     <br />
-    Cejas Guillermo - Trinidad Adelquis
+        Nuestra Mision:
+    <br />
+        Nuestra Vision:
     <br />
     </div>
 

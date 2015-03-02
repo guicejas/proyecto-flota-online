@@ -9,7 +9,7 @@
     </div>
     <h2>Perfiles</h2>
     <p>
-        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="NuevoPerfil.aspx" class="btn"><span class="glyphicon glyphicon-plus"></span>Agregar Perfil</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="NuevoPerfil.aspx" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>Agregar Perfil</asp:HyperLink>
     </p>
     <form runat="server">
         <asp:ScriptManager ID="ScriptManager1" AllowCustomErrorsRedirect="false" runat="server"></asp:ScriptManager>

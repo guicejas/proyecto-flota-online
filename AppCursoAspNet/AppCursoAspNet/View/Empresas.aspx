@@ -9,7 +9,7 @@
     </div>
     <h2>Empresas</h2>
     <p>
-        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/View/NuevoEmpresa.aspx" class="btn"><span class="glyphicon glyphicon-plus"></span>Agregar Empresa</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/View/NuevoEmpresa.aspx" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>Agregar Empresa</asp:HyperLink>
     </p>
     <form runat="server">
     <asp:ScriptManager ID="ScriptManager1" AllowCustomErrorsRedirect="false" runat="server"></asp:ScriptManager>

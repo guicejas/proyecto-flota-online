@@ -1,27 +1,33 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="EditarUsuario.aspx.cs" Inherits="Vista.Seguridad.EditarUsuario" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Registrarse.aspx.cs" Inherits="Vista.Registrarse" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <div>
+
+            <div>
         <ol class="breadcrumb">
-            <li><a href="../View/Index.aspx">Inicio</a></li>
-            <li><a href="Usuarios.aspx">Usuarios</a></li>
-            <li class="active">Editar Usuario</li>
+            <li class="active">Registrarse</li>
         </ol>
     </div>
-    <h2>Editar Usuario</h2>
-    <p>
-        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="Usuarios.aspx">Volver</asp:HyperLink>
-    </p>
 
-    <form runat="server">
+    <div class="well bs-component" style="margin: 0 auto; width: 800px;">
 
-        <table style="width: 81%;" class="table table-hover">
+ <form runat="server">
 
+        <table class="table table-hover">
+                        <tr>
+                <td>Nombre de Flota
+                </td>
+                <td>
+                    <asp:TextBox ID="flota" runat="server" CssClass="form-control" MaxLength="25"></asp:TextBox>
+                </td>
+                <td>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Ingrese un nombre de flota" ControlToValidate="flota" CssClass="alert-danger"></asp:RequiredFieldValidator>
+                </td>
+            </tr>
             <tr>
                 <td>Usuario
                 </td>
                 <td>
-                    <asp:TextBox ID="usuario" runat="server" CssClass="form-control" MaxLength="25" Enabled="false"></asp:TextBox>
+                    <asp:TextBox ID="usuario" runat="server" CssClass="form-control" MaxLength="25"></asp:TextBox>
                 </td>
                 <td>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Ingrese un usuario" ControlToValidate="usuario" CssClass="alert-danger"></asp:RequiredFieldValidator>
@@ -49,34 +55,18 @@
                 </td>
             </tr>
 
-
-            <tr>
-                <td>Flota Perteneciente
+             <tr>
+                <td>Licencia</td>
+                <td>
+                    <asp:DropDownList ID="DlLicencia" CssClass="form-control" runat="server" Enabled="false">
+                        <asp:ListItem Value="0">DEMO POR 30 DIAS</asp:ListItem>
+                    </asp:DropDownList>
                 </td>
                 <td>
-                    <asp:TextBox ID="flota" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Debe seleccionar una flota" ControlToValidate="DlLicencia" CssClass="alert-danger"></asp:RequiredFieldValidator></td>
+                <td style="width: 37px">
+                    <br />
                 </td>
-                <td></td>
-            </tr>
-
-
-
-            <tr>
-                <td>Grupos
-                </td>
-                <td>
-                    <asp:CheckBoxList ID="LbGrupos" runat="server" DataTextField="IDGrupo" DataValueField="IDGrupo" AppendDataBoundItems="true"></asp:CheckBoxList>
-                </td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td>Habilitado
-                </td>
-                <td>
-                    <asp:CheckBox ID="habilitado" runat="server" Checked="false"></asp:CheckBox>
-                </td>
-                <td></td>
             </tr>
 
             <tr>
@@ -88,5 +78,8 @@
             </tr>
         </table>
     </form>
-</asp:Content>
 
+    </div>
+
+
+</asp:Content>

@@ -10,7 +10,7 @@
 namespace Vista.Seguridad {
     
     
-    public partial class VerUsuario {
+    public partial class UsuariosFlota {
         
         /// <summary>
         /// HyperLink1 control.
@@ -22,57 +22,57 @@ namespace Vista.Seguridad {
         protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
         
         /// <summary>
-        /// usuario control.
+        /// mensaje control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox usuario;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mensaje;
         
         /// <summary>
-        /// nombreyapellido control.
+        /// mensajeTexto control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox nombreyapellido;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mensajeTexto;
         
         /// <summary>
-        /// email control.
+        /// ScriptManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl email;
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// flota control.
+        /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox flota;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// LbGrupos control.
+        /// listaUsuarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList LbGrupos;
+        protected global::System.Web.UI.WebControls.GridView listaUsuarios;
         
         /// <summary>
-        /// habilitado control.
+        /// ObjectUsuarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox habilitado;
+        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectUsuarios;
     }
 }

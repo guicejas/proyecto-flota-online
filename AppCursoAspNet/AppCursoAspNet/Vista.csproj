@@ -73,6 +73,7 @@
     <Content Include="Images\QlikViewPartner.jpg" />
     <Content Include="NoAutorizado.aspx" />
     <Content Include="Images\copy-item.png" />
+    <Content Include="Registrarse.aspx" />
     <Content Include="ResetPassword.aspx" />
     <Content Include="Content\bootstrap - Original.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -99,13 +100,17 @@
     <Content Include="Scripts\Site.js" />
     <Content Include="Seguridad\EditarGrupo.aspx" />
     <Content Include="Seguridad\EditarPerfil.aspx" />
+    <Content Include="Seguridad\EditarUsuarioFlota.aspx" />
     <Content Include="Seguridad\EditarUsuario.aspx" />
     <Content Include="Seguridad\Grupos.aspx" />
     <Content Include="Seguridad\NuevoGrupo.aspx" />
     <Content Include="Seguridad\NuevoPerfil.aspx" />
+    <Content Include="Seguridad\NuevoUsuarioFlota.aspx" />
     <Content Include="Seguridad\NuevoUsuario.aspx" />
     <Content Include="Seguridad\Perfiles.aspx" />
+    <Content Include="Seguridad\UsuariosFlota.aspx" />
     <Content Include="Seguridad\Usuarios.aspx" />
+    <Content Include="Seguridad\VerUsuarioFlota.aspx" />
     <Content Include="Seguridad\VerUsuario.aspx" />
     <Content Include="View\ReporteQlikView.aspx" />
     <Content Include="View\About.aspx" />
@@ -166,6 +171,13 @@
     <Compile Include="NoAutorizado.aspx.designer.cs">
       <DependentUpon>NoAutorizado.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Registrarse.aspx.cs">
+      <DependentUpon>Registrarse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registrarse.aspx.designer.cs">
+      <DependentUpon>Registrarse.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ResetPassword.aspx.cs">
       <DependentUpon>ResetPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -195,6 +207,13 @@
     <Compile Include="Seguridad\EditarPerfil.aspx.designer.cs">
       <DependentUpon>EditarPerfil.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Seguridad\EditarUsuarioFlota.aspx.cs">
+      <DependentUpon>EditarUsuarioFlota.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seguridad\EditarUsuarioFlota.aspx.designer.cs">
+      <DependentUpon>EditarUsuarioFlota.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Seguridad\EditarUsuario.aspx.cs">
       <DependentUpon>EditarUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -223,6 +242,13 @@
     <Compile Include="Seguridad\NuevoPerfil.aspx.designer.cs">
       <DependentUpon>NuevoPerfil.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Seguridad\NuevoUsuarioFlota.aspx.cs">
+      <DependentUpon>NuevoUsuarioFlota.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seguridad\NuevoUsuarioFlota.aspx.designer.cs">
+      <DependentUpon>NuevoUsuarioFlota.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Seguridad\NuevoUsuario.aspx.cs">
       <DependentUpon>NuevoUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -237,12 +263,26 @@
     <Compile Include="Seguridad\Perfiles.aspx.designer.cs">
       <DependentUpon>Perfiles.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Seguridad\UsuariosFlota.aspx.cs">
+      <DependentUpon>UsuariosFlota.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seguridad\UsuariosFlota.aspx.designer.cs">
+      <DependentUpon>UsuariosFlota.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Seguridad\Usuarios.aspx.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Seguridad\Usuarios.aspx.designer.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\VerUsuarioFlota.aspx.cs">
+      <DependentUpon>VerUsuarioFlota.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seguridad\VerUsuarioFlota.aspx.designer.cs">
+      <DependentUpon>VerUsuarioFlota.aspx</DependentUpon>
     </Compile>
     <Compile Include="Seguridad\VerUsuario.aspx.cs">
       <DependentUpon>VerUsuario.aspx</DependentUpon>

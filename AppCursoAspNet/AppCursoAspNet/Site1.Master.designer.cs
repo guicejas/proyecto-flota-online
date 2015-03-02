@@ -13,6 +13,15 @@ namespace Vista {
     public partial class Site1 {
         
         /// <summary>
+        /// flotaUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label flotaUser;
+        
+        /// <summary>
         /// menuPrincipal control.
         /// </summary>
         /// <remarks>
@@ -119,6 +128,15 @@ namespace Vista {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl menuNuevaEmpresa;
+        
+        /// <summary>
+        /// menuSistema control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl menuSistema;
         
         /// <summary>
         /// menuAdministracion control.

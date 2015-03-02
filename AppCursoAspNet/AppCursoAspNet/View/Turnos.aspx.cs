@@ -59,7 +59,7 @@ namespace Vista.View
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
                 upModal.Update();
             }
-            //e.Cancel = true;
+            e.Cancel = true;
             //this.listaTurnos.DataSource = null;
         }
 

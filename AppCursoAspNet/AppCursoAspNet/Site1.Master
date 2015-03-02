@@ -6,7 +6,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sistema Gestion Flota de Taxis Online - Trypep sistemas - 2014</title>
+    <title>Sistema Flota de Taxis Online - Trypep sistemas - 2015</title>
     <link rel="shortcut icon" href="Images/taxi.ico" type="image/x-icon" />
 
     <link href="Content/bootstrap.css" rel="stylesheet" />
@@ -44,7 +44,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/View/Index">Flota Taxis Online</a>
+                    <a class="navbar-brand" runat="server" href="~/View/Index"><asp:Label ID="flotaUser" runat="server" Text="Flota Online"></asp:Label></a>
                 </div>
                 <div class="navbar-collapse collapse navbar-responsive-collapse">
                     <div id="menuPrincipal" runat="server">
@@ -90,10 +90,21 @@
                            </ul>
                        </li>
 
-                       <li class="dropdown" runat="server" id="menuAdministracion">
-                           <a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-adjust_alt yellow-icon"></span>Administración<b class="caret"></b></a>
+                        <li class="dropdown" runat="server" id="menuSistema">
+                           <a runat="server" href="~/View/Empresas" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cogwheel yellow-icon"></span>Sistema<b class="caret"></b></a>
                            <ul class="dropdown-menu">
-                               <li><a href="../Seguridad/Usuarios"><span class="glyphicon glyphicon-group yellow-icon"></span>Gestionar Usuarios</a></li>
+                               <li><a href="../Seguridad/UsuariosFlota"><span class="glyphicon glyphicon-group yellow-icon"></span>Gestionar Usuarios</a></li>
+                               <li><a href="../Seguridad/LicenciaFlota"><span class="glyphicon glyphicon-star yellow-icon"></span>Licencia</a></li>
+                           </ul>
+                       </li>
+
+                       <li class="dropdown" runat="server" id="menuAdministracion">
+                           <a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-adjust_alt yellow-icon"></span>Admin<b class="caret"></b></a>
+                           <ul class="dropdown-menu">
+                               <li><a href="../Seguridad/Usuarios"><span class="glyphicon glyphicon-address_book yellow-icon"></span>Gestionar Flotas</a></li>
+                               <li><a href="../Seguridad/Usuarios"><span class="glyphicon glyphicon-log_book yellow-icon"></span>Gestionar Licencias</a></li>
+                               <li class="divider"></li>
+                               <li><a href="../Seguridad/Usuarios"><span class="glyphicon glyphicon-parents yellow-icon"></span>Gestionar Usuarios</a></li>
                                <li><a href="../Seguridad/Grupos"><span class="glyphicon glyphicon-group yellow-icon"></span>Gestionar Grupos</a></li>
                                <li><a href="../Seguridad/Perfiles"><span class="glyphicon glyphicon-group yellow-icon"></span>Gestionar Perfiles</a></li>
                                <li class="divider"></li>

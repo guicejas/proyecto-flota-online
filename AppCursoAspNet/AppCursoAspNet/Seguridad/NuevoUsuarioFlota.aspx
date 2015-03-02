@@ -1,14 +1,14 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="EditarUsuario.aspx.cs" Inherits="Vista.Seguridad.EditarUsuario" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="NuevoUsuarioFlota.aspx.cs" Inherits="Vista.Seguridad.NuevoUsuarioFlota" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div>
         <ol class="breadcrumb">
             <li><a href="../View/Index.aspx">Inicio</a></li>
-            <li><a href="Usuarios.aspx">Usuarios</a></li>
-            <li class="active">Editar Usuario</li>
+            <li><a href="UsuariosFlota.aspx">Usuarios</a></li>
+            <li class="active">Nuevo Usuario</li>
         </ol>
     </div>
-    <h2>Editar Usuario</h2>
+    <h2>Alta de Usuario</h2>
     <p>
         <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="Usuarios.aspx">Volver</asp:HyperLink>
     </p>
@@ -21,7 +21,7 @@
                 <td>Usuario
                 </td>
                 <td>
-                    <asp:TextBox ID="usuario" runat="server" CssClass="form-control" MaxLength="25" Enabled="false"></asp:TextBox>
+                    <asp:TextBox ID="usuario" runat="server" CssClass="form-control" MaxLength="25"></asp:TextBox>
                 </td>
                 <td>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Ingrese un usuario" ControlToValidate="usuario" CssClass="alert-danger"></asp:RequiredFieldValidator>
@@ -49,34 +49,39 @@
                 </td>
             </tr>
 
-
-            <tr>
-                <td>Flota Perteneciente
-                </td>
-                <td>
-                    <asp:TextBox ID="flota" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
-                </td>
-                <td></td>
-            </tr>
-
-
-
-            <tr>
+                        <tr>
                 <td>Grupos
                 </td>
                 <td>
-                    <asp:CheckBoxList ID="LbGrupos" runat="server" DataTextField="IDGrupo" DataValueField="IDGrupo" AppendDataBoundItems="true"></asp:CheckBoxList>
+                    <asp:CheckBoxList ID="LbGrupos" runat="server" DataSourceID="ObjectGrupos" DataTextField="IDGrupo" DataValueField="IDGrupo" AppendDataBoundItems="true" ></asp:CheckBoxList>
+                    <asp:ObjectDataSource ID="ObjectGrupos" runat="server" SelectMethod="ListarGruposFlota" TypeName="Controladora.SEGURIDAD.ControladoraGrupos"></asp:ObjectDataSource>
                 </td>
-                <td></td>
+                <td>
+               </td>
             </tr>
 
-            <tr>
+                        <tr>
                 <td>Habilitado
                 </td>
                 <td>
                     <asp:CheckBox ID="habilitado" runat="server" Checked="false"></asp:CheckBox>
                 </td>
-                <td></td>
+                <td>
+                </td>
+            </tr>
+
+                        <tr>
+                <td>Flota Perteneciente</td>
+                <td>
+                    <asp:DropDownList ID="DlFlota" CssClass="form-control" runat="server" DataSourceID="ObjectFlota" DataTextField="RazonSocial" DataValueField="Id" AppendDataBoundItems="true" Enabled="false">
+                    </asp:DropDownList>
+                    <asp:ObjectDataSource ID="ObjectFlota" runat="server" SelectMethod="ListarFlotas" TypeName="Controladora.SEGURIDAD.ControladoraFlotas"></asp:ObjectDataSource>
+                </td>
+                <td>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Debe seleccionar una flota" ControlToValidate="DlFlota" CssClass="alert-danger"></asp:RequiredFieldValidator></td>
+                <td style="width: 37px">
+                    <br />
+                </td>
             </tr>
 
             <tr>

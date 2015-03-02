@@ -43,6 +43,11 @@
                         <asp:Button UseSubmitBehavior="true" CssClass="btn btn-primary" runat="server" ID="btnIngresar" OnClick="LoginSistema_Authenticate" Text="Ingresar" />
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <a href="Registrarse" style="float: left; margin-left: 60px;" class="text-warning text-center">REGISTRATE y obtene una demo por 30 dias!</a>
+                </div>
+
             </fieldset>
 
         </form>

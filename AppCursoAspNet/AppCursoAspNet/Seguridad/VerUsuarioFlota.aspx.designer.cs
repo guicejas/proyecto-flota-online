@@ -10,7 +10,7 @@
 namespace Vista.Seguridad {
     
     
-    public partial class VerUsuario {
+    public partial class VerUsuarioFlota {
         
         /// <summary>
         /// HyperLink1 control.

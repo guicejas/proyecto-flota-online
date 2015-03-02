@@ -6,9 +6,9 @@
             <li class="active">Mi cuenta</li>
         </ol>
     </div>
-    <h2>Editar Usuario</h2>
+    <h2>Mi Cuenta</h2>
     <p>
-        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="Usuarios.aspx">Volver</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="../View/Index.aspx">Volver</asp:HyperLink>
     </p>
 
     <form runat="server">
@@ -47,6 +47,16 @@
                 </td>
             </tr>
 
+                                   <tr>
+                <td>Flota Perteneciente
+                </td>
+                <td>
+                    <asp:TextBox ID="flota" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </td>
+                <td>
+                </td>
+            </tr>
+
             <tr>
                 <td>Grupo
                 </td>
@@ -61,7 +71,7 @@
             <tr>
                 <td>&nbsp;</td>
                 <td>
-                    <asp:Button ID="aceptar" runat="server" OnClick="aceptar_Click" CssClass="btn-success" Text="Aceptar" />
+                    <asp:Button ID="aceptar" runat="server" OnClick="aceptar_Click" CssClass="btn btn-success" Text="Aceptar" />
                 </td>
                 <td>&nbsp;</td>
             </tr>

@@ -11,7 +11,7 @@
     <br />
     <h2>Monitor de Gastos</h2>
     <hr />
-    <div class="progress">
+    <div class="progress progress-striped active">
         <div id="barraVerde" class="progress-bar progress-bar-success" style="" title="Gastos en fecha aceptable" runat="server"></div>
         <div id="barraAmarilla" class="progress-bar progress-bar-warning" style="" title="Gastos en fecha cercana" runat="server"></div>
         <div id="barraRoja" class="progress-bar progress-bar-danger" style="" title="Gastos en fecha límite" runat="server"></div>

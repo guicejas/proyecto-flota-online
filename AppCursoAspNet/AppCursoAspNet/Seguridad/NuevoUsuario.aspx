@@ -88,7 +88,7 @@
             <tr>
                 <td>&nbsp;</td>
                 <td>
-                    <asp:Button ID="aceptar" runat="server" OnClick="aceptar_Click" CssClass="btn-success" Text="Aceptar" />
+                    <asp:Button ID="aceptar" runat="server" OnClick="aceptar_Click" CssClass="btn btn-success" Text="Aceptar" />
                 </td>
                 <td>&nbsp;</td>
             </tr>

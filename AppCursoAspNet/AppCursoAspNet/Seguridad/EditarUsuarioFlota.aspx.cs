@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Vista.Seguridad
 {
-    public partial class EditarUsuario : System.Web.UI.Page
+    public partial class EditarUsuarioFlota : System.Web.UI.Page
     {
         Controladora.SEGURIDAD.ControladoraGrupos ctrlGrupos = new Controladora.SEGURIDAD.ControladoraGrupos();
         Controladora.SEGURIDAD.ControladoraUsuarios ctrlUsuarios = new Controladora.SEGURIDAD.ControladoraUsuarios();
@@ -17,7 +17,7 @@ namespace Vista.Seguridad
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!ctrlPerfiles.ObtenerFormularios(HttpContext.Current.User.Identity.Name).Exists(a => a == "Administracion"))
+            if (!ctrlPerfiles.ObtenerFormularios(HttpContext.Current.User.Identity.Name).Exists(a => a == "Sistema"))
                 Response.Redirect("~/NoAutorizado.aspx");
 
             if (!IsPostBack)
@@ -33,7 +33,7 @@ namespace Vista.Seguridad
                     this.habilitado.Checked = oUsuario.Habilitado;
                     this.flota.Text = oUsuario.Flota.RazonSocial;
 
-                    foreach (Modelo.SEGURIDAD.Grupo i in ctrlGrupos.ListarGrupos())
+                    foreach (Modelo.SEGURIDAD.Grupo i in ctrlGrupos.ListarGruposFlota())
                     {
                         ListItem item = new ListItem();
                         item.Text = i.IDGrupo.ToString();
@@ -89,7 +89,7 @@ namespace Vista.Seguridad
             }
 
                 ctrlUsuarios.ModificarUsuario(oUsuario);
-                Response.Redirect("Usuarios.aspx");
+                Response.Redirect("UsuariosFlota.aspx");
  
         }
 

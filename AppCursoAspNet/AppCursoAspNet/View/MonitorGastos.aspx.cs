@@ -9,6 +9,9 @@ namespace Vista.View
 {
     public partial class MonitorGastos : System.Web.UI.Page
     {
+        string flotaId;
+        Controladora.SEGURIDAD.ControladoraFlotas ctrlFlotas = new Controladora.SEGURIDAD.ControladoraFlotas();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             ActualizarBarra();
@@ -17,18 +20,21 @@ namespace Vista.View
 
         public IList<Modelo.Gasto> ListMonitorGastos_GetData()
         {
-            return Controladora.ControladoraGastos.getINSTANCIA.ListarGastosMonitor();
+            return Controladora.ControladoraGastos.getINSTANCIA.ListarGastosMonitor(ctrlFlotas.ObtenerFlotadeUsuario(this.Context.User.Identity.Name).Id.ToString());
         }
 
         public void ActualizarBarra()
         {
+            if (Request.Cookies["userInfoSGOFT"] != null)
+                flotaId = Server.HtmlEncode(Request.Cookies["userInfoSGOFT"]["flotaId"]);
+
             double porcRojo = 0;
             double porcAmarillo = 0;
             double porcVerde = 0;
 
-            double rojo = Controladora.ControladoraGastos.getINSTANCIA.BarraProgresoRojo();
-            double amarillo = Controladora.ControladoraGastos.getINSTANCIA.BarraProgresoAmarillo();
-            double verde = Controladora.ControladoraGastos.getINSTANCIA.BarraProgresoVerde();
+            double rojo = Controladora.ControladoraGastos.getINSTANCIA.BarraProgresoRojo(flotaId);
+            double amarillo = Controladora.ControladoraGastos.getINSTANCIA.BarraProgresoAmarillo(flotaId);
+            double verde = Controladora.ControladoraGastos.getINSTANCIA.BarraProgresoVerde(flotaId);
             double total = rojo + amarillo + verde;
             if (rojo > 0)
             {porcRojo = Math.Round((rojo * 100) / total, 2); };

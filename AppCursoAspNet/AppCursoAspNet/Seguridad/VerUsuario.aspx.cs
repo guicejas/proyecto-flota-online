@@ -29,6 +29,7 @@ namespace Vista.Seguridad
                     this.nombreyapellido.Text = oUsuario.NombreApellido;
                     this.email.Value = oUsuario.Email;
                     this.habilitado.Checked = oUsuario.Habilitado;
+                    this.flota.Text = oUsuario.Flota.RazonSocial;
 
                     foreach (Modelo.SEGURIDAD.Grupo i in ctrlGrupos.ListarGrupos())
                     {

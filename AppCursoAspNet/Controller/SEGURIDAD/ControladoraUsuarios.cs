@@ -27,13 +27,13 @@ namespace Controladora.SEGURIDAD
                 Modelo.SingletonSeguridad.ObtenerInstancia().Grupos.Add(oGrupo);
 
                 Grupo aGrupo = new Grupo();
-                aGrupo.IDGrupo = "Chofer";
-                aGrupo.Descripcion = "Grupo de Choferes";
+                aGrupo.IDGrupo = "Propietario";
+                aGrupo.Descripcion = "Grupo de Propietarios de flota";
                 Modelo.SingletonSeguridad.ObtenerInstancia().Grupos.Add(aGrupo);
 
                 Grupo bGrupo = new Grupo();
-                bGrupo.IDGrupo = "Contador";
-                bGrupo.Descripcion = "Grupo de Contadores";
+                bGrupo.IDGrupo = "Operario";
+                bGrupo.Descripcion = "Grupo de Operarios de Flota";
                 Modelo.SingletonSeguridad.ObtenerInstancia().Grupos.Add(bGrupo);
 
                 // Fromularios - Paginas
@@ -42,6 +42,11 @@ namespace Controladora.SEGURIDAD
                 aFormulario.IDFormulario = "Administracion";
                 aFormulario.Descripcion = "Formulario de Gestion de Administracion";
                 Modelo.SingletonSeguridad.ObtenerInstancia().Formularios.Add(aFormulario);
+
+                Formulario sFormulario = new Formulario();
+                sFormulario.IDFormulario = "Sistema";
+                sFormulario.Descripcion = "Formulario de Sistema";
+                Modelo.SingletonSeguridad.ObtenerInstancia().Formularios.Add(sFormulario);
 
                 Formulario cFormulario = new Formulario();
                 cFormulario.IDFormulario = "Choferes";
@@ -95,11 +100,12 @@ namespace Controladora.SEGURIDAD
                 cPermiso.Descripcion = "Permisos totales sobre el formulario";
                 Modelo.SingletonSeguridad.ObtenerInstancia().Permisos.Add(cPermiso);
 
+
+                // Perfil Administrador
+
                 Flota oFlota = new Flota();
                 oFlota.RazonSocial = "TRYPEP";
                 Modelo.SingletonSeguridad.ObtenerInstancia().Flotas.Add(oFlota);
-
-                // Perfil Administrador
 
                 Perfil oPerfil = new Perfil();
                 oPerfil.Formulario = aFormulario;

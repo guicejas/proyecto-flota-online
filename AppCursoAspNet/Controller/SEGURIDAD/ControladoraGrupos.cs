@@ -16,6 +16,12 @@ namespace Controladora.SEGURIDAD
         }
 
 
+        public List<Grupo> ListarGruposFlota()
+        {
+            return Modelo.SingletonSeguridad.ObtenerInstancia().Grupos.Where(g => g.IDGrupo != "Administrador").Where(g => g.IDGrupo != "Popietario").OrderBy(c => c.IDGrupo).ToList();
+        }
+
+
         public void AgregarGrupo(Grupo oGrupo)
         {
             Modelo.SingletonSeguridad.ObtenerInstancia().Grupos.Add(oGrupo);

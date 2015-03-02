@@ -45,14 +45,16 @@ namespace Vista.View
                     oTurno.Gasto.Add(Controladora.ControladoraGastos.getINSTANCIA.ObtenerGasto(Convert.ToInt32(item.Value)));
             }
 
-            Modelo.CuentaCorriente oCC = new Modelo.CuentaCorriente();
-            oCC.Empresa = Controladora.ControladoraEmpresas.getINSTANCIA.ObtenerEmpresa(Convert.ToInt32(this.DlEmpresas.SelectedValue));
-            oCC.Estado = "Pendiente";
-            oCC.Fecha = Convert.ToDateTime(this.dateFechaInicio.Value);
-            oCC.Monto = Convert.ToDecimal(this.montoCC.Text);
+            if (DlEmpresas.SelectedValue != "")
+            {
+                Modelo.CuentaCorriente oCC = new Modelo.CuentaCorriente();
+                oCC.Empresa = Controladora.ControladoraEmpresas.getINSTANCIA.ObtenerEmpresa(Convert.ToInt32(this.DlEmpresas.SelectedValue));
+                oCC.Estado = "Pendiente";
+                oCC.Fecha = Convert.ToDateTime(this.dateFechaInicio.Value);
+                oCC.Monto = Convert.ToDecimal(this.montoCC.Text);
 
-            oTurno.CuentaCorriente.Add(oCC);
-
+                oTurno.CuentaCorriente.Add(oCC);
+            }
             Controladora.ControladoraTurnos.getINSTANCIA.AgregarTurno(oTurno);
 
             Response.Redirect("Turnos.aspx");
@@ -63,27 +65,27 @@ namespace Vista.View
         public IList<Modelo.Vehiculo> ListarVehiculos()
         {
 
-            return Controladora.ControladoraVehiculos.getINSTANCIA.ListarVehiculos(flotaId);
+            return Controladora.ControladoraVehiculos.getINSTANCIA.ListarVehiculos(ctrlFlotas.ObtenerFlotadeUsuario(this.Context.User.Identity.Name).Id.ToString());
         }
 
         public IList<Modelo.Gasto> ListarGastos()
         {
 
-            return Controladora.ControladoraGastos.getINSTANCIA.ListarGastos(flotaId);
+            return Controladora.ControladoraGastos.getINSTANCIA.ListarGastos(ctrlFlotas.ObtenerFlotadeUsuario(this.Context.User.Identity.Name).Id.ToString());
         }
 
 
         public IList<Modelo.Empresa> ListarEmpresas()
         {
 
-            return Controladora.ControladoraEmpresas.getINSTANCIA.ListarEmpresas(flotaId);
+            return Controladora.ControladoraEmpresas.getINSTANCIA.ListarEmpresas(ctrlFlotas.ObtenerFlotadeUsuario(this.Context.User.Identity.Name).Id.ToString());
         }
 
 
         public IList<Modelo.Chofer> ListarChoferes()
         {
 
-            return Controladora.ControladoraChoferes.getINSTANCIA.ListarChoferes(flotaId);
+            return Controladora.ControladoraChoferes.getINSTANCIA.ListarChoferes(ctrlFlotas.ObtenerFlotadeUsuario(this.Context.User.Identity.Name).Id.ToString());
         }
 
 

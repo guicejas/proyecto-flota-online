@@ -11,6 +11,8 @@ namespace Vista
     public partial class Site1 : System.Web.UI.MasterPage
     {
         Controladora.SEGURIDAD.ControladoraPerfiles ctrlPerfiles = new Controladora.SEGURIDAD.ControladoraPerfiles();
+        Controladora.SEGURIDAD.ControladoraFlotas ctrlFlotas = new Controladora.SEGURIDAD.ControladoraFlotas();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.Context.User.Identity.IsAuthenticated)
@@ -22,9 +24,12 @@ namespace Vista
             }
             else
             {
+                flotaUser.Text = ctrlFlotas.ObtenerFlotadeUsuario(HttpContext.Current.User.Identity.Name).RazonSocial;
+
                List<string> formularios = ctrlPerfiles.ObtenerFormularios(this.Context.User.Identity.Name);
 
                menuAdministracion.Visible = false;
+               menuSistema.Visible = false;
                menuChoferes.Visible = false;
                menuEmpresas.Visible = false;
                menuGastos.Visible = false;
@@ -35,6 +40,9 @@ namespace Vista
 
                if (formularios.Exists(f => f == "Administracion"))
                    menuAdministracion.Visible = true;
+
+               if (formularios.Exists(f => f == "Sistema"))
+                   menuSistema.Visible = true;
 
                if (formularios.Exists(f => f == "Choferes"))
                {

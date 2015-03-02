@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Usuarios.aspx.cs" Inherits="Vista.Seguridad.Usuarios" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="UsuariosFlota.aspx.cs" Inherits="Vista.Seguridad.UsuariosFlota" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div>
         <ol class="breadcrumb">
@@ -8,7 +8,7 @@
     </div>
     <h2>Usuarios</h2>
     <p>
-        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="NuevoUsuario.aspx" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>Agregar Usuario</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="NuevoUsuarioFlota.aspx" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>Agregar Usuario</asp:HyperLink>
     </p>
     <form runat="server">
 
@@ -29,7 +29,6 @@
                 <AlternatingRowStyle BackColor="White" ForeColor="WhiteSmoke" />
                 <Columns>
                     <asp:BoundField DataField="IDUsuario" HeaderText="Usuario" />
-                    <asp:BoundField DataField="Flota.Id" HeaderText="Flota ID" />
                     <asp:BoundField DataField="NombreApellido" HeaderText="Nombre y Apellido" />
                     <asp:BoundField DataField="Email" HeaderText="Email" />
                     <asp:BoundField DataField="estaHabilitado" HeaderText="Habilitado" />

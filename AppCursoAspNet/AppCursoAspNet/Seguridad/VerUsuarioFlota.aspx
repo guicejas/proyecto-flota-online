@@ -1,16 +1,16 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="VerUsuario.aspx.cs" Inherits="Vista.Seguridad.VerUsuario" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="VerUsuarioFlota.aspx.cs" Inherits="Vista.Seguridad.VerUsuarioFlota" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div>
         <ol class="breadcrumb">
             <li><a href="../View/Index.aspx">Inicio</a></li>
-            <li><a href="Usuarios.aspx">Usuarios</a></li>
+            <li><a href="UsuariosFlota.aspx">Usuarios</a></li>
             <li class="active">Ver Usuario</li>
         </ol>
     </div>
     <h2>Ver Usuario</h2>
     <p>
-        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="UsuariosFlota.aspx">Volver</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="Usuarios.aspx">Volver</asp:HyperLink>
     </p>
 
     <form runat="server">

@@ -122,9 +122,16 @@ namespace Controladora
              Modelo.Datos.ObtenerInstancia().Refresh(System.Data.Objects.RefreshMode.StoreWins, Modelo.Datos.ObtenerInstancia().Gasto);
          }*/
 
-        public List<Modelo.Gasto> ListarGastosMonitor()
+        public List<Modelo.Gasto> ListarGastosMonitor(string flotaId)
         {
-            List<Modelo.Gasto> Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.OrderBy(x => x.FechaVencimiento).ToList();
+            int flota = Convert.ToInt32(flotaId);
+            List<Modelo.Gasto> Filtrado;
+
+            if (flota == 0)
+                Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.OrderBy(x => x.FechaVencimiento).ToList();
+            else
+                Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.Where(oGas => oGas.fIDFlota == flota).OrderBy(x => x.FechaVencimiento).ToList();
+
             //Filtrado = Filtrado.Where(oGas => oGas.FechaVencimiento.Date >= DateTime.Today.Date).ToList();
             Filtrado = Filtrado.Where(oGas => oGas.FechaVencimiento.Date < DateTime.Today.Date.AddDays(15)).ToList();
             Filtrado = Filtrado.Where(oGas => oGas.Estado == "PENDIENTE").ToList();
@@ -133,9 +140,16 @@ namespace Controladora
 
         }
 
-        public List<Modelo.Gasto> ListarGastosVerde()
+        public List<Modelo.Gasto> ListarGastosVerde(string flotaId)
         {
-            List<Modelo.Gasto> Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.OrderBy(x => x.FechaVencimiento).ToList();
+            int flota = Convert.ToInt32(flotaId);
+            List<Modelo.Gasto> Filtrado;
+
+            if (flota == 0)
+                Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.OrderBy(x => x.FechaVencimiento).ToList();
+            else
+                Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.Where(oGas => oGas.fIDFlota == flota).OrderBy(x => x.FechaVencimiento).ToList();
+
 
             Filtrado = Filtrado.Where(oGas => oGas.FechaVencimiento.Date <= DateTime.Today.Date.AddDays(15)).ToList();
             Filtrado = Filtrado.Where(oGas => oGas.Estado == "PENDIENTE").ToList();
@@ -144,9 +158,15 @@ namespace Controladora
 
         }
 
-        public List<Modelo.Gasto> ListarGastosAmarillo()
+        public List<Modelo.Gasto> ListarGastosAmarillo(string flotaId)
         {
-            List<Modelo.Gasto> Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.OrderBy(x => x.FechaVencimiento).ToList();
+            int flota = Convert.ToInt32(flotaId);
+            List<Modelo.Gasto> Filtrado;
+
+            if (flota == 0)
+                Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.OrderBy(x => x.FechaVencimiento).ToList();
+            else
+                Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.Where(oGas => oGas.fIDFlota == flota).OrderBy(x => x.FechaVencimiento).ToList();
 
             Filtrado = Filtrado.Where(oGas => oGas.FechaVencimiento.Date <= DateTime.Today.Date.AddDays(7)).ToList();
             Filtrado = Filtrado.Where(oGas => oGas.Estado == "PENDIENTE").ToList();
@@ -155,9 +175,15 @@ namespace Controladora
 
         }
 
-        public List<Modelo.Gasto> ListarGastosRojo()
+        public List<Modelo.Gasto> ListarGastosRojo(string flotaId)
         {
-            List<Modelo.Gasto> Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.OrderBy(x => x.FechaVencimiento).ToList();
+            int flota = Convert.ToInt32(flotaId);
+            List<Modelo.Gasto> Filtrado;
+
+            if (flota == 0)
+                Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.OrderBy(x => x.FechaVencimiento).ToList();
+            else
+                Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.Where(oGas => oGas.fIDFlota == flota).OrderBy(x => x.FechaVencimiento).ToList();
 
             Filtrado = Filtrado.Where(oGas => oGas.FechaVencimiento.Date <= DateTime.Today.Date.AddDays(2)).ToList();
             Filtrado = Filtrado.Where(oGas => oGas.Estado == "PENDIENTE").ToList();
@@ -191,18 +217,30 @@ namespace Controladora
                 return Filtrado.OrderByDescending(x => x.Monto).ToList();
         }
 
-        public int BarraProgresoRojo()
+        public int BarraProgresoRojo(string flotaId)
         {
-            List<Modelo.Gasto> Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.OrderBy(x => x.FechaVencimiento).ToList();
+            int flota = Convert.ToInt32(flotaId);
+            List<Modelo.Gasto> Filtrado;
+
+            if (flota == 0)
+                Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.OrderBy(x => x.FechaVencimiento).ToList();
+            else
+                Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.Where(oGas => oGas.fIDFlota == flota).OrderBy(x => x.FechaVencimiento).ToList();
 
             Filtrado = Filtrado.Where(oGas => oGas.FechaVencimiento.Date <= DateTime.Today.Date.AddDays(2)).ToList();
             Filtrado = Filtrado.Where(oGas => oGas.Estado == "PENDIENTE").ToList();
             return Filtrado.Count();
         }
 
-        public int BarraProgresoAmarillo()
+        public int BarraProgresoAmarillo(string flotaId)
         {
-            List<Modelo.Gasto> Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.OrderBy(x => x.FechaVencimiento).ToList();
+            int flota = Convert.ToInt32(flotaId);
+            List<Modelo.Gasto> Filtrado;
+
+            if (flota == 0)
+                Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.OrderBy(x => x.FechaVencimiento).ToList();
+            else
+                Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.Where(oGas => oGas.fIDFlota == flota).OrderBy(x => x.FechaVencimiento).ToList();
 
             Filtrado = Filtrado.Where(oGas => oGas.FechaVencimiento.Date > DateTime.Today.Date.AddDays(2)).ToList();
             Filtrado = Filtrado.Where(oGas => oGas.FechaVencimiento.Date <= DateTime.Today.Date.AddDays(7)).ToList();
@@ -210,9 +248,15 @@ namespace Controladora
             return Filtrado.Count();
         }
 
-        public int BarraProgresoVerde()
+        public int BarraProgresoVerde(string flotaId)
         {
-            List<Modelo.Gasto> Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.OrderBy(x => x.FechaVencimiento).ToList();
+            int flota = Convert.ToInt32(flotaId);
+            List<Modelo.Gasto> Filtrado;
+
+            if (flota == 0)
+                Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.OrderBy(x => x.FechaVencimiento).ToList();
+            else
+                Filtrado = Modelo.SingletonSistFlota.ObtenerInstancia().Gastos.Where(oGas => oGas.fIDFlota == flota).OrderBy(x => x.FechaVencimiento).ToList();
 
             Filtrado = Filtrado.Where(oGas => oGas.FechaVencimiento.Date > DateTime.Today.Date.AddDays(7)).ToList();
             Filtrado = Filtrado.Where(oGas => oGas.FechaVencimiento.Date <= DateTime.Today.Date.AddDays(15)).ToList();
