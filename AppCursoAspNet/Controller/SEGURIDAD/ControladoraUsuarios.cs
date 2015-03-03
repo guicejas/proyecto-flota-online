@@ -36,6 +36,11 @@ namespace Controladora.SEGURIDAD
                 bGrupo.Descripcion = "Grupo de Operarios de Flota";
                 Modelo.SingletonSeguridad.ObtenerInstancia().Grupos.Add(bGrupo);
 
+                Grupo cGrupo = new Grupo();
+                cGrupo.IDGrupo = "Contador";
+                cGrupo.Descripcion = "Grupo de Contador de Flota";
+                Modelo.SingletonSeguridad.ObtenerInstancia().Grupos.Add(cGrupo);
+
                 // Fromularios - Paginas
 
                 Formulario aFormulario = new Formulario();
@@ -125,7 +130,173 @@ namespace Controladora.SEGURIDAD
                 oUsuario.Contraseña = oEncriptar.encriptar(oUsuario.Contraseña);
                 oUsuario.Flota = oFlota;
 
+                Usuario aUsuario = new Usuario();
+                aUsuario.IDUsuario = "adels";
+                aUsuario.Contraseña = "adels";
+                aUsuario.Email = "adelquis.trinidad@yopmail.com";
+                aUsuario.Activo = false;
+                aUsuario.Habilitado = true;
+                aUsuario.NombreApellido = "Trinidad Adelquis";
+                aUsuario.PrimeraVez = false;
+                aUsuario.Grupo.Add(oGrupo);
+                aUsuario.Contraseña = oEncriptar.encriptar(aUsuario.Contraseña);
+                aUsuario.Flota = oFlota;
+
+                // Cargando perfil Propietario
+
+                Perfil aPerfil = new Perfil();
+                aPerfil.Formulario = sFormulario;
+                aPerfil.Grupo = aGrupo;
+                aPerfil.Permiso = cPermiso;
+                Modelo.SingletonSeguridad.ObtenerInstancia().Perfiles.Add(aPerfil);
+
+                Perfil bPerfil = new Perfil();
+                bPerfil.Formulario = cFormulario;
+                bPerfil.Grupo = aGrupo;
+                bPerfil.Permiso = cPermiso;
+                Modelo.SingletonSeguridad.ObtenerInstancia().Perfiles.Add(bPerfil);
+
+                Perfil cPerfil = new Perfil();
+                cPerfil.Formulario = dFormulario;
+                cPerfil.Grupo = aGrupo;
+                cPerfil.Permiso = cPermiso;
+                Modelo.SingletonSeguridad.ObtenerInstancia().Perfiles.Add(cPerfil);
+
+                Perfil dPerfil = new Perfil();
+                dPerfil.Formulario = eFormulario;
+                dPerfil.Grupo = aGrupo;
+                dPerfil.Permiso = cPermiso;
+                Modelo.SingletonSeguridad.ObtenerInstancia().Perfiles.Add(dPerfil);
+
+                Perfil ePerfil = new Perfil();
+                ePerfil.Formulario = fFormulario;
+                ePerfil.Grupo = aGrupo;
+                ePerfil.Permiso = cPermiso;
+                Modelo.SingletonSeguridad.ObtenerInstancia().Perfiles.Add(ePerfil);
+
+                Perfil fPerfil = new Perfil();
+                fPerfil.Formulario = gFormulario;
+                fPerfil.Grupo = aGrupo;
+                fPerfil.Permiso = cPermiso;
+                Modelo.SingletonSeguridad.ObtenerInstancia().Perfiles.Add(fPerfil);
+
+
+
+                // Cargando perfil Operario
+
+                Perfil gPerfil = new Perfil();
+                gPerfil.Formulario = cFormulario;
+                gPerfil.Grupo = bGrupo;
+                gPerfil.Permiso = oPermiso;
+                Modelo.SingletonSeguridad.ObtenerInstancia().Perfiles.Add(gPerfil);
+
+                Perfil hPerfil = new Perfil();
+                hPerfil.Formulario = cFormulario;
+                hPerfil.Grupo = bGrupo;
+                hPerfil.Permiso = bPermiso;
+                Modelo.SingletonSeguridad.ObtenerInstancia().Perfiles.Add(hPerfil);
+
+                Perfil iPerfil = new Perfil();
+                iPerfil.Formulario = cFormulario;
+                iPerfil.Grupo = bGrupo;
+                iPerfil.Permiso = dPermiso;
+                Modelo.SingletonSeguridad.ObtenerInstancia().Perfiles.Add(iPerfil);
+
+                Perfil jPerfil = new Perfil();
+                jPerfil.Formulario = dFormulario;
+                jPerfil.Grupo = bGrupo;
+                jPerfil.Permiso = oPermiso;
+                Modelo.SingletonSeguridad.ObtenerInstancia().Perfiles.Add(jPerfil);
+
+                Perfil kPerfil = new Perfil();
+                kPerfil.Formulario = dFormulario;
+                kPerfil.Grupo = bGrupo;
+                kPerfil.Permiso = bPermiso;
+                Modelo.SingletonSeguridad.ObtenerInstancia().Perfiles.Add(kPerfil);
+
+                Perfil lPerfil = new Perfil();
+                lPerfil.Formulario = dFormulario;
+                lPerfil.Grupo = bGrupo;
+                lPerfil.Permiso = dPermiso;
+                Modelo.SingletonSeguridad.ObtenerInstancia().Perfiles.Add(lPerfil);
+
+                Perfil mPerfil = new Perfil();
+                mPerfil.Formulario = eFormulario;
+                mPerfil.Grupo = bGrupo;
+                mPerfil.Permiso = oPermiso;
+                Modelo.SingletonSeguridad.ObtenerInstancia().Perfiles.Add(mPerfil);
+
+                Perfil nPerfil = new Perfil();
+                nPerfil.Formulario = eFormulario;
+                nPerfil.Grupo = bGrupo;
+                nPerfil.Permiso = bPermiso;
+                Modelo.SingletonSeguridad.ObtenerInstancia().Perfiles.Add(nPerfil);
+
+                Perfil pPerfil = new Perfil();
+                pPerfil.Formulario = eFormulario;
+                pPerfil.Grupo = bGrupo;
+                pPerfil.Permiso = dPermiso;
+                Modelo.SingletonSeguridad.ObtenerInstancia().Perfiles.Add(pPerfil);
+
+                Perfil qPerfil = new Perfil();
+                qPerfil.Formulario = fFormulario;
+                qPerfil.Grupo = bGrupo;
+                qPerfil.Permiso = oPermiso;
+                Modelo.SingletonSeguridad.ObtenerInstancia().Perfiles.Add(qPerfil);
+
+                Perfil rPerfil = new Perfil();
+                rPerfil.Formulario = fFormulario;
+                rPerfil.Grupo = bGrupo;
+                rPerfil.Permiso = bPermiso;
+                Modelo.SingletonSeguridad.ObtenerInstancia().Perfiles.Add(rPerfil);
+
+                Perfil sPerfil = new Perfil();
+                sPerfil.Formulario = fFormulario;
+                sPerfil.Grupo = bGrupo;
+                sPerfil.Permiso = dPermiso;
+                Modelo.SingletonSeguridad.ObtenerInstancia().Perfiles.Add(sPerfil);
+
+                Perfil tPerfil = new Perfil();
+                tPerfil.Formulario = gFormulario;
+                tPerfil.Grupo = bGrupo;
+                tPerfil.Permiso = oPermiso;
+                Modelo.SingletonSeguridad.ObtenerInstancia().Perfiles.Add(tPerfil);
+
+                Perfil uPerfil = new Perfil();
+                uPerfil.Formulario = gFormulario;
+                uPerfil.Grupo = bGrupo;
+                uPerfil.Permiso = bPermiso;
+                Modelo.SingletonSeguridad.ObtenerInstancia().Perfiles.Add(uPerfil);
+
+                Perfil vPerfil = new Perfil();
+                vPerfil.Formulario = gFormulario;
+                vPerfil.Grupo = bGrupo;
+                vPerfil.Permiso = dPermiso;
+                Modelo.SingletonSeguridad.ObtenerInstancia().Perfiles.Add(vPerfil);
+
+                // Cargando perfil Contador
+
+                Perfil wPerfil = new Perfil();
+                wPerfil.Formulario = dFormulario;
+                wPerfil.Grupo = cGrupo;
+                wPerfil.Permiso = dPermiso;
+                Modelo.SingletonSeguridad.ObtenerInstancia().Perfiles.Add(wPerfil);
+
+                Perfil xPerfil = new Perfil();
+                xPerfil.Formulario = eFormulario;
+                xPerfil.Grupo = cGrupo;
+                xPerfil.Permiso = dPermiso;
+                Modelo.SingletonSeguridad.ObtenerInstancia().Perfiles.Add(xPerfil);
+
+                Perfil yPerfil = new Perfil();
+                yPerfil.Formulario = fFormulario;
+                yPerfil.Grupo = cGrupo;
+                yPerfil.Permiso = dPermiso;
+                Modelo.SingletonSeguridad.ObtenerInstancia().Perfiles.Add(yPerfil);
+
+
                 Modelo.SingletonSeguridad.ObtenerInstancia().Usuarios.Add(oUsuario);
+                Modelo.SingletonSeguridad.ObtenerInstancia().Usuarios.Add(aUsuario);
                 Modelo.SingletonSeguridad.ObtenerInstancia().SaveChanges();
             }
         }
@@ -244,7 +415,7 @@ namespace Controladora.SEGURIDAD
             {
                 cliente.Send(correo);
                 correo.Dispose();
-                return "El usuario a sido creado correctamente, el password ha sido enviado a:" + oUsuario.Email.ToString();
+                return "El usuario a sido creado correctamente, el password ha sido enviado a: " + oUsuario.Email.ToString();
 
             }
             catch (Exception ex)

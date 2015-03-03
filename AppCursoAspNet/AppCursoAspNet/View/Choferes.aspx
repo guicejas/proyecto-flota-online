@@ -40,7 +40,7 @@
                         <td>
                             <a>
                                 <image src='../Images/<%#:Item.Foto%>'
-                                    width="250" height="190" border="1" />
+                                    width="190" height="190" border="1" style="margin-left:30px; margin-right:30px;" />
                             </a>
                         </td>
                     </tr>

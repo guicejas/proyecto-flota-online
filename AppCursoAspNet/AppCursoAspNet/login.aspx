@@ -5,9 +5,9 @@
     <div class="well bs-component" style="margin: 0 auto; width: 400px;">
 
         <form class="form-horizontal" id="formLogin" runat="server">
-            <div class="alert alert-dismissable alert-danger" id="mensaje" runat="server">
+            <div id="mensaje" runat="server">
                 <button type="button" class="close" data-dismiss="alert">×</button>
-                <strong>Error: </strong><span id="mensajeTexto" runat="server"></span>
+                <span id="mensajeTexto" runat="server"></span>
             </div>
             <fieldset>
                 <legend class="text-center">Login</legend>

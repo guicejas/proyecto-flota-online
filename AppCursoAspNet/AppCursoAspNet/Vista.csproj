@@ -119,6 +119,7 @@
     <Content Include="View\Ayuda.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="View\MiCuenta.aspx" />
+    <Content Include="View\EditarTurno.aspx" />
     <Content Include="View\VerTurno.aspx" />
     <Content Include="View\PasswordTemporal.aspx" />
     <Content Include="View\CambioPassword.aspx" />
@@ -340,6 +341,13 @@
     </Compile>
     <Compile Include="View\MiCuenta.aspx.designer.cs">
       <DependentUpon>MiCuenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditarTurno.aspx.cs">
+      <DependentUpon>EditarTurno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\EditarTurno.aspx.designer.cs">
+      <DependentUpon>EditarTurno.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\VerTurno.aspx.cs">
       <DependentUpon>VerTurno.aspx</DependentUpon>

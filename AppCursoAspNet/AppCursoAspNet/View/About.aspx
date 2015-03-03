@@ -15,10 +15,19 @@
     <img src="../Images/Trypep.png" />
     <br />
     TRYPEP ARGENTINA © - 2015
-    <br />
-        Nuestra Mision:
-    <br />
-        Nuestra Vision:
+    <br />www.trypep.com.ar<br /><br />
+        <p>
+        <strong>Nuestra Misión: </strong><br />
+            
+            Lograr ser el sistema administrador de taxis con más penetración en Rosario con especial atención a cada innovación tecnológica y desarrollo de nuevas tecnologías. Bajo esta premisa se otorga a cada cliente del producto los servicios e informes que más se ajusten a sus necesidades acompañando su crecimiento futuro.
+    </p>
+            <br />
+        <p>
+        <strong>
+        Nuestra Visión: </strong><br />
+            Brindar a los dueños de flotas de taxis una plataforma tecnológica para optimizar y agilizar el negocio a través de la tecnología web. Como así también mejorar la toma de decisiones.
+
+            </p>
     <br />
     </div>
 

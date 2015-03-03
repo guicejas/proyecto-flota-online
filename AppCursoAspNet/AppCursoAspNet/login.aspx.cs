@@ -22,6 +22,13 @@ namespace Vista
         {
 
             mensaje.Visible = false;
+            if (Request.QueryString["msj"] != null)
+            {
+                mensaje.Visible = true;
+                mensaje.Attributes.Add("class", "alert alert-dismissable alert-success");
+                mensajeTexto.InnerHtml = Request.QueryString["msj"];
+            }
+
             ctrlUsuarios.CargaInicialBD();
 
             if (this.Context.User.Identity.IsAuthenticated)
@@ -94,6 +101,7 @@ namespace Vista
             else
             {
                 mensaje.Visible = true;
+                mensaje.Attributes.Add("class", "alert alert-dismissable alert-danger");
                 mensajeTexto.InnerHtml = "El usuario o password son incorrectos. O el usuario no esta activo.";
 
             }

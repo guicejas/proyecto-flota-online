@@ -42,25 +42,26 @@ namespace Vista.View
         {
             return ControladoraTurnos.getINSTANCIA.ListarTurnos(ctrlFlotas.ObtenerFlotadeUsuario(this.Context.User.Identity.Name).Id.ToString());
         }
+
         protected void listaTurnos_RowEditing(object sender, GridViewEditEventArgs e)
         {
             string idTurno = this.listaTurnos.Rows[e.NewEditIndex].Cells[0].Text;
-            Response.Redirect("EditarTurno?Id=" + idTurno);
+            Response.Redirect("EditarTurno?TurnoId=" + idTurno);
         }
 
         protected void listaTurnos_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string idTurno = this.listaTurnos.Rows[e.RowIndex].Cells[0].Text;
 
-            if (ControladoraTurnos.getINSTANCIA.EliminarTurno(Convert.ToInt32(idTurno)))
-            {
+            //if (ControladoraTurnos.getINSTANCIA.EliminarTurno(Convert.ToInt32(idTurno)))
+            //{
                 lblModalTitle.Text = "CUIDADO";
-                lblModalBody.Text = "el registro no puede ser eliminado ya que contiene datos asociados.";
+                lblModalBody.Text = "El turno seleccionado no puede ser eliminado ya que contiene datos asociados.";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
                 upModal.Update();
-            }
+            //}
             e.Cancel = true;
-            //this.listaTurnos.DataSource = null;
+            this.listaTurnos.DataSource = null;
         }
 
         protected void btnBorrar_Click(object sender, EventArgs e)

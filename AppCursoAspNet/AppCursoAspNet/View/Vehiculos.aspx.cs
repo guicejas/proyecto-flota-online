@@ -54,7 +54,7 @@ namespace Vista.View
             if (ControladoraVehiculos.getINSTANCIA.EliminarVehiculo(nroPatente))
             {
                 lblModalTitle.Text = "CUIDADO";
-                lblModalBody.Text = "el registro no puede ser eliminado ya que contiene datos asociados.";
+                lblModalBody.Text = "El vehiculo seleccionado no puede ser eliminado ya que contiene datos asociados.";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
                 upModal.Update();
             }

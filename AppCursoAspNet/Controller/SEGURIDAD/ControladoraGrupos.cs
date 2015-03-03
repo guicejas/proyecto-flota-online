@@ -18,7 +18,7 @@ namespace Controladora.SEGURIDAD
 
         public List<Grupo> ListarGruposFlota()
         {
-            return Modelo.SingletonSeguridad.ObtenerInstancia().Grupos.Where(g => g.IDGrupo != "Administrador").Where(g => g.IDGrupo != "Popietario").OrderBy(c => c.IDGrupo).ToList();
+            return Modelo.SingletonSeguridad.ObtenerInstancia().Grupos.Where(g => g.IDGrupo != "Administrador").Where(g => g.IDGrupo != "Propietario").OrderBy(c => c.IDGrupo).ToList();
         }
 
 

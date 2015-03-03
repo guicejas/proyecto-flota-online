@@ -64,6 +64,13 @@ namespace Controladora
 
         }
 
+        public List<Modelo.Vehiculo> ListarVehiculos()
+        {
+
+                return Modelo.SingletonSistFlota.ObtenerInstancia().Vehiculos.OrderBy(c => c.Patente).ToList();
+        
+        }
+
         public List<Modelo.Vehiculo> ListarVehiculosFiltrados(string flotaId, string Patente, string PatenteTaxi, string Año)
         {
 

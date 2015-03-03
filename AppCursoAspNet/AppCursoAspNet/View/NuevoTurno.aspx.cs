@@ -48,7 +48,7 @@ namespace Vista.View
             if (DlEmpresas.SelectedValue != "")
             {
                 Modelo.CuentaCorriente oCC = new Modelo.CuentaCorriente();
-                oCC.Empresa = Controladora.ControladoraEmpresas.getINSTANCIA.ObtenerEmpresa(Convert.ToInt32(this.DlEmpresas.SelectedValue));
+                oCC.Empresa = Controladora.ControladoraEmpresas.getINSTANCIA.ObtenerEmpresa(Convert.ToInt64(this.DlEmpresas.SelectedValue));
                 oCC.Estado = "Pendiente";
                 oCC.Fecha = Convert.ToDateTime(this.dateFechaInicio.Value);
                 oCC.Monto = Convert.ToDecimal(this.montoCC.Text);

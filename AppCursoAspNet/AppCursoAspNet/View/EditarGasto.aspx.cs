@@ -11,9 +11,11 @@ namespace Vista.View
 {
     public partial class EditarGasto : System.Web.UI.Page
     {
+        Controladora.SEGURIDAD.ControladoraFlotas ctrlFlotas = new Controladora.SEGURIDAD.ControladoraFlotas();
 
         protected void Page_Load(object sender, EventArgs e)
         {
+           
             if (!IsPostBack)
             {
                 int gastoId = Convert.ToInt32(Request.QueryString["GastoId"]);
@@ -86,5 +88,19 @@ namespace Vista.View
         {
 
         }
+
+        public IList<Modelo.Vehiculo> ListarVehiculos()
+        {
+
+            return Controladora.ControladoraVehiculos.getINSTANCIA.ListarVehiculos(ctrlFlotas.ObtenerFlotadeUsuario(this.Context.User.Identity.Name).Id.ToString());
+        }
+
+        public IList<Modelo.TipodeGasto> ListarTiposdeGasto()
+        {
+
+            return Controladora.ControladoraTiposdeGasto.getINSTANCIA.ListarTiposdeGasto();
+        }
+
+
     }
 }

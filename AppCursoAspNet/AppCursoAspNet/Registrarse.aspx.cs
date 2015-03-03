@@ -35,7 +35,7 @@ namespace Vista
             oUsuario.Contraseña = "newuser";
             oUsuario.PrimeraVez = true;
             oUsuario.Flota = oFlota;
-            oUsuario.Grupo.Add(ctrlGrupos.ObtenerGrupo("Popietario"));
+            oUsuario.Grupo.Add(ctrlGrupos.ObtenerGrupo("Propietario"));
 
 
             if (ctrlUsuarios.VerificarUsuario(oUsuario))

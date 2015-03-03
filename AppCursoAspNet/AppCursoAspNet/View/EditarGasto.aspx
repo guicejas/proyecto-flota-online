@@ -59,7 +59,7 @@
                     <asp:DropDownList ID="cbxTipoGasto" CssClass="form-control" runat="server" DataSourceID="ObjectTipoGasto" DataTextField="Descripcion" DataValueField="Id" AppendDataBoundItems="true" OnSelectedIndexChanged="cbxTipoGasto_SelectedIndexChanged" AutoPostBack="True">
                         <asp:ListItem Value="">Seleccionar Tipo de Gasto</asp:ListItem>
                     </asp:DropDownList>
-                    <asp:ObjectDataSource ID="ObjectTipoGasto" runat="server" SelectMethod="ListarTiposdeGasto" TypeName="Controladora.ControladoraTiposdeGasto"></asp:ObjectDataSource>
+                    <asp:ObjectDataSource ID="ObjectTipoGasto" runat="server" SelectMethod="ListarTiposdeGasto" TypeName="Vista.View.EditarGasto"></asp:ObjectDataSource>
                 </td>
                 <td>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Debe seleccionar un Tipo de Gasto" ControlToValidate="cbxTipoGasto" CssClass="alert-danger"></asp:RequiredFieldValidator>
@@ -88,7 +88,7 @@
 
                         <asp:ListItem Value="">Seleccionar vehículo</asp:ListItem>
                     </asp:DropDownList>
-                    <asp:ObjectDataSource ID="ObjectVehiculo" runat="server" SelectMethod="ListarVehiculos" TypeName="Controladora.ControladoraVehiculos"></asp:ObjectDataSource>
+                    <asp:ObjectDataSource ID="ObjectVehiculo" runat="server" SelectMethod="ListarVehiculos" TypeName="Vista.View.EditarGasto"></asp:ObjectDataSource>
                 </td>
                 <td>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Debe seleccionar un Vehículo" ControlToValidate="DlVehiculo" CssClass="alert-danger"></asp:RequiredFieldValidator></td>
