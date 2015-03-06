@@ -264,21 +264,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SEGURIDAD\SistFlota_Seguridad.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SEGURIDAD\SistFlota_Seguridad_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>SistFlota_Seguridad.mdf</DependentUpon>
-    </Content>
     <Content Include="SEGURIDAD\SistFlota_Seguridad_Modelo.edmx.sql" />
-    <Content Include="SistFlota_db.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SistFlota_db_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>SistFlota_db.mdf</DependentUpon>
-    </Content>
     <Content Include="SistFlota_ModeloDatos.edmx.sql" />
     <Content Include="AUDITORIA\Sist_Flota_ModeloAuditoria.edmx.sql" />
   </ItemGroup>
