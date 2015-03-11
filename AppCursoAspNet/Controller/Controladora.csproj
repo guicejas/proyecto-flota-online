@@ -58,6 +58,8 @@
     <Compile Include="AUDITORIA\ControladoraAudGastos.cs" />
     <Compile Include="AUDITORIA\ControladoraAudLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SEGURIDAD\ControladoraTiposdeLicencia.cs" />
+    <Compile Include="SEGURIDAD\ControladoraLicencias.cs" />
     <Compile Include="SEGURIDAD\ControladoraFormularios.cs" />
     <Compile Include="SEGURIDAD\ControladoraFlotas.cs" />
     <Compile Include="SEGURIDAD\ControladoraGrupos.cs" />
@@ -81,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -34,7 +34,7 @@ namespace Controladora.SEGURIDAD
                 return false;
             }
 
-            oUsuario.Activo = true;
+            oUsuario.Online = true;
 
             ctrlUsuarios.ModificarUsuario(oUsuario);
             Controladora.AUDITORIA.ControladoraAudLog.getINSTANCIA.AuditarLogIn(IDUsuario);
@@ -68,7 +68,7 @@ namespace Controladora.SEGURIDAD
         public void CerrarSesion(string IDusuario)
         {
             Usuario oUsuario = ctrlUsuarios.BuscarUsuario(IDusuario);
-            oUsuario.Activo = false;
+            oUsuario.Online = false;
             ctrlUsuarios.ModificarUsuario(oUsuario);
 
             Controladora.AUDITORIA.ControladoraAudLog.getINSTANCIA.AuditarLogOut(IDusuario);

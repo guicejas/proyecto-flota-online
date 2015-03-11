@@ -46,6 +46,9 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="mercadopago">
+      <HintPath>..\..\mercadopago.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.FriendlyUrls">
       <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.2\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
     </Reference>
@@ -102,6 +105,8 @@
     <Content Include="Seguridad\EditarPerfil.aspx" />
     <Content Include="Seguridad\EditarUsuarioFlota.aspx" />
     <Content Include="Seguridad\EditarUsuario.aspx" />
+    <Content Include="Seguridad\NuevoTipodeLicencia.aspx" />
+    <Content Include="Seguridad\TiposdeLicencia.aspx" />
     <Content Include="Seguridad\Grupos.aspx" />
     <Content Include="Seguridad\NuevoGrupo.aspx" />
     <Content Include="Seguridad\NuevoPerfil.aspx" />
@@ -112,6 +117,7 @@
     <Content Include="Seguridad\Usuarios.aspx" />
     <Content Include="Seguridad\VerUsuarioFlota.aspx" />
     <Content Include="Seguridad\VerUsuario.aspx" />
+    <Content Include="View\Checkout.aspx" />
     <Content Include="View\ReporteQlikView.aspx" />
     <Content Include="View\About.aspx" />
     <Content Include="View\AuditoriaLogs.aspx" />
@@ -222,6 +228,20 @@
     <Compile Include="Seguridad\EditarUsuario.aspx.designer.cs">
       <DependentUpon>EditarUsuario.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Seguridad\NuevoTipodeLicencia.aspx.cs">
+      <DependentUpon>NuevoTipodeLicencia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seguridad\NuevoTipodeLicencia.aspx.designer.cs">
+      <DependentUpon>NuevoTipodeLicencia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\TiposdeLicencia.aspx.cs">
+      <DependentUpon>TiposdeLicencia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seguridad\TiposdeLicencia.aspx.designer.cs">
+      <DependentUpon>TiposdeLicencia.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Seguridad\Grupos.aspx.cs">
       <DependentUpon>Grupos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -291,6 +311,13 @@
     </Compile>
     <Compile Include="Seguridad\VerUsuario.aspx.designer.cs">
       <DependentUpon>VerUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Checkout.aspx.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Checkout.aspx.designer.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\ReporteQlikView.aspx.cs">
       <DependentUpon>ReporteQlikView.aspx</DependentUpon>

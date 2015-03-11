@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/25/2015 12:22:54
+-- Date Created: 03/11/2015 17:39:12
 -- Generated from EDMX file: C:\Users\Windows 7\Documents\GitHub\proyecto-flota-online\AppCursoAspNet\Model\SEGURIDAD\SistFlota_Seguridad_Modelo.edmx
 -- --------------------------------------------------
 
@@ -133,8 +133,9 @@ CREATE TABLE [dbo].[Usuarios] (
     [Contraseña] nvarchar(max)  NOT NULL,
     [Email] nvarchar(max)  NOT NULL,
     [Habilitado] bit  NOT NULL,
-    [Activo] bit  NOT NULL,
+    [Online] bit  NOT NULL,
     [PrimeraVez] bit  NOT NULL,
+    [Activo] smallint  NOT NULL,
     [Flota_Id] int  NOT NULL
 );
 GO
@@ -146,17 +147,18 @@ CREATE TABLE [dbo].[Flotas] (
 );
 GO
 
--- Creating table 'Licencias'
-CREATE TABLE [dbo].[Licencias] (
+-- Creating table 'Tiposdelicencia'
+CREATE TABLE [dbo].[Tiposdelicencia] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Duracion] nvarchar(max)  NOT NULL,
     [Descripcion] nvarchar(max)  NOT NULL,
+    [Activo] smallint  NOT NULL,
     [Licencia_Id] int  NOT NULL
 );
 GO
 
--- Creating table 'LicenciaSet'
-CREATE TABLE [dbo].[LicenciaSet] (
+-- Creating table 'Licencias'
+CREATE TABLE [dbo].[Licencias] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [FechaInicio] datetime  NOT NULL,
     [FechaFin] datetime  NOT NULL,
@@ -166,21 +168,21 @@ CREATE TABLE [dbo].[LicenciaSet] (
 );
 GO
 
--- Creating table 'Licencias_Demo'
-CREATE TABLE [dbo].[Licencias_Demo] (
+-- Creating table 'Tiposdelicencia_Demo'
+CREATE TABLE [dbo].[Tiposdelicencia_Demo] (
     [Id] int  NOT NULL
 );
 GO
 
--- Creating table 'Licencias_Premium'
-CREATE TABLE [dbo].[Licencias_Premium] (
+-- Creating table 'Tiposdelicencia_Premium'
+CREATE TABLE [dbo].[Tiposdelicencia_Premium] (
     [CantUsuarios] int  NOT NULL,
     [Id] int  NOT NULL
 );
 GO
 
--- Creating table 'Licencias_Basica'
-CREATE TABLE [dbo].[Licencias_Basica] (
+-- Creating table 'Tiposdelicencia_Basica'
+CREATE TABLE [dbo].[Tiposdelicencia_Basica] (
     [Patrocinador] nvarchar(max)  NOT NULL,
     [Id] int  NOT NULL
 );
@@ -233,33 +235,33 @@ ADD CONSTRAINT [PK_Flotas]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
+-- Creating primary key on [Id] in table 'Tiposdelicencia'
+ALTER TABLE [dbo].[Tiposdelicencia]
+ADD CONSTRAINT [PK_Tiposdelicencia]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
 -- Creating primary key on [Id] in table 'Licencias'
 ALTER TABLE [dbo].[Licencias]
 ADD CONSTRAINT [PK_Licencias]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'LicenciaSet'
-ALTER TABLE [dbo].[LicenciaSet]
-ADD CONSTRAINT [PK_LicenciaSet]
+-- Creating primary key on [Id] in table 'Tiposdelicencia_Demo'
+ALTER TABLE [dbo].[Tiposdelicencia_Demo]
+ADD CONSTRAINT [PK_Tiposdelicencia_Demo]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'Licencias_Demo'
-ALTER TABLE [dbo].[Licencias_Demo]
-ADD CONSTRAINT [PK_Licencias_Demo]
+-- Creating primary key on [Id] in table 'Tiposdelicencia_Premium'
+ALTER TABLE [dbo].[Tiposdelicencia_Premium]
+ADD CONSTRAINT [PK_Tiposdelicencia_Premium]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'Licencias_Premium'
-ALTER TABLE [dbo].[Licencias_Premium]
-ADD CONSTRAINT [PK_Licencias_Premium]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [Id] in table 'Licencias_Basica'
-ALTER TABLE [dbo].[Licencias_Basica]
-ADD CONSTRAINT [PK_Licencias_Basica]
+-- Creating primary key on [Id] in table 'Tiposdelicencia_Basica'
+ALTER TABLE [dbo].[Tiposdelicencia_Basica]
+ADD CONSTRAINT [PK_Tiposdelicencia_Basica]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -357,8 +359,8 @@ ON [dbo].[Usuarios]
     ([Flota_Id]);
 GO
 
--- Creating foreign key on [Flota_Id] in table 'LicenciaSet'
-ALTER TABLE [dbo].[LicenciaSet]
+-- Creating foreign key on [Flota_Id] in table 'Licencias'
+ALTER TABLE [dbo].[Licencias]
 ADD CONSTRAINT [FK_FlotaLicencia]
     FOREIGN KEY ([Flota_Id])
     REFERENCES [dbo].[Flotas]
@@ -368,48 +370,48 @@ GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_FlotaLicencia'
 CREATE INDEX [IX_FK_FlotaLicencia]
-ON [dbo].[LicenciaSet]
+ON [dbo].[Licencias]
     ([Flota_Id]);
 GO
 
--- Creating foreign key on [Licencia_Id] in table 'Licencias'
-ALTER TABLE [dbo].[Licencias]
+-- Creating foreign key on [Licencia_Id] in table 'Tiposdelicencia'
+ALTER TABLE [dbo].[Tiposdelicencia]
 ADD CONSTRAINT [FK_LicenciaTipoLicencia]
     FOREIGN KEY ([Licencia_Id])
-    REFERENCES [dbo].[LicenciaSet]
+    REFERENCES [dbo].[Licencias]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_LicenciaTipoLicencia'
 CREATE INDEX [IX_FK_LicenciaTipoLicencia]
-ON [dbo].[Licencias]
+ON [dbo].[Tiposdelicencia]
     ([Licencia_Id]);
 GO
 
--- Creating foreign key on [Id] in table 'Licencias_Demo'
-ALTER TABLE [dbo].[Licencias_Demo]
+-- Creating foreign key on [Id] in table 'Tiposdelicencia_Demo'
+ALTER TABLE [dbo].[Tiposdelicencia_Demo]
 ADD CONSTRAINT [FK_Demo_inherits_TipoLicencia]
     FOREIGN KEY ([Id])
-    REFERENCES [dbo].[Licencias]
+    REFERENCES [dbo].[Tiposdelicencia]
         ([Id])
     ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
--- Creating foreign key on [Id] in table 'Licencias_Premium'
-ALTER TABLE [dbo].[Licencias_Premium]
+-- Creating foreign key on [Id] in table 'Tiposdelicencia_Premium'
+ALTER TABLE [dbo].[Tiposdelicencia_Premium]
 ADD CONSTRAINT [FK_Premium_inherits_TipoLicencia]
     FOREIGN KEY ([Id])
-    REFERENCES [dbo].[Licencias]
+    REFERENCES [dbo].[Tiposdelicencia]
         ([Id])
     ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
--- Creating foreign key on [Id] in table 'Licencias_Basica'
-ALTER TABLE [dbo].[Licencias_Basica]
+-- Creating foreign key on [Id] in table 'Tiposdelicencia_Basica'
+ALTER TABLE [dbo].[Tiposdelicencia_Basica]
 ADD CONSTRAINT [FK_Basica_inherits_TipoLicencia]
     FOREIGN KEY ([Id])
-    REFERENCES [dbo].[Licencias]
+    REFERENCES [dbo].[Tiposdelicencia]
         ([Id])
     ON DELETE CASCADE ON UPDATE NO ACTION;
 GO

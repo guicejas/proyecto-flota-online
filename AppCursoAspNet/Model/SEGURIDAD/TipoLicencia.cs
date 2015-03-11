@@ -17,6 +17,7 @@ namespace Modelo.SEGURIDAD
         public int Id { get; set; }
         public string Duracion { get; set; }
         public string Descripcion { get; set; }
+        public short Activo { get; set; }
     
         public virtual Licencia Licencia { get; set; }
     }

@@ -31,7 +31,7 @@ namespace Modelo.SEGURIDAD
         public virtual DbSet<Grupo> Grupos { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
         public virtual DbSet<Flota> Flotas { get; set; }
-        public virtual DbSet<TipoLicencia> Licencias { get; set; }
-        public virtual DbSet<Licencia> LicenciaSet { get; set; }
+        public virtual DbSet<TipoLicencia> Tiposdelicencia { get; set; }
+        public virtual DbSet<Licencia> Licencias { get; set; }
     }
 }

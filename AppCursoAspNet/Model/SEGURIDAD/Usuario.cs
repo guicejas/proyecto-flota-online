@@ -17,8 +17,9 @@ namespace Modelo.SEGURIDAD
         public Usuario()
         {
             this.Habilitado = true;
-            this.Activo = false;
+            this.Online = false;
             this.PrimeraVez = true;
+            this.Activo = 1;
             this.Grupo = new HashSet<Grupo>();
         }
     
@@ -27,8 +28,9 @@ namespace Modelo.SEGURIDAD
         public string Contraseña { get; set; }
         public string Email { get; set; }
         public bool Habilitado { get; set; }
-        public bool Activo { get; set; }
+        public bool Online { get; set; }
         public bool PrimeraVez { get; set; }
+        public short Activo { get; set; }
     
         public virtual ICollection<Grupo> Grupo { get; set; }
         public virtual Flota Flota { get; set; }

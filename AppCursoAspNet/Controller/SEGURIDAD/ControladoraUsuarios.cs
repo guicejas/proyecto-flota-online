@@ -122,7 +122,7 @@ namespace Controladora.SEGURIDAD
                 oUsuario.IDUsuario = "admin";
                 oUsuario.Contraseña = "admin";
                 oUsuario.Email = "guillermo.cejas@yopmail.com";
-                oUsuario.Activo = false;
+                oUsuario.Online = false;
                 oUsuario.Habilitado = true;
                 oUsuario.NombreApellido = "Guillermo Cejas";
                 oUsuario.PrimeraVez = false;
@@ -134,7 +134,7 @@ namespace Controladora.SEGURIDAD
                 aUsuario.IDUsuario = "adels";
                 aUsuario.Contraseña = "adels";
                 aUsuario.Email = "adelquis.trinidad@yopmail.com";
-                aUsuario.Activo = false;
+                aUsuario.Online = false;
                 aUsuario.Habilitado = true;
                 aUsuario.NombreApellido = "Trinidad Adelquis";
                 aUsuario.PrimeraVez = false;
