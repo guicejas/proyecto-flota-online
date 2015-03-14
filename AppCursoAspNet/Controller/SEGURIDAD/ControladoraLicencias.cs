@@ -63,7 +63,7 @@ namespace Controladora.SEGURIDAD
         public Licencia ObtenerLicenciadeUsuario(string idUsuario)
         {
             Usuario oUsuario = Modelo.SingletonSeguridad.ObtenerInstancia().Usuarios.Find(idUsuario);
-            return oUsuario.Flota.Licencia.Where(x => x.FechaFin < DateTime.Now).FirstOrDefault();
+            return oUsuario.Flota.Licencia.Where(x => x.FechaFin > DateTime.Now).FirstOrDefault();
         }
     }
 }

@@ -14,12 +14,35 @@ namespace Vista.Seguridad
         Controladora.SEGURIDAD.ControladoraPerfiles ctrlPerfiles = new Controladora.SEGURIDAD.ControladoraPerfiles();
         Controladora.SEGURIDAD.ControladoraFlotas ctrlFlotas = new Controladora.SEGURIDAD.ControladoraFlotas();
         Controladora.SEGURIDAD.ControladoraTiposdeLicencia ctrlTiposdeLicencia = new Controladora.SEGURIDAD.ControladoraTiposdeLicencia();
+        Controladora.SEGURIDAD.ControladoraLicencias ctrlLicencias = new Controladora.SEGURIDAD.ControladoraLicencias();
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
             if (!ctrlPerfiles.ObtenerFormularios(HttpContext.Current.User.Identity.Name).Exists(a => a == "Sistema"))
                 Response.Redirect("~/NoAutorizado.aspx");
+            
+            Modelo.SEGURIDAD.Licencia oLicencia = ctrlLicencias.ObtenerLicenciadeUsuario(HttpContext.Current.User.Identity.Name);
+
+            spanTipo.InnerText = oLicencia.TipoLicencia.tipo;
+            spanDescripcion.InnerText = oLicencia.TipoLicencia.Descripcion;
+            spanDiasRestantes.InnerText = (oLicencia.FechaFin.Subtract(DateTime.Now).Days.ToString());
+            spanFechaCompra.InnerText = oLicencia.FechaInicio.ToShortDateString();
+            spanFechaFin.InnerText = oLicencia.FechaFin.ToShortDateString();
+
+            if (oLicencia.TipoLicencia.tipo == "Demo")
+            {
+                
+            }
+
+
+            if (oLicencia.TipoLicencia.tipo == "Premium")
+            {
+                //Modelo.SEGURIDAD.Premium oTipoLicenciaPremium = Modelo.SEGURIDAD.Premium(oLicencia.TipoLicencia);
+
+                //spanUsuariosAdicionales.InnerText = oTipoLicenciaPremium.CantUsuarios;
+            }
+
 
 
         }

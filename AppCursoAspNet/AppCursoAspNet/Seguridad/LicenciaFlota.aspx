@@ -13,6 +13,40 @@
     <form runat="server">
         <asp:ScriptManager ID="ScriptManager1" AllowCustomErrorsRedirect="false" runat="server"></asp:ScriptManager>
 
+        <div id="divMiLicencia" style="background-color: transparent; padding: 5px 5px 10px 15px">
+            <blockquote>
+
+                <span style="font-size: x-large;">Su <span id="spanDescripcion" runat="server" class="text-info">Licencia Demo 30</span> expira en <span id="spanDiasRestantes" runat="server" class="text-warning">10</span> dias.
+                </span>
+                <br />
+
+                <ul class="list-group" style="width: 400px;">
+                    <li class="list-group-item">
+                        <span class="badge" id="spanTipo" runat="server"></span>
+                        Tipo
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge" id="spanEstado" runat="server"></span>
+                        Estado
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge" id="spanUsuariosAdicionales" runat="server">0</span>
+                        Usuarios Adicionales
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge" id="spanFechaCompra" runat="server"></span>
+                        Fecha de compra
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge" id="spanFechaFin" runat="server"></span>
+                        Fecha de caducidad
+                    </li>
+                </ul>
+
+            </blockquote>
+
+        </div>
+        <br />
 
         <asp:ListView ID="listaTiposdeLicenciaBasica" runat="server" GroupItemCount="3" ItemType="Modelo.SEGURIDAD.Basica" DataSourceID="ObjectTiposdeLicenciaBasica">
             <GroupTemplate>
@@ -22,17 +56,17 @@
             </GroupTemplate>
             <ItemTemplate>
                 <td runat="server">
-                                           <table style="background-color: white; margin:15px; width:240px">
-                            <tbody style="border:5px  solid rgb(221, 196, 196);">
+                    <table style="background-color: white; margin: 15px; width: 240px">
+                        <tbody style="border: 5px  solid rgb(221, 196, 196);">
                             <tr>
-                                <td style="padding-left: 15px; padding-right:25px;">
+                                <td style="padding-left: 15px; padding-right: 25px;">
                                     <h4 style="color: black;"><%#:Item.tipo%></h4>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="padding-left: 15px; padding-right:25px; color:darkslateblue;">
+                                <td style="padding-left: 15px; padding-right: 25px; color: darkslateblue;">
 
-                                    <span style="font-size:x-large; font-weight:700;">
+                                    <span style="font-size: x-large; font-weight: 700;">
                                         <%#:String.Format("{0:c}", (Item.Precio/(Item.Duracion/30)))%> 
                                     </span>
                                     / mes
@@ -41,20 +75,18 @@
                                     <span><%#:Item.Descripcion.ToUpper()%></span>
                                     <br />
                                     <br />
-                                    <span style="font-size:x-large; font-weight:700;">
+                                    <span style="font-size: x-large; font-weight: 700;">
                                         <%#:Item.Duracion.ToString()%>
                                     </span>
-                                     dias de vigencia
+                                    dias de vigencia
                                     <br />
-                                    <span style="font-size:x-large; font-weight:700;">
-                                        1
+                                    <span style="font-size: x-large; font-weight: 700;">1
                                     </span>
-                                     usuario
+                                    usuario
                                     <br />
-                                    <span style="font-size:x-large; font-weight:700;">
-                                       CON 
+                                    <span style="font-size: x-large; font-weight: 700;">CON 
                                     </span>
-                                     publicidades
+                                    publicidades
                                     <br />
                                     <br />
                                     <span>
@@ -72,8 +104,8 @@
                             <tr>
                                 <td>&nbsp;</td>
                             </tr>
-                                </tbody>
-                        </table>
+                        </tbody>
+                    </table>
                     </p>
                 </td>
             </ItemTemplate>
@@ -106,17 +138,17 @@
             </GroupTemplate>
             <ItemTemplate>
                 <td runat="server">
-                        <table style="background-color: white; margin:15px; width:240px">
-                            <tbody style="border:5px  solid rgb(221, 196, 196);">
+                    <table style="background-color: white; margin: 15px; width: 240px">
+                        <tbody style="border: 5px  solid rgb(221, 196, 196);">
                             <tr>
-                                <td style="padding-left: 15px; padding-right:25px;">
+                                <td style="padding-left: 15px; padding-right: 25px;">
                                     <h4 style="color: black;"><%#:Item.tipo%></h4>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="padding-left: 15px; padding-right:25px; color:darkslateblue;">
+                                <td style="padding-left: 15px; padding-right: 25px; color: darkslateblue;">
 
-                                    <span style="font-size:x-large; font-weight:700;">
+                                    <span style="font-size: x-large; font-weight: 700;">
                                         <%#:String.Format("{0:c}", (Item.Precio/(Item.Duracion/30)))%> 
                                     </span>
                                     / mes
@@ -125,20 +157,19 @@
                                     <span><%#:Item.Descripcion.ToUpper()%></span>
                                     <br />
                                     <br />
-                                    <span style="font-size:x-large; font-weight:700;">
+                                    <span style="font-size: x-large; font-weight: 700;">
                                         <%#:Item.Duracion.ToString()%>
                                     </span>
-                                     dias de vigencia
+                                    dias de vigencia
                                     <br />
-                                    <span style="font-size:x-large; font-weight:700;">
+                                    <span style="font-size: x-large; font-weight: 700;">
                                         <%#:Item.CantUsuarios.ToString()%>
                                     </span>
-                                     usuarios
+                                    usuarios
                                     <br />
-                                    <span style="font-size:x-large; font-weight:700;">
-                                       0 
+                                    <span style="font-size: x-large; font-weight: 700;">0 
                                     </span>
-                                     publicidades
+                                    publicidades
                                     <br />
                                     <br />
                                     <span>
@@ -156,8 +187,8 @@
                             <tr>
                                 <td>&nbsp;</td>
                             </tr>
-                                </tbody>
-                        </table>
+                        </tbody>
+                    </table>
                     </p>
                 </td>
             </ItemTemplate>
