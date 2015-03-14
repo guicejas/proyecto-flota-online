@@ -15,5 +15,6 @@ namespace Modelo.SEGURIDAD
     public partial class Basica : TipoLicencia
     {
         public string Patrocinador { get; set; }
+        public decimal Precio { get; set; }
     }
 }

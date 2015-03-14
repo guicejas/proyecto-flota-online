@@ -10,7 +10,6 @@ namespace Vista.View
     public partial class EditarTurno : System.Web.UI.Page
     {
         Controladora.SEGURIDAD.ControladoraFlotas ctrlFlotas = new Controladora.SEGURIDAD.ControladoraFlotas();
-        string flotaId;
 
         protected void Page_Load(object sender, EventArgs e)
         {

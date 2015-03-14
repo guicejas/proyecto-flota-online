@@ -130,6 +130,8 @@
     <Compile Include="SEGURIDAD\TipoLicencia.cs">
       <DependentUpon>SistFlota_Seguridad_Modelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="SEGURIDAD\DemoPartial.cs" />
+    <Compile Include="SEGURIDAD\TipoLicenciaPartial.cs" />
     <Compile Include="SEGURIDAD\UserCache.cs" />
     <Compile Include="SEGURIDAD\Usuario.cs">
       <DependentUpon>SistFlota_Seguridad_Modelo.tt</DependentUpon>

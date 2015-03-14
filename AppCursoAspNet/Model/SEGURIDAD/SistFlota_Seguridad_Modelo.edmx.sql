@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/11/2015 17:39:12
+-- Date Created: 03/13/2015 14:33:34
 -- Generated from EDMX file: C:\Users\Windows 7\Documents\GitHub\proyecto-flota-online\AppCursoAspNet\Model\SEGURIDAD\SistFlota_Seguridad_Modelo.edmx
 -- --------------------------------------------------
 
@@ -36,19 +36,19 @@ IF OBJECT_ID(N'[dbo].[FK_UsuarioFlota]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Usuarios] DROP CONSTRAINT [FK_UsuarioFlota];
 GO
 IF OBJECT_ID(N'[dbo].[FK_FlotaLicencia]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[LicenciaSet] DROP CONSTRAINT [FK_FlotaLicencia];
+    ALTER TABLE [dbo].[Licencias] DROP CONSTRAINT [FK_FlotaLicencia];
 GO
 IF OBJECT_ID(N'[dbo].[FK_LicenciaTipoLicencia]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Licencias] DROP CONSTRAINT [FK_LicenciaTipoLicencia];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Demo_inherits_TipoLicencia]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Licencias_Demo] DROP CONSTRAINT [FK_Demo_inherits_TipoLicencia];
+    ALTER TABLE [dbo].[Tiposdelicencia_Demo] DROP CONSTRAINT [FK_Demo_inherits_TipoLicencia];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Premium_inherits_TipoLicencia]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Licencias_Premium] DROP CONSTRAINT [FK_Premium_inherits_TipoLicencia];
+    ALTER TABLE [dbo].[Tiposdelicencia_Premium] DROP CONSTRAINT [FK_Premium_inherits_TipoLicencia];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Basica_inherits_TipoLicencia]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Licencias_Basica] DROP CONSTRAINT [FK_Basica_inherits_TipoLicencia];
+    ALTER TABLE [dbo].[Tiposdelicencia_Basica] DROP CONSTRAINT [FK_Basica_inherits_TipoLicencia];
 GO
 
 -- --------------------------------------------------
@@ -73,20 +73,20 @@ GO
 IF OBJECT_ID(N'[dbo].[Flotas]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Flotas];
 GO
+IF OBJECT_ID(N'[dbo].[Tiposdelicencia]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Tiposdelicencia];
+GO
 IF OBJECT_ID(N'[dbo].[Licencias]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Licencias];
 GO
-IF OBJECT_ID(N'[dbo].[LicenciaSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[LicenciaSet];
+IF OBJECT_ID(N'[dbo].[Tiposdelicencia_Demo]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Tiposdelicencia_Demo];
 GO
-IF OBJECT_ID(N'[dbo].[Licencias_Demo]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Licencias_Demo];
+IF OBJECT_ID(N'[dbo].[Tiposdelicencia_Premium]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Tiposdelicencia_Premium];
 GO
-IF OBJECT_ID(N'[dbo].[Licencias_Premium]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Licencias_Premium];
-GO
-IF OBJECT_ID(N'[dbo].[Licencias_Basica]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Licencias_Basica];
+IF OBJECT_ID(N'[dbo].[Tiposdelicencia_Basica]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Tiposdelicencia_Basica];
 GO
 IF OBJECT_ID(N'[dbo].[UsuarioGrupo]', 'U') IS NOT NULL
     DROP TABLE [dbo].[UsuarioGrupo];
@@ -150,10 +150,9 @@ GO
 -- Creating table 'Tiposdelicencia'
 CREATE TABLE [dbo].[Tiposdelicencia] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Duracion] nvarchar(max)  NOT NULL,
+    [Duracion] int  NOT NULL,
     [Descripcion] nvarchar(max)  NOT NULL,
-    [Activo] smallint  NOT NULL,
-    [Licencia_Id] int  NOT NULL
+    [Activo] smallint  NOT NULL
 );
 GO
 
@@ -162,9 +161,11 @@ CREATE TABLE [dbo].[Licencias] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [FechaInicio] datetime  NOT NULL,
     [FechaFin] datetime  NOT NULL,
-    [FechaPago] datetime  NOT NULL,
-    [NroTransaccion] nvarchar(max)  NOT NULL,
-    [Flota_Id] int  NOT NULL
+    [FechaPago] datetime  NULL,
+    [NroTransaccion] nvarchar(max)  NULL,
+    [Estado] nvarchar(max)  NOT NULL,
+    [Flota_Id] int  NOT NULL,
+    [TipoLicencia_Id] int  NOT NULL
 );
 GO
 
@@ -177,6 +178,7 @@ GO
 -- Creating table 'Tiposdelicencia_Premium'
 CREATE TABLE [dbo].[Tiposdelicencia_Premium] (
     [CantUsuarios] int  NOT NULL,
+    [Precio] decimal(18,0)  NOT NULL,
     [Id] int  NOT NULL
 );
 GO
@@ -184,6 +186,7 @@ GO
 -- Creating table 'Tiposdelicencia_Basica'
 CREATE TABLE [dbo].[Tiposdelicencia_Basica] (
     [Patrocinador] nvarchar(max)  NOT NULL,
+    [Precio] decimal(18,0)  NOT NULL,
     [Id] int  NOT NULL
 );
 GO
@@ -374,19 +377,19 @@ ON [dbo].[Licencias]
     ([Flota_Id]);
 GO
 
--- Creating foreign key on [Licencia_Id] in table 'Tiposdelicencia'
-ALTER TABLE [dbo].[Tiposdelicencia]
+-- Creating foreign key on [TipoLicencia_Id] in table 'Licencias'
+ALTER TABLE [dbo].[Licencias]
 ADD CONSTRAINT [FK_LicenciaTipoLicencia]
-    FOREIGN KEY ([Licencia_Id])
-    REFERENCES [dbo].[Licencias]
+    FOREIGN KEY ([TipoLicencia_Id])
+    REFERENCES [dbo].[Tiposdelicencia]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_LicenciaTipoLicencia'
 CREATE INDEX [IX_FK_LicenciaTipoLicencia]
-ON [dbo].[Tiposdelicencia]
-    ([Licencia_Id]);
+ON [dbo].[Licencias]
+    ([TipoLicencia_Id]);
 GO
 
 -- Creating foreign key on [Id] in table 'Tiposdelicencia_Demo'

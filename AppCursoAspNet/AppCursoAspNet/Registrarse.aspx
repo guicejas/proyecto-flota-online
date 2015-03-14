@@ -58,12 +58,15 @@
              <tr>
                 <td>Licencia</td>
                 <td>
-                    <asp:DropDownList ID="DlLicencia" CssClass="form-control" runat="server" Enabled="false">
-                        <asp:ListItem Value="0">DEMO POR 30 DIAS</asp:ListItem>
+
+                    <asp:DropDownList ID="DlLicencia" CssClass="form-control" runat="server" DataSourceID="ObjectTipoLicencia" DataTextField="Descripcion" DataValueField="Id" AppendDataBoundItems="true">
+
                     </asp:DropDownList>
+                    <asp:ObjectDataSource ID="ObjectTipoLicencia" runat="server" SelectMethod="ListarTiposLicenciaDemo" TypeName="Vista.Registrarse"></asp:ObjectDataSource>
+
                 </td>
                 <td>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Debe seleccionar una flota" ControlToValidate="DlLicencia" CssClass="alert-danger"></asp:RequiredFieldValidator></td>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Debe seleccionar una licencia" ControlToValidate="DlLicencia" CssClass="alert-danger"></asp:RequiredFieldValidator></td>
                 <td style="width: 37px">
                     <br />
                 </td>

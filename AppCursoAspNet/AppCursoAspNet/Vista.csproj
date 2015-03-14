@@ -105,6 +105,8 @@
     <Content Include="Seguridad\EditarPerfil.aspx" />
     <Content Include="Seguridad\EditarUsuarioFlota.aspx" />
     <Content Include="Seguridad\EditarUsuario.aspx" />
+    <Content Include="Seguridad\Flotas.aspx" />
+    <Content Include="Seguridad\LicenciaFlota.aspx" />
     <Content Include="Seguridad\NuevoTipodeLicencia.aspx" />
     <Content Include="Seguridad\TiposdeLicencia.aspx" />
     <Content Include="Seguridad\Grupos.aspx" />
@@ -227,6 +229,20 @@
     </Compile>
     <Compile Include="Seguridad\EditarUsuario.aspx.designer.cs">
       <DependentUpon>EditarUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\Flotas.aspx.cs">
+      <DependentUpon>Flotas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seguridad\Flotas.aspx.designer.cs">
+      <DependentUpon>Flotas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\LicenciaFlota.aspx.cs">
+      <DependentUpon>LicenciaFlota.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seguridad\LicenciaFlota.aspx.designer.cs">
+      <DependentUpon>LicenciaFlota.aspx</DependentUpon>
     </Compile>
     <Compile Include="Seguridad\NuevoTipodeLicencia.aspx.cs">
       <DependentUpon>NuevoTipodeLicencia.aspx</DependentUpon>

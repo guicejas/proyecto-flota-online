@@ -12,9 +12,34 @@ namespace Controladora.SEGURIDAD
 
         public List<TipoLicencia> ListarTiposdeLicencia()
         {
+            return Modelo.SingletonSeguridad.ObtenerInstancia().Tiposdelicencia.Where(c=> c.Activo == 1).OrderBy(c => c.Id).ToList();
+        }
+
+        public List<TipoLicencia> ListarFullTiposdeLicencia()
+        {
             return Modelo.SingletonSeguridad.ObtenerInstancia().Tiposdelicencia.OrderBy(c => c.Id).ToList();
         }
 
+        public List<TipoLicencia> ListarTiposdeLicenciaDemo()
+        {
+            List<TipoLicencia> oLista = Modelo.SingletonSeguridad.ObtenerInstancia().Tiposdelicencia.Where(c => c.Activo == 1).Where(c=> c is Demo).OrderBy(c => c.Id).ToList();
+
+            return oLista;
+        }
+
+        public List<TipoLicencia> ListarTiposdeLicenciaBasica()
+        {
+            List<TipoLicencia> oLista = Modelo.SingletonSeguridad.ObtenerInstancia().Tiposdelicencia.Where(c => c.Activo == 1).Where(c => c is Basica).OrderBy(c => c.Descripcion).ToList();
+
+            return oLista;
+        }
+
+        public List<TipoLicencia> ListarTiposdeLicenciaPremium()
+        {
+            List<TipoLicencia> oLista = Modelo.SingletonSeguridad.ObtenerInstancia().Tiposdelicencia.Where(c => c.Activo == 1).Where(c => c is Premium).OrderBy(c => c.Descripcion).ToList();
+
+            return oLista;
+        }
 
         public void AgregarTipoLicencia(TipoLicencia oTipoLicencia)
         {
@@ -24,7 +49,7 @@ namespace Controladora.SEGURIDAD
 
         public void EliminarTipoLicencia(string IDTipoLicencia)
         {
-            TipoLicencia oTipoLicencia = Modelo.SingletonSeguridad.ObtenerInstancia().Tiposdelicencia.Find(IDTipoLicencia);
+            TipoLicencia oTipoLicencia = Modelo.SingletonSeguridad.ObtenerInstancia().Tiposdelicencia.Find(Convert.ToInt32(IDTipoLicencia));
             oTipoLicencia.Activo = 0;
 
             Modelo.SingletonSeguridad.ObtenerInstancia().Entry(oTipoLicencia).State = System.Data.Entity.EntityState.Modified;

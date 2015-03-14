@@ -55,9 +55,15 @@ namespace Controladora.SEGURIDAD
             return true;
         }
 
-        public List<Flota> ListarFlotasFiltrados(string IDFlota)
+        public List<Flota> ListarFlotasFiltrados(string razonSocial)
         {
-            return Modelo.SingletonSeguridad.ObtenerInstancia().Flotas.Where(oFlo => oFlo.Id.ToString().Contains(IDFlota)).OrderBy(c => c.Id).ToList();
+            List<Flota> Filtrado = Modelo.SingletonSeguridad.ObtenerInstancia().Flotas.OrderBy(c => c.RazonSocial).ToList();
+
+            if (razonSocial != null)
+            {
+                Filtrado = Filtrado.Where(oFlo => oFlo.RazonSocial.IndexOf(razonSocial, System.StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+            }
+            return Filtrado;
         }
 
         public Flota ObtenerFlotadeUsuario(string idUsuario)

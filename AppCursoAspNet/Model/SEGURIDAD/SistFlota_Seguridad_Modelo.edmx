@@ -119,10 +119,9 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Duracion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Duracion" Type="int" Nullable="false" />
     <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Activo" Type="smallint" Nullable="false" />
-    <Property Name="Licencia_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Licencias">
     <Key>
@@ -131,9 +130,11 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FechaInicio" Type="datetime" Nullable="false" />
     <Property Name="FechaFin" Type="datetime" Nullable="false" />
-    <Property Name="FechaPago" Type="datetime" Nullable="false" />
-    <Property Name="NroTransaccion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FechaPago" Type="datetime" Nullable="true" />
+    <Property Name="NroTransaccion" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Estado" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Flota_Id" Type="int" Nullable="false" />
+    <Property Name="TipoLicencia_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Tiposdelicencia_Demo">
     <Key>
@@ -146,6 +147,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="CantUsuarios" Type="int" Nullable="false" />
+    <Property Name="Precio" Type="decimal" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Tiposdelicencia_Basica">
@@ -153,6 +155,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Patrocinador" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Precio" Type="decimal" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="UsuarioGrupo">
@@ -224,14 +227,14 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="LicenciaTipoLicencia">
-    <End Role="Licencia" Type="SistFlota_Seguridad_Modelo.Store.Licencias" Multiplicity="1" />
-    <End Role="TipoLicencia" Type="SistFlota_Seguridad_Modelo.Store.Tiposdelicencia" Multiplicity="*" />
+    <End Role="Licencia" Type="SistFlota_Seguridad_Modelo.Store.Licencias" Multiplicity="*" />
+    <End Role="TipoLicencia" Type="SistFlota_Seguridad_Modelo.Store.Tiposdelicencia" Multiplicity="1" />
     <ReferentialConstraint>
-      <Principal Role="Licencia">
+      <Principal Role="TipoLicencia">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="TipoLicencia">
-        <PropertyRef Name="Licencia_Id" />
+      <Dependent Role="Licencia">
+        <PropertyRef Name="TipoLicencia_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -422,7 +425,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Duracion" Type="String" Nullable="false" />
+          <Property Name="Duracion" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" Nullable="false" />
           <NavigationProperty Name="Licencia" Relationship="SistFlota_Seguridad_Modelo.LicenciaTipoLicencia" FromRole="TipoLicencia" ToRole="Licencia" />
           <Property Name="Activo" Type="Int16" Nullable="false" />
@@ -430,6 +433,7 @@
         <EntityType Name="Demo" BaseType="SistFlota_Seguridad_Modelo.TipoLicencia" />
         <EntityType Name="Premium" BaseType="SistFlota_Seguridad_Modelo.TipoLicencia" >
           <Property Name="CantUsuarios" Type="Int32" Nullable="false" />
+          <Property Name="Precio" Type="Decimal" Nullable="false" />
         </EntityType>
         <Association Name="UsuarioFlota">
           <End Type="SistFlota_Seguridad_Modelo.Usuario" Role="Usuario" Multiplicity="*" />
@@ -437,6 +441,7 @@
         </Association>
         <EntityType Name="Basica" BaseType="SistFlota_Seguridad_Modelo.TipoLicencia" >
           <Property Name="Patrocinador" Type="String" Nullable="false" />
+          <Property Name="Precio" Type="Decimal" Nullable="false" />
         </EntityType>
         <EntityType Name="Licencia">
           <Key>
@@ -447,16 +452,17 @@
           <Property Name="FechaFin" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Flota" Relationship="SistFlota_Seguridad_Modelo.FlotaLicencia" FromRole="Licencia" ToRole="Flota" />
           <NavigationProperty Name="TipoLicencia" Relationship="SistFlota_Seguridad_Modelo.LicenciaTipoLicencia" FromRole="Licencia" ToRole="TipoLicencia" />
-          <Property Name="FechaPago" Type="DateTime" Nullable="false" />
-          <Property Name="NroTransaccion" Type="String" Nullable="false" />
+          <Property Name="FechaPago" Type="DateTime" Nullable="true" />
+          <Property Name="NroTransaccion" Type="String" Nullable="true" />
+          <Property Name="Estado" Type="String" Nullable="false" />
         </EntityType>
         <Association Name="FlotaLicencia">
           <End Type="SistFlota_Seguridad_Modelo.Flota" Role="Flota" Multiplicity="1" />
           <End Type="SistFlota_Seguridad_Modelo.Licencia" Role="Licencia" Multiplicity="*" />
         </Association>
         <Association Name="LicenciaTipoLicencia">
-          <End Type="SistFlota_Seguridad_Modelo.Licencia" Role="Licencia" Multiplicity="1" />
-          <End Type="SistFlota_Seguridad_Modelo.TipoLicencia" Role="TipoLicencia" Multiplicity="*" />
+          <End Type="SistFlota_Seguridad_Modelo.Licencia" Role="Licencia" Multiplicity="*" />
+          <End Type="SistFlota_Seguridad_Modelo.TipoLicencia" Role="TipoLicencia" Multiplicity="1" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -535,12 +541,14 @@
         <MappingFragment StoreEntitySet="Tiposdelicencia_Premium">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="CantUsuarios" ColumnName="CantUsuarios" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(SistFlota_Seguridad_Modelo.Basica)">
         <MappingFragment StoreEntitySet="Tiposdelicencia_Basica">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Patrocinador" ColumnName="Patrocinador" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -552,6 +560,7 @@
           <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
           <ScalarProperty Name="FechaPago" ColumnName="FechaPago" />
           <ScalarProperty Name="NroTransaccion" ColumnName="NroTransaccion" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -603,11 +612,11 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="LicenciaTipoLicencia" TypeName="SistFlota_Seguridad_Modelo.LicenciaTipoLicencia" StoreEntitySet="Tiposdelicencia">
-      <EndProperty Name="Licencia">
-        <ScalarProperty Name="Id" ColumnName="Licencia_Id" />
-      </EndProperty>
+    <AssociationSetMapping Name="LicenciaTipoLicencia" TypeName="SistFlota_Seguridad_Modelo.LicenciaTipoLicencia" StoreEntitySet="Licencias">
       <EndProperty Name="TipoLicencia">
+        <ScalarProperty Name="Id" ColumnName="TipoLicencia_Id" />
+      </EndProperty>
+      <EndProperty Name="Licencia">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>

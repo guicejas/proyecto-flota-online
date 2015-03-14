@@ -14,11 +14,16 @@ namespace Modelo.SEGURIDAD
     
     public partial class TipoLicencia
     {
+        public TipoLicencia()
+        {
+            this.Licencia = new HashSet<Licencia>();
+        }
+    
         public int Id { get; set; }
-        public string Duracion { get; set; }
+        public int Duracion { get; set; }
         public string Descripcion { get; set; }
         public short Activo { get; set; }
     
-        public virtual Licencia Licencia { get; set; }
+        public virtual ICollection<Licencia> Licencia { get; set; }
     }
 }

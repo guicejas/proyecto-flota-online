@@ -15,5 +15,6 @@ namespace Modelo.SEGURIDAD
     public partial class Premium : TipoLicencia
     {
         public int CantUsuarios { get; set; }
+        public decimal Precio { get; set; }
     }
 }

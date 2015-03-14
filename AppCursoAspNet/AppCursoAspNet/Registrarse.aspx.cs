@@ -9,12 +9,11 @@ namespace Vista
 {
     public partial class Registrarse : System.Web.UI.Page
     {
-        Controladora.SEGURIDAD.ControladoraLogin ctrlLogin = new Controladora.SEGURIDAD.ControladoraLogin();
-
         Controladora.SEGURIDAD.ControladoraGrupos ctrlGrupos = new Controladora.SEGURIDAD.ControladoraGrupos();
         Controladora.SEGURIDAD.ControladoraUsuarios ctrlUsuarios = new Controladora.SEGURIDAD.ControladoraUsuarios();
-        Controladora.SEGURIDAD.ControladoraPerfiles ctrlPerfiles = new Controladora.SEGURIDAD.ControladoraPerfiles();
         Controladora.SEGURIDAD.ControladoraFlotas ctrlFlotas = new Controladora.SEGURIDAD.ControladoraFlotas();
+        Controladora.SEGURIDAD.ControladoraTiposdeLicencia ctrlTiposLicencia = new Controladora.SEGURIDAD.ControladoraTiposdeLicencia();
+        Controladora.SEGURIDAD.ControladoraLicencias ctrlLicencias = new Controladora.SEGURIDAD.ControladoraLicencias();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,9 +24,16 @@ namespace Vista
         {
             Modelo.SEGURIDAD.Flota oFlota = new Modelo.SEGURIDAD.Flota();
             oFlota.RazonSocial = flota.Text;
+                        
+            Modelo.SEGURIDAD.Licencia oLicencia = new Modelo.SEGURIDAD.Licencia();
+            oLicencia.TipoLicencia = ctrlTiposLicencia.ObtenerTipoLicencia(DlLicencia.SelectedValue);
+            oLicencia.FechaInicio = DateTime.Now;
+            oLicencia.FechaFin = oLicencia.FechaInicio.AddDays(Convert.ToDouble(oLicencia.TipoLicencia.Duracion));
+            oLicencia.Estado = "Aceptada";
 
+            oFlota.Licencia.Add(oLicencia);
+            
             Modelo.SEGURIDAD.Usuario oUsuario = new Modelo.SEGURIDAD.Usuario();
-
             oUsuario.IDUsuario = usuario.Text;
             oUsuario.NombreApellido = nombreyapellido.Text;
             oUsuario.Email = email.Value;
@@ -40,6 +46,8 @@ namespace Vista
 
             if (ctrlUsuarios.VerificarUsuario(oUsuario))
             {
+                ctrlFlotas.AgregarFlota(oFlota);
+                ctrlLicencias.AgregarLicencia(oLicencia);
                 ctrlUsuarios.AgregarUsuario(oUsuario);
                 string mensaje = ctrlUsuarios.CambiarContraseña(oUsuario); // DESCOMENTAR EN PRODUCCION
                 Response.Redirect("Login.aspx?msj=" + mensaje);
@@ -51,6 +59,11 @@ namespace Vista
 
             }
 
+        }
+
+        public IList<Modelo.SEGURIDAD.TipoLicencia> ListarTiposLicenciaDemo()
+        {
+            return ctrlTiposLicencia.ListarTiposdeLicenciaDemo();
         }
 
     }

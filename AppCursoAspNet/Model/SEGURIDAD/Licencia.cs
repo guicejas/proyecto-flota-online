@@ -14,18 +14,14 @@ namespace Modelo.SEGURIDAD
     
     public partial class Licencia
     {
-        public Licencia()
-        {
-            this.TipoLicencia = new HashSet<TipoLicencia>();
-        }
-    
         public int Id { get; set; }
         public System.DateTime FechaInicio { get; set; }
         public System.DateTime FechaFin { get; set; }
-        public System.DateTime FechaPago { get; set; }
+        public Nullable<System.DateTime> FechaPago { get; set; }
         public string NroTransaccion { get; set; }
+        public string Estado { get; set; }
     
         public virtual Flota Flota { get; set; }
-        public virtual ICollection<TipoLicencia> TipoLicencia { get; set; }
+        public virtual TipoLicencia TipoLicencia { get; set; }
     }
 }
