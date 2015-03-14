@@ -22,39 +22,58 @@
             </GroupTemplate>
             <ItemTemplate>
                 <td runat="server">
-                    <table>
-                        <tr>
-                            <td>
-                                <a>
-                                    <image src='../Images/<%#:Item.tipo%>'
-                                        width="190" height="190" border="1" style="margin-left: 30px; margin-right: 30px;" />
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tdChofer">
-                                <code><%#:Item.Descripcion%></code>
-                                <br />
-                                <span>
-                                    <b>Duracion: </b><%#:Item.Duracion.ToString()%> dias.
-                                </span>
-                                <br />
-                                <span>
-                                    <b>Precio: </b><%#:String.Format("{0:c}", Item.Precio)%>
-                                </span>
-                                <br />
+                                           <table style="background-color: white; margin:15px; width:240px">
+                            <tbody style="border:5px  solid rgb(221, 196, 196);">
+                            <tr>
+                                <td style="padding-left: 15px; padding-right:25px;">
+                                    <h4 style="color: black;"><%#:Item.tipo%></h4>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 15px; padding-right:25px; color:darkslateblue;">
 
-                                <a href="/View/EditarChofer.aspx?Documento=<%#:Item.Id%>" role="button" id="btnEditar" class="btnEditar">
-                                    <span class="glyphicon glyphicon-edit yellow-icon"></span>
-                                    <b>Editar<b />
-                                </a>
-                                <br />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                        </tr>
-                    </table>
+                                    <span style="font-size:x-large; font-weight:700;">
+                                        <%#:String.Format("{0:c}", (Item.Precio/(Item.Duracion/30)))%> 
+                                    </span>
+                                    / mes
+                                    <br />
+
+                                    <span><%#:Item.Descripcion.ToUpper()%></span>
+                                    <br />
+                                    <br />
+                                    <span style="font-size:x-large; font-weight:700;">
+                                        <%#:Item.Duracion.ToString()%>
+                                    </span>
+                                     dias de vigencia
+                                    <br />
+                                    <span style="font-size:x-large; font-weight:700;">
+                                        1
+                                    </span>
+                                     usuario
+                                    <br />
+                                    <span style="font-size:x-large; font-weight:700;">
+                                       CON 
+                                    </span>
+                                     publicidades
+                                    <br />
+                                    <br />
+                                    <span>
+                                        <b>Precio Final: </b><%#:String.Format("{0:c}", Item.Precio)%> ARS
+                                    </span>
+                                    <br />
+
+                                    <a href="/View/EditarChofer.aspx?Documento=<%#:Item.Id%>" role="button" id="btnEditar" class="btnEditar">
+                                        <span class="glyphicon glyphicon-edit yellow-icon"></span>
+                                        <b>Editar<b />
+                                    </a>
+                                    <br />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                                </tbody>
+                        </table>
                     </p>
                 </td>
             </ItemTemplate>
