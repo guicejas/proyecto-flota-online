@@ -336,6 +336,16 @@ border: 1px solid rgba(0,0,0,1);
   box-shadow: none;
 }
 
+.line-separator{
+
+height:1px;
+background:#717171;
+border-bottom:1px solid #b2b2b2;
+margin-top:10px;
+margin-bottom: 10px;
+
+}
+
 
     /*
 .btn-rojo {

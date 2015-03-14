@@ -29,6 +29,7 @@ namespace Vista.Seguridad
             spanDiasRestantes.InnerText = (oLicencia.FechaFin.Subtract(DateTime.Now).Days.ToString());
             spanFechaCompra.InnerText = oLicencia.FechaInicio.ToShortDateString();
             spanFechaFin.InnerText = oLicencia.FechaFin.ToShortDateString();
+            spanEstado.InnerText = oLicencia.Estado;
 
             if (oLicencia.TipoLicencia.tipo == "Demo")
             {
@@ -38,9 +39,9 @@ namespace Vista.Seguridad
 
             if (oLicencia.TipoLicencia.tipo == "Premium")
             {
-                //Modelo.SEGURIDAD.Premium oTipoLicenciaPremium = Modelo.SEGURIDAD.Premium(oLicencia.TipoLicencia);
+                Modelo.SEGURIDAD.Premium oTipoLicenciaPremium = ctrlTiposdeLicencia.ObtenerTipoLicenciaPremium(oLicencia.TipoLicencia.Id.ToString());
 
-                //spanUsuariosAdicionales.InnerText = oTipoLicenciaPremium.CantUsuarios;
+                spanUsuariosAdicionales.InnerText = oTipoLicenciaPremium.CantUsuarios.ToString();
             }
 
 

@@ -13,7 +13,7 @@
     <form runat="server">
         <asp:ScriptManager ID="ScriptManager1" AllowCustomErrorsRedirect="false" runat="server"></asp:ScriptManager>
 
-        <div id="divMiLicencia" style="background-color: transparent; padding: 5px 5px 10px 15px">
+        <div id="divMiLicencia" style="background-color: transparent; padding: 5px 5px 10px 15px;">
             <blockquote>
 
                 <span style="font-size: x-large;">Su <span id="spanDescripcion" runat="server" class="text-info">Licencia Demo 30</span> expira en <span id="spanDiasRestantes" runat="server" class="text-warning">10</span> dias.
@@ -56,8 +56,8 @@
             </GroupTemplate>
             <ItemTemplate>
                 <td runat="server">
-                    <table style="background-color: white; margin: 15px; width: 240px">
-                        <tbody style="border: 5px  solid rgb(221, 196, 196);">
+                    <table style="border: 1px solid black; border-radius: 7px; background-color: white; margin: 15px; width: 240px; box-shadow:3px 3px 1px black;">
+                        <tbody style="">
                             <tr>
                                 <td style="padding-left: 15px; padding-right: 25px;">
                                     <h4 style="color: black;"><%#:Item.tipo%></h4>
@@ -74,7 +74,8 @@
 
                                     <span><%#:Item.Descripcion.ToUpper()%></span>
                                     <br />
-                                    <br />
+                                    <div class="line-separator"></div>
+                                    
                                     <span style="font-size: x-large; font-weight: 700;">
                                         <%#:Item.Duracion.ToString()%>
                                     </span>
@@ -88,15 +89,14 @@
                                     </span>
                                     publicidades
                                     <br />
-                                    <br />
+                                    <div class="line-separator"></div>
                                     <span>
                                         <b>Precio Final: </b><%#:String.Format("{0:c}", Item.Precio)%> ARS
                                     </span>
                                     <br />
-
-                                    <a href="/View/EditarChofer.aspx?Documento=<%#:Item.Id%>" role="button" id="btnEditar" class="btnEditar">
-                                        <span class="glyphicon glyphicon-edit yellow-icon"></span>
-                                        <b>Editar<b />
+                                    <br />
+                                    <a href="/View/EditarChofer.aspx?Documento=<%#:Item.Id%>" role="button" id="btnComprar" class="btn btn-success">
+                                        <b>COMPRAR<b />
                                     </a>
                                     <br />
                                 </td>
@@ -138,8 +138,8 @@
             </GroupTemplate>
             <ItemTemplate>
                 <td runat="server">
-                    <table style="background-color: white; margin: 15px; width: 240px">
-                        <tbody style="border: 5px  solid rgb(221, 196, 196);">
+                    <table style="border: 1px solid black; border-radius: 7px; background-color: white; margin: 15px; width: 240px; box-shadow:3px 3px 1px black;">
+                        <tbody style="">
                             <tr>
                                 <td style="padding-left: 15px; padding-right: 25px;">
                                     <h4 style="color: black;"><%#:Item.tipo%></h4>
@@ -156,7 +156,7 @@
 
                                     <span><%#:Item.Descripcion.ToUpper()%></span>
                                     <br />
-                                    <br />
+                                    <div class="line-separator"></div>
                                     <span style="font-size: x-large; font-weight: 700;">
                                         <%#:Item.Duracion.ToString()%>
                                     </span>
@@ -171,15 +171,14 @@
                                     </span>
                                     publicidades
                                     <br />
-                                    <br />
+                                    <div class="line-separator"></div>
                                     <span>
                                         <b>Precio Final: </b><%#:String.Format("{0:c}", Item.Precio)%> ARS
                                     </span>
                                     <br />
-
-                                    <a href="/View/EditarChofer.aspx?Documento=<%#:Item.Id%>" role="button" id="btnEditar" class="btnEditar">
-                                        <span class="glyphicon glyphicon-edit yellow-icon"></span>
-                                        <b>Editar<b />
+                                    <br />
+                                    <a href="/View/EditarChofer.aspx?Documento=<%#:Item.Id%>" role="button" id="btnComprar" class="btn btn-success">
+                                        <b>COMPRAR<b />
                                     </a>
                                     <br />
                                 </td>

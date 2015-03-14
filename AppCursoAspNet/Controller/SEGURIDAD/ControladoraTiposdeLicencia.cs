@@ -29,14 +29,14 @@ namespace Controladora.SEGURIDAD
 
         public List<TipoLicencia> ListarTiposdeLicenciaBasica()
         {
-            List<TipoLicencia> oLista = Modelo.SingletonSeguridad.ObtenerInstancia().Tiposdelicencia.Where(c => c.Activo == 1).Where(c => c is Basica).OrderBy(c => c.Descripcion).ToList();
+            List<TipoLicencia> oLista = Modelo.SingletonSeguridad.ObtenerInstancia().Tiposdelicencia.Where(c => c.Activo == 1).Where(c => c is Basica).OrderBy(c => c.Duracion).ToList();
 
             return oLista;
         }
 
         public List<TipoLicencia> ListarTiposdeLicenciaPremium()
         {
-            List<TipoLicencia> oLista = Modelo.SingletonSeguridad.ObtenerInstancia().Tiposdelicencia.Where(c => c.Activo == 1).Where(c => c is Premium).OrderBy(c => c.Descripcion).ToList();
+            List<TipoLicencia> oLista = Modelo.SingletonSeguridad.ObtenerInstancia().Tiposdelicencia.Where(c => c.Activo == 1).Where(c => c is Premium).OrderBy(c => c.Duracion).ToList();
 
             return oLista;
         }
@@ -70,6 +70,22 @@ namespace Controladora.SEGURIDAD
             int idTipoLicencia = Convert.ToInt32(TipoLicenciaId);
 
             TipoLicencia oTipoLicencia = Modelo.SingletonSeguridad.ObtenerInstancia().Tiposdelicencia.Find(idTipoLicencia);
+            return oTipoLicencia;
+        }
+
+        public Premium ObtenerTipoLicenciaPremium(string TipoLicenciaId)
+        {
+            int idTipoLicencia = Convert.ToInt32(TipoLicenciaId);
+
+            Premium oTipoLicencia = Modelo.SingletonSeguridad.ObtenerInstancia().Tiposdelicencia.OfType<Premium>().FirstOrDefault(c=> c.Id == idTipoLicencia);
+            return oTipoLicencia;
+        }
+
+        public Basica ObtenerTipoLicenciaBasica(string TipoLicenciaId)
+        {
+            int idTipoLicencia = Convert.ToInt32(TipoLicenciaId);
+
+            Basica oTipoLicencia = Modelo.SingletonSeguridad.ObtenerInstancia().Tiposdelicencia.OfType<Basica>().FirstOrDefault(c => c.Id == idTipoLicencia);
             return oTipoLicencia;
         }
 
