@@ -1,17 +1,78 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="LicenciaFlota.aspx.cs" Inherits="Vista.Seguridad.LicenciaFlota" %>
-<%@ Import Namespace="mercadopago" %>
-<%@ Import Namespace="System.Collections" %>
+﻿<%@ Page Title="Licencia Expirada" Language="C#" AutoEventWireup="true" CodeBehind="LicenciaExpirada.aspx.cs" Inherits="Vista.View.LicenciaExpirada" %>
 
+<!DOCTYPE html>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema Flota de Taxis Online - Trypep sistemas - 2015</title>
+    <link rel="shortcut icon" href="Images/taxi.ico" type="image/x-icon" />
 
-    <div>
-        <ol class="breadcrumb">
-            <li><a href="Index.aspx">Inicio</a></li>
-            <li class="active">Mi Licencia</li>
-        </ol>
-    </div>
-    <h2>Mi Licencia</h2>
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+    <link href="../Content/glyphicons.css" rel="stylesheet" />
+    <link href="../Content/Site.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="../Scripts/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="../Scripts/bootstrap.js"></script>
+    <script type="text/javascript" src="../Scripts/Site.js"></script>
+    <script type="text/javascript" src="../Scripts/bootbox.js"></script>
+    <script type="text/javascript" src="../Scripts/bootstrap-confirmation.js"></script>
+    <script type="text/javascript">
+        !function ($) {
+
+            $(function () {
+
+                $('[data-toggle="confirmation"]').confirmation();
+                $('[data-toggle="confirmation-singleton"]').confirmation({ singleton: true });
+                $('[data-toggle="confirmation-popout"]').confirmation({ popout: true });
+
+            })
+
+        }(window.jQuery)
+        </script>
+    
+</head>
+
+<body style="margin-left:100px; margin-right:100px; margin-top:25px;">
+    <form>
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" runat="server" href="~/View/Index"><asp:Label ID="flotaUser" runat="server" Text="Flota Online"></asp:Label></a>
+                </div>
+                <div class="navbar-collapse collapse navbar-responsive-collapse">
+                    <div id="menuPrincipal" runat="server">
+                        <ul class="nav navbar-nav">
+
+                        </ul>
+                    </div>
+
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li id="menuUsuario" class="dropdown" runat="server">
+                            <a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user yellow-icon"></span><span id="nombreUsuario" runat="server"><%: this.Context.User.Identity.Name %></span><b class="caret"></b></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="../Logout.aspx"><span class="glyphicon glyphicon-exit yellow-icon"></span>Salir del sistema</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="gradient">
+                <div class="taxi-pattern greydout"></div>
+            </div>
+        </div>
+        <br />
+
+        <p />
+        <p />
+    </form>
 
     <form runat="server">
         <asp:ScriptManager ID="ScriptManager1" AllowCustomErrorsRedirect="false" runat="server"></asp:ScriptManager>
@@ -24,7 +85,7 @@
         <div id="divMiLicencia" style="background-color: transparent; padding: 5px 5px 10px 15px;">
             <blockquote>
 
-                <span style="font-size: x-large;">Su <span id="spanDescripcion" runat="server" class="text-info">Licencia Demo 30</span> expira en <span id="spanDiasRestantes" runat="server" class="text-warning">10</span> dias.
+                <span style="font-size: x-large;">Su <span id="spanDescripcion" runat="server" class="text-info">Licencia Demo 30</span> expiro.
                 </span>
                 <br />
 
@@ -225,33 +286,8 @@
 
         <asp:ObjectDataSource ID="ObjectTiposdeLicenciaPremium" runat="server" SelectMethod="ListarTiposdeLicenciaPremium" TypeName="Controladora.SEGURIDAD.ControladoraTiposdeLicencia"></asp:ObjectDataSource>
 
-        <!-- Bootstrap Modal Dialog -->
-        <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <asp:UpdatePanel ID="upModal" runat="server" ChildrenAsTriggers="false" UpdateMode="Conditional">
-                    <ContentTemplate>
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title">
-                                    <asp:Label ID="lblModalTitle" runat="server" Text=""></asp:Label></h4>
-                            </div>
-                            <div class="modal-body">
-                                <asp:Label ID="lblModalBody" runat="server" Text=""></asp:Label>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-amarillo" data-dismiss="modal" aria-hidden="true">Close</button>
-                            </div>
-                        </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-            </div>
-        </div>
+        </form>
 
+    </body>
 
-    </form>
-
-
-
-
-</asp:Content>
+    </html>

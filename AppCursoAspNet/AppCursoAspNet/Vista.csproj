@@ -120,6 +120,8 @@
     <Content Include="Seguridad\VerUsuarioFlota.aspx" />
     <Content Include="Seguridad\VerUsuario.aspx" />
     <Content Include="View\Checkout.aspx" />
+    <Content Include="View\FinCheckout.aspx" />
+    <Content Include="View\LicenciaExpirada.aspx" />
     <Content Include="View\ReporteQlikView.aspx" />
     <Content Include="View\About.aspx" />
     <Content Include="View\AuditoriaLogs.aspx" />
@@ -334,6 +336,20 @@
     </Compile>
     <Compile Include="View\Checkout.aspx.designer.cs">
       <DependentUpon>Checkout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\FinCheckout.aspx.cs">
+      <DependentUpon>FinCheckout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\FinCheckout.aspx.designer.cs">
+      <DependentUpon>FinCheckout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\LicenciaExpirada.aspx.cs">
+      <DependentUpon>LicenciaExpirada.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\LicenciaExpirada.aspx.designer.cs">
+      <DependentUpon>LicenciaExpirada.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\ReporteQlikView.aspx.cs">
       <DependentUpon>ReporteQlikView.aspx</DependentUpon>
