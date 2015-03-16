@@ -33,7 +33,5 @@ namespace Controladora.SEGURIDAD.Fachada
            return oMercadoPago.generarURL();
        }
 
-
-
     }
 }

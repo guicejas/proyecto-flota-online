@@ -48,7 +48,7 @@ namespace Vista
             {
                 Modelo.SEGURIDAD.Usuario oUsuario = ctrlUsuarios.BuscarUsuario(inputUsuario.Value);
 
-                if (ctrlPerfiles.ObtenerFormularios(oUsuario.IDUsuario).Exists(a => a == "Administracion"))
+                if ((ctrlGrupos.ObtenerGrupodeUsuario(inputUsuario.Value).IDGrupo == "Administrador"))
                 {
 
                     //FormsAuthentication.RedirectFromLoginPage(inputUsuario.Value, recordarme.Checked);
