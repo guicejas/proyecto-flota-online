@@ -46,8 +46,8 @@ namespace Vista
 
             if (ctrlUsuarios.VerificarUsuario(oUsuario))
             {
-                ctrlFlotas.AgregarFlota(oFlota);
-                ctrlLicencias.AgregarLicencia(oLicencia);
+                //ctrlFlotas.AgregarFlota(oFlota);
+                //ctrlLicencias.AgregarLicencia(oLicencia);
                 ctrlUsuarios.AgregarUsuario(oUsuario);
                 string mensaje = ctrlUsuarios.CambiarContraseña(oUsuario); // DESCOMENTAR EN PRODUCCION
                 Response.Redirect("Login.aspx?msj=" + mensaje);

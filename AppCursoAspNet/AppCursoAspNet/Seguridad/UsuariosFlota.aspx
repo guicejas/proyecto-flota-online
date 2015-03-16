@@ -8,7 +8,7 @@
     </div>
     <h2>Usuarios</h2>
     <p>
-        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="NuevoUsuarioFlota.aspx" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>Agregar Usuario</asp:HyperLink>
+        <asp:HyperLink ID="btnAgregarUsuario" visible="false" runat="server" NavigateUrl="NuevoUsuarioFlota.aspx" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>Agregar Usuario</asp:HyperLink>
     </p>
     <form runat="server">
 

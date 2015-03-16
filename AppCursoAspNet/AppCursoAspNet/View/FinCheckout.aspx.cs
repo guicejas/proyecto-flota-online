@@ -50,7 +50,7 @@ namespace Vista.View
                     oLicencia.TipoLicencia = oTipoLicencia;
                     oLicencia.FechaInicio = DateTime.Now;
                     oLicencia.FechaFin = oLicencia.FechaInicio.AddDays(Convert.ToDouble(oLicencia.TipoLicencia.Duracion));
-                    oLicencia.Estado = "Pendiente";
+                    oLicencia.Estado = "Pendiente Confirmacion";
                     oLicencia.NroTransaccion = Request.QueryString["collection_id"];
 
                     oUsuario.Flota.Licencia.Add(oLicencia);

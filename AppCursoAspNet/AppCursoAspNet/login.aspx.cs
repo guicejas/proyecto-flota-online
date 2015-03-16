@@ -46,56 +46,228 @@ namespace Vista
             Autenticado = ctrlLogin.IniciarSesion(inputUsuario.Value, inputPassword.Value);
             if (Autenticado)
             {
-                //FormsAuthentication.RedirectFromLoginPage(inputUsuario.Value, recordarme.Checked);
-                //Response.Redirect("View/Index.aspx");
-                Modelo.SEGURIDAD.Grupo grupolUsuario = ctrlGrupos.ObtenerGrupodeUsuario(inputUsuario.Value);
+                Modelo.SEGURIDAD.Usuario oUsuario = ctrlUsuarios.BuscarUsuario(inputUsuario.Value);
 
-                Modelo.SEGURIDAD.Flota flotaUsuario = ctrlFlotas.ObtenerFlotadeUsuario(inputUsuario.Value);
+                if (ctrlPerfiles.ObtenerFormularios(oUsuario.IDUsuario).Exists(a => a == "Administracion"))
+                {
 
-                				//Invoca a componente que se encarga del Cache de los datos
-				//en este caso de las páginas a las que el perfil tiene acceso
-				Modelo.SEGURIDAD.UserCache.AddPaginasToCache(grupolUsuario.IDGrupo, ctrlPerfiles.ObtenerFormularios(inputUsuario.Value),System.Web.HttpContext.Current); 
-				
-				// Crea un ticket de Autenticacion de forma manual, 
-				// donde guardaremos información que nos interesa
-				FormsAuthenticationTicket authTicket = 
-						new FormsAuthenticationTicket(2,  // version
-						inputUsuario.Value,
-						DateTime.Now, 
-						DateTime.Now.AddMinutes(60),
-						false, 
-						grupolUsuario.IDGrupo, // guardo el grupo del usuario
-						FormsAuthentication.FormsCookiePath);
-				// Encripto el Ticket.
-				string crypTicket = FormsAuthentication.Encrypt(authTicket);
-					
-				// Creo la Cookie
-				HttpCookie authCookie = 
-						new HttpCookie(FormsAuthentication.FormsCookieName,
-						crypTicket);
+                    //FormsAuthentication.RedirectFromLoginPage(inputUsuario.Value, recordarme.Checked);
+                    //Response.Redirect("View/Index.aspx");
+                    Modelo.SEGURIDAD.Grupo grupolUsuario = ctrlGrupos.ObtenerGrupodeUsuario(inputUsuario.Value);
 
-				Response.Cookies.Add(authCookie);
-                Session["flotaId"] = flotaUsuario.Id.ToString();
-                  //Response.Cookies.
+                    Modelo.SEGURIDAD.Flota flotaUsuario = ctrlFlotas.ObtenerFlotadeUsuario(inputUsuario.Value);
 
+                    //Invoca a componente que se encarga del Cache de los datos
+                    //en este caso de las páginas a las que el perfil tiene acceso
+                    Modelo.SEGURIDAD.UserCache.AddPaginasToCache(grupolUsuario.IDGrupo, ctrlPerfiles.ObtenerFormularios(inputUsuario.Value), System.Web.HttpContext.Current);
 
-                // Cookies con informacion del usuario
-                HttpCookie userInfoCookie = new HttpCookie("userInfoSGOFT");
-                userInfoCookie.Values["userName"] = inputUsuario.Value;
-                userInfoCookie.Values["grupoId"] = grupolUsuario.IDGrupo;
-                userInfoCookie.Values["flotaId"] = flotaUsuario.Id.ToString();
-                // userInfoCookie.Expires = DateTime.Now.AddDays(1);
-                Response.Cookies.Add(userInfoCookie);
+                    // Crea un ticket de Autenticacion de forma manual, 
+                    // donde guardaremos información que nos interesa
+                    FormsAuthenticationTicket authTicket =
+                            new FormsAuthenticationTicket(2,  // version
+                            inputUsuario.Value,
+                            DateTime.Now,
+                            DateTime.Now.AddMinutes(60),
+                            false,
+                            grupolUsuario.IDGrupo, // guardo el grupo del usuario
+                            FormsAuthentication.FormsCookiePath);
+                    // Encripto el Ticket.
+                    string crypTicket = FormsAuthentication.Encrypt(authTicket);
+
+                    // Creo la Cookie
+                    HttpCookie authCookie =
+                            new HttpCookie(FormsAuthentication.FormsCookieName,
+                            crypTicket);
+
+                    Response.Cookies.Add(authCookie);
+                    Session["flotaId"] = flotaUsuario.Id.ToString();
+                    //Response.Cookies.
 
 
- 
-				// Redirecciono al Usuario - Importante!! no usar el RedirectFromLoginPage
-				// Para que se puedan usar las Cookies de los HttpModules
-                //Response.Redirect(FormsAuthentication.GetRedirectUrl(inputUsuario.Value, false));
-                if (ctrlUsuarios.BuscarUsuario(inputUsuario.Value).PrimeraVez == true)
-                    Response.Redirect("View/PasswordTemporal.aspx");
+                    // Cookies con informacion del usuario
+                    HttpCookie userInfoCookie = new HttpCookie("userInfoSGOFT");
+                    userInfoCookie.Values["userName"] = inputUsuario.Value;
+                    userInfoCookie.Values["grupoId"] = grupolUsuario.IDGrupo;
+                    userInfoCookie.Values["flotaId"] = flotaUsuario.Id.ToString();
+                    // userInfoCookie.Expires = DateTime.Now.AddDays(1);
+                    Response.Cookies.Add(userInfoCookie);
+
+
+
+                    // Redirecciono al Usuario - Importante!! no usar el RedirectFromLoginPage
+                    // Para que se puedan usar las Cookies de los HttpModules
+                    //Response.Redirect(FormsAuthentication.GetRedirectUrl(inputUsuario.Value, false));
+                    if (ctrlUsuarios.BuscarUsuario(inputUsuario.Value).PrimeraVez == true)
+                        Response.Redirect("View/PasswordTemporal.aspx");
+                    else
+                        Response.Redirect("View/Index.aspx");
+                }
+
+
+                if (oUsuario.Flota.ultimaLicencia.FechaFin >= DateTime.Now && oUsuario.Flota.ultimaLicencia.Estado == "Aceptada")
+                {
+
+                    //FormsAuthentication.RedirectFromLoginPage(inputUsuario.Value, recordarme.Checked);
+                    //Response.Redirect("View/Index.aspx");
+                    Modelo.SEGURIDAD.Grupo grupolUsuario = ctrlGrupos.ObtenerGrupodeUsuario(inputUsuario.Value);
+
+                    Modelo.SEGURIDAD.Flota flotaUsuario = ctrlFlotas.ObtenerFlotadeUsuario(inputUsuario.Value);
+
+                    //Invoca a componente que se encarga del Cache de los datos
+                    //en este caso de las páginas a las que el perfil tiene acceso
+                    Modelo.SEGURIDAD.UserCache.AddPaginasToCache(grupolUsuario.IDGrupo, ctrlPerfiles.ObtenerFormularios(inputUsuario.Value), System.Web.HttpContext.Current);
+
+                    // Crea un ticket de Autenticacion de forma manual, 
+                    // donde guardaremos información que nos interesa
+                    FormsAuthenticationTicket authTicket =
+                            new FormsAuthenticationTicket(2,  // version
+                            inputUsuario.Value,
+                            DateTime.Now,
+                            DateTime.Now.AddMinutes(60),
+                            false,
+                            grupolUsuario.IDGrupo, // guardo el grupo del usuario
+                            FormsAuthentication.FormsCookiePath);
+                    // Encripto el Ticket.
+                    string crypTicket = FormsAuthentication.Encrypt(authTicket);
+
+                    // Creo la Cookie
+                    HttpCookie authCookie =
+                            new HttpCookie(FormsAuthentication.FormsCookieName,
+                            crypTicket);
+
+                    Response.Cookies.Add(authCookie);
+                    Session["flotaId"] = flotaUsuario.Id.ToString();
+                    //Response.Cookies.
+
+
+                    // Cookies con informacion del usuario
+                    HttpCookie userInfoCookie = new HttpCookie("userInfoSGOFT");
+                    userInfoCookie.Values["userName"] = inputUsuario.Value;
+                    userInfoCookie.Values["grupoId"] = grupolUsuario.IDGrupo;
+                    userInfoCookie.Values["flotaId"] = flotaUsuario.Id.ToString();
+                    // userInfoCookie.Expires = DateTime.Now.AddDays(1);
+                    Response.Cookies.Add(userInfoCookie);
+
+
+
+                    // Redirecciono al Usuario - Importante!! no usar el RedirectFromLoginPage
+                    // Para que se puedan usar las Cookies de los HttpModules
+                    //Response.Redirect(FormsAuthentication.GetRedirectUrl(inputUsuario.Value, false));
+                    if (ctrlUsuarios.BuscarUsuario(inputUsuario.Value).PrimeraVez == true)
+                        Response.Redirect("View/PasswordTemporal.aspx");
+                    else
+                        Response.Redirect("View/Index.aspx");
+                }
+
+                if (oUsuario.Flota.ultimaLicencia.FechaFin >= DateTime.Now && (oUsuario.Flota.ultimaLicencia.Estado == "Pendiente Confirmacion" && oUsuario.Flota.ultimaLicencia.FechaInicio.AddDays(2) > DateTime.Now))
+                {
+                    //FormsAuthentication.RedirectFromLoginPage(inputUsuario.Value, recordarme.Checked);
+                    //Response.Redirect("View/Index.aspx");
+                    Modelo.SEGURIDAD.Grupo grupolUsuario = ctrlGrupos.ObtenerGrupodeUsuario(inputUsuario.Value);
+
+                    Modelo.SEGURIDAD.Flota flotaUsuario = ctrlFlotas.ObtenerFlotadeUsuario(inputUsuario.Value);
+
+                    //Invoca a componente que se encarga del Cache de los datos
+                    //en este caso de las páginas a las que el perfil tiene acceso
+                    Modelo.SEGURIDAD.UserCache.AddPaginasToCache(grupolUsuario.IDGrupo, ctrlPerfiles.ObtenerFormularios(inputUsuario.Value), System.Web.HttpContext.Current);
+
+                    // Crea un ticket de Autenticacion de forma manual, 
+                    // donde guardaremos información que nos interesa
+                    FormsAuthenticationTicket authTicket =
+                            new FormsAuthenticationTicket(2,  // version
+                            inputUsuario.Value,
+                            DateTime.Now,
+                            DateTime.Now.AddMinutes(60),
+                            false,
+                            grupolUsuario.IDGrupo, // guardo el grupo del usuario
+                            FormsAuthentication.FormsCookiePath);
+                    // Encripto el Ticket.
+                    string crypTicket = FormsAuthentication.Encrypt(authTicket);
+
+                    // Creo la Cookie
+                    HttpCookie authCookie =
+                            new HttpCookie(FormsAuthentication.FormsCookieName,
+                            crypTicket);
+
+                    Response.Cookies.Add(authCookie);
+                    Session["flotaId"] = flotaUsuario.Id.ToString();
+                    //Response.Cookies.
+
+
+                    // Cookies con informacion del usuario
+                    HttpCookie userInfoCookie = new HttpCookie("userInfoSGOFT");
+                    userInfoCookie.Values["userName"] = inputUsuario.Value;
+                    userInfoCookie.Values["grupoId"] = grupolUsuario.IDGrupo;
+                    userInfoCookie.Values["flotaId"] = flotaUsuario.Id.ToString();
+                    // userInfoCookie.Expires = DateTime.Now.AddDays(1);
+                    Response.Cookies.Add(userInfoCookie);
+
+
+
+                    // Redirecciono al Usuario - Importante!! no usar el RedirectFromLoginPage
+                    // Para que se puedan usar las Cookies de los HttpModules
+                    //Response.Redirect(FormsAuthentication.GetRedirectUrl(inputUsuario.Value, false));
+
+                    if (ctrlUsuarios.BuscarUsuario(inputUsuario.Value).PrimeraVez == true)
+                        Response.Redirect("View/PasswordTemporal.aspx");
+                    else
+                        Response.Redirect("View/Index.aspx");
+                }
                 else
-                    Response.Redirect("View/Index.aspx");
+                {
+
+                    //if (oUsuario.Flota.ultimaLicencia.FechaFin < DateTime.Now || (oUsuario.Flota.ultimaLicencia.Estado == "Pendiente Confirmacion" && oUsuario.Flota.ultimaLicencia.FechaInicio.AddDays(2) < DateTime.Now) || oUsuario.Flota.ultimaLicencia.Estado == "Rechazada")
+
+                    //FormsAuthentication.RedirectFromLoginPage(inputUsuario.Value, recordarme.Checked);
+                    //Response.Redirect("View/Index.aspx");
+                    Modelo.SEGURIDAD.Grupo grupolUsuario = ctrlGrupos.ObtenerGrupodeUsuario(inputUsuario.Value);
+
+                    Modelo.SEGURIDAD.Flota flotaUsuario = ctrlFlotas.ObtenerFlotadeUsuario(inputUsuario.Value);
+
+                    //Invoca a componente que se encarga del Cache de los datos
+                    //en este caso de las páginas a las que el perfil tiene acceso
+                    Modelo.SEGURIDAD.UserCache.AddPaginasToCache(grupolUsuario.IDGrupo, ctrlPerfiles.ObtenerFormularios(inputUsuario.Value), System.Web.HttpContext.Current);
+
+                    // Crea un ticket de Autenticacion de forma manual, 
+                    // donde guardaremos información que nos interesa
+                    FormsAuthenticationTicket authTicket =
+                            new FormsAuthenticationTicket(2,  // version
+                            inputUsuario.Value,
+                            DateTime.Now,
+                            DateTime.Now.AddMinutes(60),
+                            false,
+                            grupolUsuario.IDGrupo, // guardo el grupo del usuario
+                            FormsAuthentication.FormsCookiePath);
+                    // Encripto el Ticket.
+                    string crypTicket = FormsAuthentication.Encrypt(authTicket);
+
+                    // Creo la Cookie
+                    HttpCookie authCookie =
+                            new HttpCookie(FormsAuthentication.FormsCookieName,
+                            crypTicket);
+
+                    Response.Cookies.Add(authCookie);
+                    Session["flotaId"] = flotaUsuario.Id.ToString();
+                    //Response.Cookies.
+
+
+                    // Cookies con informacion del usuario
+                    HttpCookie userInfoCookie = new HttpCookie("userInfoSGOFT");
+                    userInfoCookie.Values["userName"] = inputUsuario.Value;
+                    userInfoCookie.Values["grupoId"] = grupolUsuario.IDGrupo;
+                    userInfoCookie.Values["flotaId"] = flotaUsuario.Id.ToString();
+                    // userInfoCookie.Expires = DateTime.Now.AddDays(1);
+                    Response.Cookies.Add(userInfoCookie);
+
+
+
+                    // Redirecciono al Usuario - Importante!! no usar el RedirectFromLoginPage
+                    // Para que se puedan usar las Cookies de los HttpModules
+                    //Response.Redirect(FormsAuthentication.GetRedirectUrl(inputUsuario.Value, false));
+
+                    Response.Redirect("View/LicenciaExpirada.aspx");
+                }
+
 
             }
             else

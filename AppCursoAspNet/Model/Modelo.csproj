@@ -91,6 +91,7 @@
     <Compile Include="SEGURIDAD\Flota.cs">
       <DependentUpon>SistFlota_Seguridad_Modelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="SEGURIDAD\FlotaPartial.cs" />
     <Compile Include="SEGURIDAD\FormsPrincipal.cs" />
     <Compile Include="SEGURIDAD\Formulario.cs">
       <DependentUpon>SistFlota_Seguridad_Modelo.tt</DependentUpon>

@@ -12,6 +12,7 @@ namespace Vista
     {
         Controladora.SEGURIDAD.ControladoraPerfiles ctrlPerfiles = new Controladora.SEGURIDAD.ControladoraPerfiles();
         Controladora.SEGURIDAD.ControladoraFlotas ctrlFlotas = new Controladora.SEGURIDAD.ControladoraFlotas();
+        Controladora.SEGURIDAD.ControladoraTiposdeLicencia ctrlTiposdeLicencia = new Controladora.SEGURIDAD.ControladoraTiposdeLicencia();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -83,7 +84,12 @@ namespace Vista
                        if (permisos.Exists(a => a == "TOTAL") || permisos.Exists(a => a == "ALTA"))
                         menuNuevoVehiculo.Visible = true;
                    }
-
+                
+                if (ctrlFlotas.ObtenerFlotadeUsuario(HttpContext.Current.User.Identity.Name).ultimaLicencia.TipoLicencia.tipo == "Basica")
+                {
+                    divPublicidad.Visible = true;
+                    imgPublicidad.ImageUrl = "~/Images/Banner/" + ctrlTiposdeLicencia.ObtenerTipoLicenciaBasica(ctrlFlotas.ObtenerFlotadeUsuario(HttpContext.Current.User.Identity.Name).ultimaLicencia.TipoLicencia.Id.ToString()).Patrocinador + ".jpg";
+                }
 
              
 

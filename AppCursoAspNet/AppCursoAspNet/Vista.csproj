@@ -72,6 +72,10 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\Banner\easytaxi.jpg" />
+    <Content Include="Images\Banner\sanlucar.jpg" />
+    <Content Include="Images\Banner\taxicalama.jpg" />
+    <Content Include="Images\Banner\turadiotaxi.jpg" />
     <Content Include="Images\logoqlikview.png" />
     <Content Include="Images\QlikViewPartner.jpg" />
     <Content Include="NoAutorizado.aspx" />

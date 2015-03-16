@@ -13,15 +13,26 @@ namespace Vista.Seguridad
         Controladora.SEGURIDAD.ControladoraUsuarios ctrlUsuarios = new Controladora.SEGURIDAD.ControladoraUsuarios();
         Controladora.SEGURIDAD.ControladoraPerfiles ctrlPerfiles = new Controladora.SEGURIDAD.ControladoraPerfiles();
         Controladora.SEGURIDAD.ControladoraFlotas ctrlFlotas = new Controladora.SEGURIDAD.ControladoraFlotas();
+        Controladora.SEGURIDAD.ControladoraTiposdeLicencia ctrlTipoLicencias = new Controladora.SEGURIDAD.ControladoraTiposdeLicencia();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (ctrlPerfiles.ObtenerFormularios(HttpContext.Current.User.Identity.Name).Exists(a => a == "Sistema"))
-            {
-                return;
-            }
-            else
+            if (!ctrlPerfiles.ObtenerFormularios(HttpContext.Current.User.Identity.Name).Exists(a => a == "Sistema"))
                 Response.Redirect("~/NoAutorizado.aspx");
+
+            if (ctrlFlotas.ObtenerFlotadeUsuario(this.Context.User.Identity.Name).ultimaLicencia.TipoLicencia.tipo == "Premium")
+            {
+                if (ctrlUsuarios.ListarUsuarios(ctrlFlotas.ObtenerFlotadeUsuario(this.Context.User.Identity.Name).Id.ToString()).Count > (ctrlTipoLicencias.ObtenerTipoLicenciaPremium(ctrlFlotas.ObtenerFlotadeUsuario(this.Context.User.Identity.Name).ultimaLicencia.TipoLicencia.Id.ToString()).CantUsuarios - 1))
+                {
+                    Response.Redirect("~/NoAutorizado.aspx");
+                }
+            }
+
+            if (ctrlFlotas.ObtenerFlotadeUsuario(this.Context.User.Identity.Name).ultimaLicencia.TipoLicencia.tipo != "Premium")
+            {
+                   Response.Redirect("~/NoAutorizado.aspx");
+            }
+
 
             DlFlota.SelectedValue = ctrlFlotas.ObtenerFlotadeUsuario(HttpContext.Current.User.Identity.Name).Id.ToString();
         }
