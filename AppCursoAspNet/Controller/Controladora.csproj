@@ -44,6 +44,9 @@
     <Reference Include="itextsharp">
       <HintPath>.\itextsharp.dll</HintPath>
     </Reference>
+    <Reference Include="mercadopago">
+      <HintPath>..\..\mercadopago.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -68,6 +71,9 @@
     <Compile Include="SEGURIDAD\ControladoraPermisos.cs" />
     <Compile Include="SEGURIDAD\ControladoraUsuarios.cs" />
     <Compile Include="SEGURIDAD\Encriptacion.cs" />
+    <Compile Include="SEGURIDAD\Fachada\FachadaMercadoPagoPremium.cs" />
+    <Compile Include="SEGURIDAD\Fachada\FachadaMercadoPagoBasica.cs" />
+    <Compile Include="SEGURIDAD\Fachada\MercadoPago.cs" />
     <Compile Include="SEGURIDAD\MODULOSEGURIDAD\CustomAuthenticationModule.cs" />
     <Compile Include="SISTFLOTA\ControladoraChoferes.cs" />
     <Compile Include="SISTFLOTA\ControladoraEmpresas.cs" />
