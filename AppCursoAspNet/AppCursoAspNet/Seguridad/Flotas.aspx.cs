@@ -27,7 +27,7 @@ namespace Vista.View
         protected void listaFlotas_RowEditing(object sender, GridViewEditEventArgs e)
         {
             string empresaId = this.listaFlotas.Rows[e.NewEditIndex].Cells[0].Text;
-            Response.Redirect("EditarFlota?flotaId=" + empresaId);
+            //Response.Redirect("EditarFlota?flotaId=" + empresaId);
         }
 
         protected void btnFiltrar_Click(object sender, EventArgs e)

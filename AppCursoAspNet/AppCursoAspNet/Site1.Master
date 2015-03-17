@@ -102,7 +102,7 @@
                            <a runat="server" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-adjust_alt yellow-icon"></span>Administracion<b class="caret"></b></a>
                            <ul class="dropdown-menu">
                                <li><a href="../Seguridad/Flotas"><span class="glyphicon glyphicon-address_book yellow-icon"></span>Gestionar Flotas</a></li>
-                               <li><a href="../Seguridad/Usuarios"><span class="glyphicon glyphicon-log_book yellow-icon"></span>Gestionar Licencias Adquiridas</a></li>
+                               <li><a href="../Seguridad/Licencias"><span class="glyphicon glyphicon-log_book yellow-icon"></span>Gestionar Licencias Adquiridas</a></li>
                                <li><a href="../Seguridad/TiposdeLicencia"><span class="glyphicon glyphicon-log_book yellow-icon"></span>Gestionar Tipos de Licencias</a></li>
                                <li class="divider"></li>
                                <li><a href="../Seguridad/Usuarios"><span class="glyphicon glyphicon-parents yellow-icon"></span>Gestionar Usuarios</a></li>

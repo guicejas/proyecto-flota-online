@@ -103,6 +103,7 @@
     <Compile Include="SEGURIDAD\Licencia.cs">
       <DependentUpon>SistFlota_Seguridad_Modelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="SEGURIDAD\LicenciaPartial.cs" />
     <Compile Include="SEGURIDAD\Perfil.cs">
       <DependentUpon>SistFlota_Seguridad_Modelo.tt</DependentUpon>
     </Compile>

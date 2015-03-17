@@ -36,7 +36,7 @@
                 <Columns>
                     <asp:BoundField DataField="Id" HeaderText="Id" />
                     <asp:BoundField DataField="RazonSocial" HeaderText="Razon Social" />
-                    <asp:CommandField ShowEditButton="True" EditImageUrl="~/Images/edit-item.png" EditText="Editar" HeaderImageUrl="~/Images/edit-item.png" />
+                    <asp:CommandField ShowEditButton="true" EditImageUrl="~/Images/edit-item.png" EditText="Ver" HeaderImageUrl="~/Images/edit-item.png" />
                 </Columns>
             </asp:GridView>
         </ContentTemplate>

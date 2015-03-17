@@ -105,13 +105,16 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Site.js" />
+    <Content Include="Seguridad\AceptarLicencia.aspx" />
     <Content Include="Seguridad\EditarGrupo.aspx" />
     <Content Include="Seguridad\EditarPerfil.aspx" />
     <Content Include="Seguridad\EditarUsuarioFlota.aspx" />
     <Content Include="Seguridad\EditarUsuario.aspx" />
     <Content Include="Seguridad\Flotas.aspx" />
     <Content Include="Seguridad\LicenciaFlota.aspx" />
+    <Content Include="Seguridad\Licencias.aspx" />
     <Content Include="Seguridad\NuevoTipodeLicencia.aspx" />
+    <Content Include="Seguridad\RechazarLicencia.aspx" />
     <Content Include="Seguridad\TiposdeLicencia.aspx" />
     <Content Include="Seguridad\Grupos.aspx" />
     <Content Include="Seguridad\NuevoGrupo.aspx" />
@@ -208,6 +211,13 @@
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Seguridad\AceptarLicencia.aspx.cs">
+      <DependentUpon>AceptarLicencia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seguridad\AceptarLicencia.aspx.designer.cs">
+      <DependentUpon>AceptarLicencia.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Seguridad\EditarGrupo.aspx.cs">
       <DependentUpon>EditarGrupo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -250,12 +260,26 @@
     <Compile Include="Seguridad\LicenciaFlota.aspx.designer.cs">
       <DependentUpon>LicenciaFlota.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Seguridad\Licencias.aspx.cs">
+      <DependentUpon>Licencias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seguridad\Licencias.aspx.designer.cs">
+      <DependentUpon>Licencias.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Seguridad\NuevoTipodeLicencia.aspx.cs">
       <DependentUpon>NuevoTipodeLicencia.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Seguridad\NuevoTipodeLicencia.aspx.designer.cs">
       <DependentUpon>NuevoTipodeLicencia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\RechazarLicencia.aspx.cs">
+      <DependentUpon>RechazarLicencia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seguridad\RechazarLicencia.aspx.designer.cs">
+      <DependentUpon>RechazarLicencia.aspx</DependentUpon>
     </Compile>
     <Compile Include="Seguridad\TiposdeLicencia.aspx.cs">
       <DependentUpon>TiposdeLicencia.aspx</DependentUpon>
